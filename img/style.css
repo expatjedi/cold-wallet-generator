@@ -28,7 +28,6 @@ a {
 }
 
 #searchInput {
-    background-image: url('../img/searchicon.png');
     background-position: 10px 12px;
     background-repeat: no-repeat;
     width: 100%;
@@ -148,4 +147,8 @@ table tr:last-child td:last-child {
     #buttons {
         text-align: center;
     }
+}
+
+input {
+text-align: center;
 }
