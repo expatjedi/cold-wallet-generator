@@ -26,7 +26,7 @@ Feel free to use it.
 * Private key is used to spend funds. Do not share it!
 
 #### Tips appreciated!  
-**BTC**: 3MEmomSUDWqWmEtRNoakSxF9ZgZuxn8tJj    
+**BTC**: 3KEERgTDCn94rZ1dWfxfGi9XzLrr9QeSRa    
 
 #
 #### Integrity validation
