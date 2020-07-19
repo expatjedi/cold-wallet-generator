@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<title>Monero Paper Wallet Generator</title>
+			<meta name="description" content="A lightweight, client-side, reliable, fast, open-source universal paper wallet generator supporting almost every major cryptocurrency">
+				<meta name="keywords" content="minimal, reliable, fast, universal, paper, wallet, generator, offline, monero, xmr, cryptocurrency">
+					<meta name="viewport" content="width=device-width, initial-scale=1">
+							<link rel="stylesheet" href="img/style2.css">
+							</head>
+							<body onload="generate()">
+								<div id="container">
+									<br>
+										<div class="noprint">
+											<button class="button button2" onclick="generate()">Generate</button>
+											<button class="button button1" onclick="window.print()">Print</button>
+											<a href="index.html">
+												<input type="button" class="button button1" value="Home"/>
+											</a>
+										</div>
+										<table>
+											<tr>
+												<th id="titlePaper">
+													<span id="currencyName">Monero</span> Paper Wallet
+												</th>
+											</tr>
+											<tr>
+												<th class="grayHeaders">Public Address 
+													<span id="shareColor">(SHARE)</span>
+												</th>
+											</tr>
+											<tr>
+												<td>
+													<div id="public">Generating...</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div id="public_qr"></div>
+												</td>
+											</tr>
+											<tr>
+												<th class="grayHeaders">
+													<div id="secretLabel">Private Key 
+														<span id="secretColor">(SECRET)</span>
+													</div>
+												</th>
+											</tr>
+											<tr>
+												<td>
+													<div id="secret">Generating...</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div id="secret_qr"></div>
+												</td>
+											</tr>
+											<tr><th class="grayHeaders">Printing Instructions</th>
+<tr><td><small>
+Select a paper size larger than A4 before printing. The best result is obtained with A3 horizontal. Save the PDF file and cut its edges with an editor.</small></td></tr>
+											<tr>
+															</table>
+														</div>
+														<script src="js/monero.js"></script>
+												        <script src="js/qrcode.js"></script>
+												        <script src="js/jquery-3.5.0.min.js"></script>
+
+<script type="text/javascript">
+            
+            $(function(){
+                
+                generate();
+                
+            });
+
+            var account, keyPair, pubKey, privKey;
+
+            function generate(){
+
+                var current_lang = "english";
+                var seed = cnUtil.sc_reduce32(cnUtil.rand_32());
+                var keys = cnUtil.create_address(seed);
+
+                privKey = mn_encode(seed, current_lang);
+                pubKey = cnUtil.pubkeys_to_string(keys.spend.pub, keys.view.pub);
+
+                document.getElementById("public").textContent = pubKey;
+ 				document.getElementById("secret").textContent = privKey;
+                document.getElementById("public_qr").textContent = "";
+                document.getElementById("secret_qr").textContent = "";
+
+                new QRCode(document.getElementById("public_qr"), {
+                    text: pubKey,
+                    width: 128,
+                    height: 128,
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+
+                new QRCode(document.getElementById("secret_qr"), {
+                    text: privKey,
+                    width: 128,
+                    height: 128,
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+
+            }
+
+        </script>
+
+
+
+    </body>
+</html>
