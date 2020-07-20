@@ -44,5 +44,7 @@ Feel free to use it.
 	* [SHA-256] AD6BE647329F8159B6BB2F7F6E7CC8DE9B39B092951858EBB3F8ED5A1C66C8F4
 * [bitcore-lib-zcash.js](https://github.com/bitmex/zcash-bitcore-lib)
 	* [SHA-256] 621ad3c644508da28ac671c432a78de1d3b0f51a24edbd065bdb2c0e8f2f154c
+* [monero.js](https://github.com/monero-project/monero) (Official Monero API)
+	* [SHA-256] 8542b18b60ce05c69e69be0ed42aabbceca00bf26cf6f23930e8426a0428f726
 * [qrcode.js](https://github.com/davidshimjs/qrcodejs)
 	* [SHA-256] 3ee72de9f69c668f9567363a9358df955960bae9000d9ebd66414670f88e8735
