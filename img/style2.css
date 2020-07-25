@@ -50,7 +50,7 @@ body {
 }
 
 table {
-	background-color: white;
+	/*background-color: white;*/
 	border-collapse: collapse;
 	margin: 15px 0;
 	border-radius: 7px;
@@ -74,7 +74,7 @@ td img{
 #titlePaper {
 	font-family: 'Roboto Condensed', sans-serif;
 	padding: 10px 0;
-	background-color: #FFA500;
+	/*background-color: #FFA500;*/
 	color: black;
 	text-align: center;
 }
