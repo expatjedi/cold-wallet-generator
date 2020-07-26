@@ -50,7 +50,6 @@ body {
 }
 
 table {
-	/*background-color: white;*/
 	border-collapse: collapse;
 	margin: 15px 0;
 	border-radius: 7px;
@@ -60,7 +59,6 @@ table {
 
 td,
 th {
-	/*border: 1px solid #dedede;*/
 	border: 0px solid #032f3e;
 	text-align: left;
 	padding: 10px 5px;
@@ -73,8 +71,8 @@ td img{
 
 #titlePaper {
 	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 22px;
 	padding: 10px 0;
-	/*background-color: #FFA500;*/
 	color: black;
 	text-align: center;
 }
@@ -85,8 +83,9 @@ a {
 
 #secret,
 #public {
-	font-family: monospace; font-weight: bold;
+	font-family: monospace;
 	color: #032f3e;
+	font-size: 16px
 }
 
 #public{
@@ -129,10 +128,6 @@ a {
 
 #update {
 	display: inline-block;
-}
-
-#footer {
-	font-size: 12px;
 }
 
 @media only screen and (max-width: 640px) {
