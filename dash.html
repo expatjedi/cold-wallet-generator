@@ -10,9 +10,9 @@
 </head>
 <body onload="generate()">
 <div id="container"><br>
-<div class="noprint"><button class="button button2" onclick="generate()">Generate</button>
-<button class="button button1" onclick="window.print()">Print</button>
-<a href="index.html"><input type="button" class="button button1" value="Home"/></a></div>
+<div class="noprint"><button onclick="generate()">Generate</button>
+<button onclick="window.print()">Print</button>
+<a href="index.html"><input type="button" value="Home"/></a></div>
 <table>
 <tr><h1 id="titlePaper">Dash Paper Wallet</h1></tr>
 <tr><th class="grayHeaders">Public Address <span id="shareColor">(SHARE)</span></th></tr>
@@ -22,12 +22,10 @@
 <tr><td><div id="secret">Generating...</div></td></tr>
 <tr><td><div id="secret_qr"></div></td></tr>
 </table>
-<div class="noprint">
-<tr><td><small>
+<span class="noprint">
 <b>Strongly Recommended:</b> Always use the paper wallet generator offline. Go to the paper wallet's GitHub page, download the latest release on a usb drive, open the zip file in a drive on a computer without an internet connection. After producing enough wallets, print out and clear the printer memory. Restarting the printer will reset the device and clear its memory of any active print jobs. For this, turn off the printer and unplug it from the power socket. Leave it for a minute and then plug the printer into the power socket. This will fully clear out the power of the memory and erase it completely.
 <br><br><b>Public Address</b> is for payment. You can share with as many people as you want, even add it in to your forum signature. However, I recommend using only 1 address for each payment. Think of it as using a burner phone.
-<br><br><b>Private key</b> is for accessing and spending your coins. So don't share it with anyone under any circumstances. Even with your closest relatives! Once your private key is handed over to someone else, they can spend the coins at the address that the key is connected to. That's why I recommend using only 1 address for each payment. You will know the safest place for your wallets to be loaded, but my advice is rental bank safes. You can apply a coating on paper against abrasion over time.
-</small></td></tr></div>
+<br><br><b>Private key</b> is for accessing and spending your coins. So don't share it with anyone under any circumstances. Even with your closest relatives! Once your private key is handed over to someone else, they can spend the coins at the address that the key is connected to. That's why I recommend using only 1 address for each payment. You will know the safest place for your wallets to be loaded, but my advice is rental bank safes. You can apply a coating on paper against abrasion over time.</span>
 </div>
 <script src="js/bitcoinjs-lib.js"></script>
 <script src="js/qrcode.js"></script>

@@ -1,13 +1,13 @@
 body {
     background-color: #f6f5f2;
-    font-family: "Calibri", "Palatino Linotype", "Book Antiqua", Palatino, serif;
-    font-size: 14px;
-    color: #565656;
+    font-family: "Open Sans", serif;
+    font-size: 12px;
+    color: black;
 }
 
 #container {
     margin: auto;
-    max-width: 450px;
+    max-width: 600px;
 }
 
 #title {
@@ -15,7 +15,7 @@ body {
     font-size: 22px;
     text-align: center;
     font-weight: bold;
-    margin: 0 0 -15px 0;
+    margin: 0 0 0px 0;
 }
 
 #titleLabel {
@@ -36,16 +36,8 @@ a {
     border: 1px solid #ddd;
     box-sizing: border-box;
     background-color: #f9f9f9;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
-
-table tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
-}
-
-table tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
+    /* border-top-left-radius: 20px;
+    border-top-right-radius: 20px; */
 }
 
 #searchOL {
@@ -62,85 +54,12 @@ table tr:last-child td:last-child {
     background-color: #f6f6f6;
     padding: 12px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 13px;
     display: block;
 }
 
 #searchOL li a:hover:not(.header) {
     background-color: #eee;
-}
-
-.edited-container {
-    max-width: 550px !important;
-}
-.edited-list .tek{
-    background-color: #ffffff;
-	transition: 0.8s all ease-in-out;
-}
-
-.edited-list .tek:hover{
-	background-color: transparent;
-}
-
-.edited-list .tek a {
-    position: relative;
-    background-color: transparent !important;
-    color: #808080 !important;
-}
-
-.edited-list .tek a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 0;
-    z-index: -1;
-    background-color: rgb(38, 59, 156);
-    transition: 0.8s all ease-in-out;
-}
-
-.edited-list .tek a:hover:after {
-    width: 100%;
-}
-
-
-.edited-list .cift{
-	background-color: #f8f6ff;
-    color: #808080 !important;
-	transition: 0.5s all ease-in-out;
-}
-
-.edited-list .cift:hover{
-	background-color: transparent;
-}
-
-
-.edited-list .cift a {
-	position: relative;
-	background-color: transparent !important;
-    color: #808080 !important;
-}
-
-.edited-list .cift a::after {
-	content: "";
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 0;
-	z-index: -1;
-	background-color: rgb(38, 59, 156);
-	transition: 0.8s all ease-in-out;
-}
-
-.edited-list .cift a:hover:after {
-	width: 75%;
-}
-
-.edited-btn{
-	transition: 0.2s all ease-in-out !important;
-	border-radius: 10px !important;
 }
 
 @media only screen and (max-width: 640px) {
