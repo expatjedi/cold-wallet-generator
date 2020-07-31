@@ -1,58 +1,21 @@
 body {
 	background-color: #f6f5f2;
-	font-size: 15px;
-	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	font-family: 'Open Sans', sans-serif;
 }
 
 #container {
 	margin: auto;
-	max-width: 500px;
+	max-width: 600px;
 }
 
 #titleLabel {
 	font-weight: normal;
 }
 
-.button {
-	padding: 5px 10px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	margin: 4px 0;
-	cursor: pointer;
-	border-radius: 5px;
-}
-
-.button1 {
-
-	margin: 0 5px;
-	background-color: #f6f5f2;
-	color: black;
-	border: 1px solid #dedede;
-	transition: 0.3s all ease-in-out;
-	border-radius: 5px;*
-}
-
-.button2 {
-
-	margin: 0 5px;
-	background-color: #032f3e;
-	color: #f6f5f2;
-	border: 1px solid #dedede;
-	transition: 0.3s all ease-in-out;
-}
-
-.button:hover {
-	border: 1px !important;
-	background-color: #032f3e;
-	border-radius: 5px;
-	color: #f6f5f2;
-}
-
 table {
 	border-collapse: collapse;
 	margin: 15px 0;
-	border-radius: 7px;
 	overflow: hidden;
 	width: 100%;
 }
@@ -71,10 +34,10 @@ td img{
 
 #titlePaper {
 	font-family: 'Roboto Condensed', sans-serif;
-	font-size: 22px;
+	font-size: 18px;
 	padding: 10px 0;
 	color: black;
-	text-align: center;
+	text-align: right;
 }
 
 a {
