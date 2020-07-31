@@ -5,8 +5,7 @@ Using third-party services to generate paper wallets should be avoided without p
 
 Unnecessary codes and poorly written libraries are often used, creating a huge security risk for users. Some services advertise that their generator works offline, and thus its users are immune to private key theft. However, there is still a possibility that an offline paper wallet generator creates keys deterministically without ever needing to communicate this information in any way.   
 
-For this reason, I wouldn't trust any random websites offering offline paper wallet generators without proper investigation.  
-On the other hand, my paper wallet contains no bloat but only the essentials.   
+For this reason, I wouldn't trust any random websites offering offline paper wallet generators without proper investigation. On the other hand, my paper wallet contains no bloat but only the essentials.   
 
 Feel free to use it.
 
