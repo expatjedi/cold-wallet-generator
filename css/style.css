@@ -71,3 +71,37 @@ a {
 input {
 text-align: center;
 }
+
+.donate {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 999;
+  width: 120px;
+  height: 40px;
+  box-shadow: 0 0 5px #000000;
+  border-radius: 10px;
+  transition: 0.2s all ease-in-out;
+}
+
+.bagis:hover {
+  box-shadow: 0 0 25px #000000;
+}
+
+.bagis:hover i {
+  color: red;
+}
+
+.bagis-content {
+  line-height: 40px;
+  color: #000000;
+}
+
+.bagis-content i {
+  margin: 0 10px;
+  transition: 0.2s all ease-in-out;
+}
+
+a {
+  text-decoration: none;
+}
