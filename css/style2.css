@@ -48,18 +48,19 @@ a {
 #public {
 	font-family: monospace;
 	color: #032f3e;
-	font-size: 16px
-	font-weight: bold;
+	font-size: 18px
 }
 
 #public{
 	text-align: left;
-	color: #008000
+	color: green;
+	font-weight: bold;
 }
 
 #secret{
 	text-align: right;
-	color: red
+	color: red;
+	font-weight: bold;
 }
 
 #secret_qr,
