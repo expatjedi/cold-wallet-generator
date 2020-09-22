@@ -1,6 +1,6 @@
 body {
 	background-color: #f6f5f2;
-	font-size: 13px;
+	font-size: 15px;
 	font-family: 'Open Sans', sans-serif;
 }
 
@@ -28,7 +28,6 @@ th {
 }
 
 td img{
-	/*margin: 15px 0;*/
 	text-align: right;
 }
 
