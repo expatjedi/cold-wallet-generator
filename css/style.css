@@ -36,8 +36,6 @@ a {
     border: 1px solid #ddd;
     box-sizing: border-box;
     background-color: #f9f9f9;
-    /* border-top-left-radius: 20px;
-    border-top-right-radius: 20px; */
 }
 
 #searchOL {
@@ -54,7 +52,7 @@ a {
     background-color: #f6f6f6;
     padding: 12px;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 14px;
     display: block;
 }
 
