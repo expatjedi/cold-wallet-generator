@@ -27,9 +27,9 @@ Always use the paper wallet generator offline. Go to the paper wallet's GitHub p
 **Private key** is for accessing and spending your coins so don't share it with anyone under any circumstances. Even with your closest relatives! Once your private key is handed over to someone else, they can spend the coins at the address that the key is connected to. That's why I recommend using only 1 address for each payment. You will know the safest place for your wallets to be loaded, but my advice is rental bank safes. You can apply a coating on paper against abrasion over time.
 
 #### Tips appreciated!  
-**BTC**: 3KEERgTDCn94rZ1dWfxfGi9XzLrr9QeSRa    
+**BTC**: 3NYhBqfARc1UjHw5B7QWArpK96949XwjaK    
 
-#
+
 #### Integrity validation
 * [bitcoinjs-lib.js](https://github.com/bitcoinjs/bitcoinjs-lib) v3.3.2
 	* [SHA-256] 34fb2141b70f690a8eb9fa75e703e99b39f8538201250115fc895343b7739708

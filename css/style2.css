@@ -1,5 +1,5 @@
 body {
-	background-color: #f6f5f2;
+	background-color: #ffffff;
 	font-size: 15px;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -16,6 +16,7 @@ body {
 table {
 	border-collapse: collapse;
 	margin: 15px 0;
+	border-radius: 7px;
 	overflow: hidden;
 	width: 100%;
 }
@@ -32,11 +33,10 @@ td img{
 }
 
 #titlePaper {
-	font-family: 'Roboto Condensed', sans-serif;
-	font-size: 18px;
+	font-family: 'Open Sans', sans-serif; font-size: 16px;
 	padding: 10px 0;
 	color: black;
-	text-align: right;
+	text-align: center;
 }
 
 a {
@@ -46,20 +46,19 @@ a {
 #secret,
 #public {
 	font-family: monospace;
+	font-size: 18px;
+	font-weight: bold;
 	color: #032f3e;
-	font-size: 18px
 }
 
 #public{
 	text-align: left;
-	color: green;
-	font-weight: bold;
+	color: #008000
 }
 
 #secret{
 	text-align: right;
-	color: red;
-	font-weight: bold;
+	color: red
 }
 
 #secret_qr,
