@@ -23,7 +23,9 @@
 <tr><td><div id="secret_qr"></div></td></tr>
 </table>
 </div>
-<script>const urlParam = window.location.search.substring(1); if(urlParam){document.getElementById("currencyName").textContent = urlParam; document.title = urlParam + " Paper Wallet Generator";}</script>
+<script>
+const urlParam = window.location.search.substring(1); if(urlParam){document.getElementById ("currencyName").textContent = urlParam; document.title = urlParam + " Paper Wallet";}
+</script>
 <script src="js/web3-eth-accounts.js"></script>
 <script src="js/qrcode.js"></script>
 <script>
