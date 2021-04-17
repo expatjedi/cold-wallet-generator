@@ -62,7 +62,7 @@
   <script>
     function generate() {
     const dem = bitcoin.networks.bitcoin;
-    dem.pubKeyHash = 0x35; dem.wif = 0xb5; dem.scriptHash = 0xe8;
+    dem.pubKeyHash = 0x35; dem.wif = 0xb5; dem.scriptHash = 0x1e;
     const keyPair = bitcoin.ECPair.makeRandom();
     const pubKey = keyPair.getAddress();
     const privKey = keyPair.toWIF();
