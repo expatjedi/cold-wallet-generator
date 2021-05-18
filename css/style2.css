@@ -1,5 +1,5 @@
 body {
-	background-color: #ffffff;
+	background-color: white;
 	font-size: 15px;
 	font-family: 'Fira Code', sans-serif;
 }
@@ -33,7 +33,7 @@ td img{
 }
 
 #titlePaper {
-	font-family: 'Open Sans', sans-serif; font-size: 16px;
+	font-family: 'Fira Code', sans-serif; font-size: 16px;
 	padding: 10px 0;
 	color: black;
 	text-align: center;
@@ -45,7 +45,7 @@ a {
 
 #secret,
 #public {
-	font-family: monospace;
+	font-family: "Fira Code";
 	font-size: 18px;
 	font-weight: bold;
 	color: #032f3e;
