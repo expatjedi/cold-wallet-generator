@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>LBRY Credits Paper Wallet Generator</title>
+<title>Emerald Crypto Paper Wallet Generator</title>
 <meta name="description" content="A lightweight, client-side, reliable, fast, open-source universal paper wallet generator supporting almost every major cryptocurrency">
-<meta name="keywords" content="minimal, reliable, fast, universal, paper, wallet, generator, offline, LBRY, LBRY Credits, cryptocurrency">
+<meta name="keywords" content="minimal, reliable, fast, universal, paper, wallet, generator, offline, emerald crypto, emerald, cryptocurrency">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/style2.css">
 </head>
@@ -14,7 +14,7 @@
 <button onclick="window.print()">Print</button>
 <a href="index.html"><input type="button" value="Home"/></a></div><br>
 <table>
-<tr><h1 id="titlePaper">LBRY Credits Paper Wallet</h1></tr>
+<tr><h1 id="titlePaper">Emerald Crypto Paper Wallet</h1></tr>
 <tr><th class="grayHeaders">Public Address <span id="shareColor">(SHARE)</span></th></tr>
 <tr><td><div id="public">Generating...</div></td></tr>
 <tr><td><div id="public_qr"></div></td></tr>
@@ -27,8 +27,8 @@
 <script src="js/qrcode.js"></script>
 <script>
 function generate() {
-const lbry = bitcoin.networks.bitcoin;
-lbry.pubKeyHash = 0x55; lbry.wif = 0x80; lbry.scriptHash = 0x16;
+const emerald = bitcoin.networks.bitcoin;
+emerald.pubKeyHash = 0x22; emerald.wif = 0xa2; emerald.scriptHash = 0x16;
 const keyPair = bitcoin.ECPair.makeRandom();
 const pubKey = keyPair.getAddress();
 const privKey = keyPair.toWIF();
