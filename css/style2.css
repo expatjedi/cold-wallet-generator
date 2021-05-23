@@ -1,6 +1,6 @@
 body {
-	background-color: white;
-	font-size: 15px;
+	background-color: #eee;
+	font-size: 16px;
 	font-family: 'Fira Code', sans-serif;
 }
 
@@ -33,14 +33,14 @@ td img{
 }
 
 #titlePaper {
-	font-family: 'Fira Code', sans-serif; font-size: 16px;
+	font-family: 'Fira Code', sans-serif; font-size: 18px;
 	padding: 10px 0;
-	color: black;
+	color: #2E3440;
 	text-align: center;
 }
 
 a {
-	color: black;
+	color: #2E3440;
 }
 
 #secret,
@@ -48,7 +48,7 @@ a {
 	font-family: "Fira Code";
 	font-size: 18px;
 	font-weight: bold;
-	color: #032f3e;
+	color: #2E3440;
 }
 
 #public{
