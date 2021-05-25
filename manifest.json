@@ -39,12 +39,5 @@
   ],
   "url": "https://holdmywallet.com/",
   "manifestUrl": "https://holdmywallet.com/manifest.json",
-  "orientation": "portrait",
-  "screenshots": [
-	  {
-	    "src": "https://holdmywallet.com/img/screenshot.webp",
-	    "sizes": "1280x720",
-	    "type": "image/webp"
-	  }
-	]
+  "orientation": "portrait"
 }
