@@ -1618,29 +1618,19 @@
 
 									<div align="center">
 									 <a href="https://github.com/koraylinux/paper-wallet" rel="noopener noreferrer" target="blank">Source Code</a> |
-									 <text onclick=" myPopup ('donate.html', 'web', 800, 300);">Support My Work</text>
-									</div>
-						<script>
-						   function myPopup(myURL, title, myWidth, myHeight) {
-						    var left = (screen.width - myWidth) / 2;
-						    var top = (screen.height - myHeight) / 4;
-						    var myWindow = window.open(myURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left); }
-						 </script>
-
-						<script>
-						function Search() {
-						var input, filter, ul, li, a, i;
-						input = document.getElementById("searchInput");
-						filter = input.value.toUpperCase();
-						ul = document.getElementById("searchOL");
-						li = ul.getElementsByTagName("li");
-						for (i = 0; i < li.length; i++) {
-						a = li[i].getElementsByTagName("a")[0];
-						if (a.textContent.toUpperCase().indexOf(filter) > -1) {li[i].style.display = "";}
-						else {li[i].style.display = "none";}
-						}}
-						var ol = document.getElementById("searchOL");
-						ol.onclick = function(event) {var target = event.target;if(target.className === "erc20"){if (location.hostname === "") window.location.replace("ethereum.html?"+ target.textContent);else window.location.replace("ethereum?"+  target.textContent);}};
-						</script>
+<text id="myBtn">Support My Work</text>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>
+	  Bitcoin: bc1q2cqc8gllw4pnxxx8ykurjvgnunjuz7fga3krqv<br><br>
+	  Ethereum: 0x76e1B2cB5096b70F73c34f6417241ADD45d6E2Bd<br><br>
+	  Dogecoin: D9uobhcTit6K49VgR3SvE6EWFv5LWUmus1<br><br>
+	  Worldcoin: Wh33n3v6hNV3uoEPzT7bwXJ1VaUW6GFu8W
+	</p>
+  </div>
+</div>
+<script src=js/modal.js></script>
+<script src=js/erc20.js></script>
 </body>
 </html>
