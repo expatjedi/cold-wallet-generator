@@ -1614,23 +1614,33 @@
 														<li>
 															<a href="#" class="erc20">Zilliqa(ZIL)</a>
 														</li>
-													</ol><br>
+													</ol><br><br>
 
-<p align="center"><a href="https://github.com/koraylinux/paper-wallet" rel="noopener noreferrer" target="blank">Source Code</a> | <a href="https://github.com/sponsors/koraylinux" rel="noopener noreferrer" target="blank">Support My Work</a></p>
-<script>
-function Search() {
-var input, filter, ul, li, a, i;
-input = document.getElementById("searchInput");
-filter = input.value.toUpperCase();
-ul = document.getElementById("searchOL");
-li = ul.getElementsByTagName("li");
-for (i = 0; i < li.length; i++) {
-a = li[i].getElementsByTagName("a")[0];
-if (a.textContent.toUpperCase().indexOf(filter) > -1) {li[i].style.display = "";}
-else {li[i].style.display = "none";}
-}}
-var ol = document.getElementById("searchOL");
-ol.onclick = function(event) {var target = event.target;if(target.className === "erc20"){if (location.hostname === "") window.location.replace("ethereum.html?"+ target.textContent);else window.location.replace("ethereum?"+  target.textContent);}};
-</script>
+									<div align="center">
+									 <a href="https://github.com/koraylinux/paper-wallet" rel="noopener noreferrer" target="blank">Source Code</a> |
+									 <text onclick=" myPopup ('donate.html', 'web', 800, 300);">Support My Work</text>
+									</div>
+						<script>
+						   function myPopup(myURL, title, myWidth, myHeight) {
+						    var left = (screen.width - myWidth) / 2;
+						    var top = (screen.height - myHeight) / 4;
+						    var myWindow = window.open(myURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left); }
+						 </script>
+
+						<script>
+						function Search() {
+						var input, filter, ul, li, a, i;
+						input = document.getElementById("searchInput");
+						filter = input.value.toUpperCase();
+						ul = document.getElementById("searchOL");
+						li = ul.getElementsByTagName("li");
+						for (i = 0; i < li.length; i++) {
+						a = li[i].getElementsByTagName("a")[0];
+						if (a.textContent.toUpperCase().indexOf(filter) > -1) {li[i].style.display = "";}
+						else {li[i].style.display = "none";}
+						}}
+						var ol = document.getElementById("searchOL");
+						ol.onclick = function(event) {var target = event.target;if(target.className === "erc20"){if (location.hostname === "") window.location.replace("ethereum.html?"+ target.textContent);else window.location.replace("ethereum?"+  target.textContent);}};
+						</script>
 </body>
 </html>
