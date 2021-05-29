@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang=en> <head><meta charset=UTF-8><title>Blackcoin Paper Wallet Generator</title><meta name=description content="A lightweight, client-side, reliable, fast, open-source universal paper wallet generator supporting almost every major cryptocurrency"><meta name=keywords content="minimal, reliable, fast, universal, paper, wallet, generator, offline, blackcoin, viacoin, cryptocurrency"><meta name=viewport content="width=device-width, initial-scale=1"><link rel=stylesheet href=css/style2.css><link rel=canonical href=https://holdmywallet.com/blackcoin.html></head> <body onload=generate()> <div id=container><br> <div class=noprint><button onclick=generate()>Generate</button> <button onclick=window.print()>Print</button> <a href=index.html><input type=button value=Home></a></div> <table> <tr><h1 id=titlePaper>Blackcoin Paper Wallet</h1></tr> <tr><th class=grayHeaders>Public Address <span id=shareColor>(SHARE)</span></th></tr> <tr><td><div id=public>Generating...</div></td></tr> <tr><td><div id=public_qr></div></td></tr> <tr><th class=grayHeaders><div id=secretLabel>Private Key <span id=secretColor>(SECRET)</span></div></th></tr> <tr><td><div id=secret>Generating...</div></td></tr> <tr><td><div id=secret_qr></div></td></tr> </table> </div> <script src=js/bitcoinjs-lib.js></script> <script src=js/qrcode.js></script> <script>
+function generate() {
+const blackcoin = bitcoin.networks.bitcoin;
+blackcoin.pubKeyHash = 0x19; blackcoin.wif = 0x99; blackcoin.scriptHash = 0x05;
+const keyPair = bitcoin.ECPair.makeRandom();
+const pubKey = keyPair.getAddress();
+const privKey = keyPair.toWIF();
+document.getElementById("public").textContent = pubKey;
+document.getElementById("secret").textContent = privKey;
+document.getElementById("public_qr").textContent = "";
+document.getElementById("secret_qr").textContent = "";
+new QRCode(document.getElementById("public_qr"), {text: pubKey, width: 128, height: 128, correctLevel : QRCode.CorrectLevel.H});
+new QRCode(document.getElementById("secret_qr"), {text: privKey, width: 128, height: 128, correctLevel : QRCode.CorrectLevel.H});}
+document.getElementById("update").textContent = "Latest update: " + document.lastModified;
+</script> </body> </html>
