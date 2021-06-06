@@ -1,0 +1,12 @@
+body {
+	background-color: #eee;
+	color:#2e3440;
+	margin:40px auto;
+	max-width:750px;
+	line-height:1.3;
+	font-size:17px;
+	padding:0 10px
+	}
+	h1,h2,h3 {
+		line-height:1.2
+	}
