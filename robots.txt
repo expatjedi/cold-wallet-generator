@@ -1,0 +1,3 @@
+﻿User-agent: *
+Disallow: 
+Sitemap: https://holdmywallet.com/sitemap.xml
