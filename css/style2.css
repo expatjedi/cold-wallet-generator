@@ -1,1 +1,94 @@
-body{background-color:#eee;font-size:16px;font-family:Verdana,sans-serif}#container{margin:auto;max-width:600px}#titleLabel{font-weight:400}table{border-collapse:collapse;margin:15px 0;border-radius:7px;overflow:hidden;width:100%}td,th{border:0 solid #032f3e;text-align:left;padding:10px 5px}td img{text-align:right}#titlePaper{font-family:Verdana,sans-serif;font-size:18px;padding:10px 0;color:#2e3440;text-align:center}a{color:#2e3440}#public,#secret{font-family:Verdana;font-size:16px;font-weight:700;color:#2e3440}#public{text-align:left;color:green}#secret{text-align:right;color:red}#public_qr,#secret_qr{height:130px}.secret_qr img{float:right!important}#secret,#secretLabel,#secret_qr{text-align:right;float:right}#secretLabel{float:right}#shareColor{color:green}#secretColor{color:red}#update{display:inline-block}.center{display:block;margin-left:auto;margin-right:auto}@media only screen and (max-width:640px){#public,#secret{font-size:10px}}@media print{.noprint{display:none}}
+body {
+  background-color: #fff;
+  font-size: 14px;
+  font-family: Verdana, sans-serif;
+}
+#container {
+  margin: auto;
+  max-width: 600px;
+}
+#titleLabel {
+  font-weight: 400;
+}
+table {
+  border-collapse: collapse;
+  margin: 15px 0;
+  border-radius: 7px;
+  overflow: hidden;
+  width: 100%;
+}
+td,
+th {
+  border: 0 solid #032f3e;
+  text-align: left;
+  padding: 10px 5px;
+}
+td img {
+  text-align: right;
+}
+#titlePaper {
+  font-family: Verdana, sans-serif;
+  font-size: 16px;
+  padding: 10px 0;
+  color: #2e3440;
+  text-align: center;
+}
+a {
+  color: #2e3440;
+}
+#public,
+#secret {
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2e3440;
+}
+#public {
+  text-align: left;
+  color: green;
+}
+#secret {
+  text-align: right;
+  color: red;
+}
+#public_qr,
+#secret_qr {
+  height: 130px;
+}
+.secret_qr img {
+  float: right !important;
+}
+#secret,
+#secretLabel,
+#secret_qr {
+  text-align: right;
+  float: right;
+}
+#secretLabel {
+  float: right;
+}
+#shareColor {
+  color: green;
+}
+#secretColor {
+  color: red;
+}
+#update {
+  display: inline-block;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media only screen and (max-width: 640px) {
+  #public,
+  #secret {
+    font-size: 10px;
+  }
+}
+@media print {
+  .noprint {
+    display: none;
+  }
+}
