@@ -1,147 +1,117 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+  <loc>https://holdmywallet.com/</loc>
+</url>
 <url>
   <loc>https://holdmywallet.com/bitcoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
 </url>
 <url>
   <loc>https://holdmywallet.com/ethereum.html</loc>
-  <lastmod>2021-06-08</lastmod>
 </url>
 <url>
   <loc>https://holdmywallet.com/dogecoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
 </url>
 <url>
   <loc>https://holdmywallet.com/worldcoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/ripple.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/stellar.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/monero.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/litecoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/bitcoincash.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/dash.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/zcash.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/monacoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/digibyte.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/bitcoingold.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/qtum.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/reddcoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/banano.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/deutsche-emark.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/lbry.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/mintcoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/vergecoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/unobtanium.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/peercoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/dimecoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/emerald.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/feathercoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/gulden.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/anoncoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/viacoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
 </url>
 <url>
   <loc>https://holdmywallet.com/blackcoin.html</loc>
-  <lastmod>2021-06-08</lastmod>
+</url>
+<url>
+  <loc>https://holdmywallet.com/namecoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/vericoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/auroracoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/ripple.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/stellar.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/litecoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/bitcoincash.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/dash.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/zcash.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/monacoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/digibyte.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/bitcoingold.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/qtum.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/reddcoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/banano.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/deutsche-emark.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/lbry.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/mintcoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/vergecoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/unobtanium.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/peercoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/dimecoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/emerald.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/feathercoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/gulden.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/anoncoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/viacoin.html</loc>
+</url>
+<url>
+  <loc>https://holdmywallet.com/vertcoin.html</loc>
 </url>
 <url>
   <loc>https://holdmywallet.com/garlicoin.html</loc>
-  <lastmod>2021-11-14</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/docs/privacy.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/docs/terms.html</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
-<url>
-  <loc>https://holdmywallet.com/docs/cookies.html</loc>
-  <lastmod>2021-06-08</lastmod>
 </url>
 <url>
   <loc>https://holdmywallet.com/index.html</loc>
-  <lastmod>2021-06-08</lastmod>
 </url>
-<url>
-  <loc>https://holdmywallet.com</loc>
-  <lastmod>2021-06-08</lastmod>
-</url>
+
+
 </urlset>
