@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang=de>
+<html lang=en>
 
 <head>
     <meta charset=UTF-8>
-    <title>Deutsche eMark Cold Wallet Generator</title>
-    <meta name=description content="Ein leichtgewichtiger, client-seitiger, zuverl&auml;ssiger, schneller, universeller Open-Source-Generator f&uuml;r Cold Wallets, der fast alle wichtigen Kryptow&auml;hrungen unterst&uuml;tzt">
-    <meta name=keywords content="minimal, sicher, schnell, universal, cold, wallet, generator, offline, deustche, emark, dem, bitcoin, btc, Kryptow&auml;hrung, cryptocurrency">
+    <title>Monero Cold Wallet Generator</title>
+    <meta name=description content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
+    <meta name=keywords content="minimal, reliable, fast, universal, cold, wallet, generator, offline, monero, xmr, cryptocurrency">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <link rel=stylesheet href=css/style2.css>
-    <link rel=canonical href=https://holdmywallet.com/deutsche-emark.html>
+    <link rel=canonical href=https://holdmywallet.com/monero.html>
 </head>
 
 <body onload=generate()>
@@ -20,16 +20,16 @@
             <a href=index.html>
                 <input type=button value=Home> </a>
         </div>
-        <br><img src=img/deutsche-emark.png class=center alt=deutsche-emark>
+        <br><img src=img/monero.png class=center alt=monero>
         <table>
             <tr>
-                <h1 id=titleCold>Deutsche eMark Cold Wallet</h1> </tr>
+                <h1 id=titleCold>Monero Cold Wallet</h1> </tr>
             <tr>
-                <th class=grayHeaders>&Ouml;ffentliche Adresse / Public Address <span id=shareColor>(TEILEN/SHARE)</span> </th>
+                <th class=grayHeaders>Public Address <span id=shareColor>(SHARE)</span> </th>
             </tr>
             <tr>
                 <td>
-                    <div id=public>Generierung...</div>
+                    <div id=public>Generating...</div>
                 </td>
             </tr>
             <tr>
@@ -39,12 +39,12 @@
             </tr>
             <tr>
                 <th class=grayHeaders>
-                    <div id=secretLabel>Privater Schl&uuml;ssel / Private Key <span id=secretColor>(GEHEIM/SECRET)</span> </div>
+                    <div id=secretLabel>Private Key <span id=secretColor>(SECRET)</span> </div>
                 </th>
             </tr>
             <tr>
                 <td>
-                    <div id=secret>Generierung...</div>
+                    <div id=secret>Generating...</div>
                 </td>
             </tr>
             <tr>
@@ -52,19 +52,21 @@
                     <div id=secret_qr></div>
                 </td>
             </tr>
-        </table>
-    </div>
-    <script src=js/bitcoinjs-lib.js></script>
+        </table> <span class=noprint> <b>Hint:</b> Choose bigger than A4 and print into pdf file. Best result comes with A3 size. After created pdf file, you can edit with a pdf editor and cut the blank areas. It will be suitable for A4 print size. </span> </div>
+    <script src=js/monero.js></script>
     <script src=js/qrcode.js></script>
-    <script>
+    <script type=text/javascript>
+    $(function() {
+        generate();
+    });
+    var account, keyPair, pubKey, privKey;
+
     function generate() {
-        const dem = bitcoin.networks.bitcoin;
-        dem.pubKeyHash = 0x35;
-        dem.wif = 0xb5;
-        dem.scriptHash = 0x1e;
-        const keyPair = bitcoin.ECPair.makeRandom();
-        const pubKey = keyPair.getAddress();
-        const privKey = keyPair.toWIF();
+        var current_lang = "english";
+        var seed = cnUtil.sc_reduce32(cnUtil.rand_32());
+        var keys = cnUtil.create_address(seed);
+        privKey = mn_encode(seed, current_lang);
+        pubKey = cnUtil.pubkeys_to_string(keys.spend.pub, keys.view.pub);
         document.getElementById("public").textContent = pubKey;
         document.getElementById("secret").textContent = privKey;
         document.getElementById("public_qr").textContent = "";
@@ -82,7 +84,6 @@
             correctLevel: QRCode.CorrectLevel.H
         });
     }
-    document.getElementById("update").textContent = "Letzte Aktualisierung: " + document.lastModified;
     </script>
 </body>
 

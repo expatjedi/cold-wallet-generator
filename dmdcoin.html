@@ -3,12 +3,12 @@
 
 <head>
 	<meta charset=UTF-8>
-	<title>Blackcoin Cold Wallet Generator</title>
+	<title>Dmdcoin Cold Wallet Generator</title>
 	<meta name=description content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-	<meta name=keywords content="minimal, reliable, fast, universal, cold, wallet, generator, offline, blackcoin, viacoin, cryptocurrency">
+	<meta name=keywords content="minimal, reliable, fast, universal, cold, wallet, generator, offline, namecoin, cryptocurrency">
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<link rel=stylesheet href=css/style2.css>
-	<link rel=canonical href=https://holdmywallet.com/blackcoin.html>
+	<link rel=canonical href=https://holdmywallet.com/dmdcoin.html>
 </head>
 
 <body onload=generate()>
@@ -21,10 +21,11 @@
 				<input type=button value=Home>
 			</a>
 		</div>
-		<br><img src=img/blackcoin.png class=center alt=blackcoin>
+		<br>
+		<img src=img/dmdcoin.png class=center alt=dmdcoin>
 		<table>
 			<tr>
-				<h1 id=titleCold>Blackcoin Cold Wallet</h1></tr>
+				<h1 id=titleCold>Dmdcoin Cold Wallet</h1></tr>
 			<tr>
 				<th class=grayHeaders>Public Address <span id=shareColor>(SHARE)</span></th>
 			</tr>
@@ -59,10 +60,9 @@
 	<script src=js/qrcode.js></script>
 	<script>
 	function generate() {
-		const blackcoin = bitcoin.networks.bitcoin;
-		blackcoin.pubKeyHash = 0x19;
-		blackcoin.wif = 0x99;
-		blackcoin.scriptHash = 0x05;
+		const dmdcoin = bitcoin.networks.bitcoin;
+		dmdcoin.pubKeyHash = 0x5a;
+		dmdcoin.wif = 0xda;
 		const keyPair = bitcoin.ECPair.makeRandom();
 		const pubKey = keyPair.getAddress();
 		const privKey = keyPair.toWIF();
