@@ -1,7 +1,7 @@
 body {
-  background-color: #fff;
+  background-color: #F0F0F0;
   font-family: Verdana, serif;
-  font-size: 14px;
+  font-size: 12px;
   color: #2e3440;
 }
 #container {
@@ -16,7 +16,7 @@ body {
   margin: 0;
 }
 #titleLabel {
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
 }
 a {
@@ -27,11 +27,11 @@ a {
   background-position: 10px 12px;
   background-repeat: no-repeat;
   width: 100%;
-  font-size: 16px;
+  font-size: 13px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: #F0F0F0;
 }
 #searchOL {
   list-style-type: none;
@@ -43,7 +43,7 @@ a {
 #searchOL li a {
   border: 1px solid #ddd;
   margin-top: -1px;
-  background-color: #fff;
+  background-color: #F0F0F0;
   padding: 12px;
   text-decoration: none;
   font-size: 14px;
