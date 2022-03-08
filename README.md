@@ -9,14 +9,6 @@
 * Integrity of files are validated; meaning files have not been tampered with (see below)
 * More than 510 cryptocurrencies supported
 
-#### Donations
-
-If you find the cold wallet generator useful, consider donation a few bucks. Every donation counts and would be greatly appreciated! Please help me raise some money to develop further my project.
-
-Bitcoin: 3Mh4Xfepy7VVVDc2sn646T7kNpoAc3sf2c
-Ethereum: 0x2641340857ea406c3a2f8aa3f7368216f951ac48
-USDT: TLSanU1TQ23dhQmyjdJv3yxCrBAMmneZHS **(TRC-20)**
-
 #### Instructions
 
 Always use the cold wallet generator offline. Download the latest release on a usb drive, open the zip file in a drive on a computer without an internet connection. After producing enough wallets, print out and clear the printer memory. Restarting the printer will reset the device and clear its memory of any active print jobs. For this, turn off the printer and unplug it from the power socket. Leave it for a minute and then plug the printer into the power socket. This will fully clear out the power of the memory and erase it completely.
