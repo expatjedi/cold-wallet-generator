@@ -3,12 +3,12 @@
 
 <head>
 	<meta charset=UTF-8>
-	<title>Garlicoin Cold Wallet Generator</title>
+	<title>Primecoin Cold Wallet Generator</title>
 	<meta name=description content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-	<meta name=keywords content="minimal, reliable, fast, universal, cold, wallet, generator, offline, grlc, garlicoin, cryptocurrency">
+	<meta name=keywords content="minimal, reliable, fast, universal, cold, wallet, generator, offline, prime, primecoin, cryptocurrency">
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<link rel=stylesheet href=css/style2.css>
-	<link rel=canonical href=https://holdmywallet.com/garlicoin.html>
+	<link rel=canonical href=https://holdmywallet.com/primecoin.html>
 </head>
 
 <body onload=generate()>
@@ -21,10 +21,11 @@
 				<input type=button value=Home>
 			</a>
 		</div>
-		<br><img src=img/garlicoin.png class=center alt=garlicoin>
+		<br>
+		<a href=https://primecoin.io target=blank><img src=img/primecoin.png class=center alt=primecoin></a>
 		<table>
 			<tr>
-				<h1 id=titleCold>Garlicoin Cold Wallet</h1></tr>
+				<h1 id=titleCold>Primecoin Cold Wallet</h1></tr>
 			<tr>
 				<th class=grayHeaders>Public Address <span id=shareColor>(SHARE)</span></th>
 			</tr>
@@ -59,10 +60,9 @@
 	<script src=js/qrcode.js></script>
 	<script>
 	function generate() {
-		const garlic = bitcoin.networks.bitcoin;
-		garlic.pubKeyHash = 0x26;
-		garlic.wif = 0xb0;
-		garlic.scriptHash = 0x32;
+		const prime = bitcoin.networks.bitcoin;
+		prime.pubKeyHash = 0x17;
+		prime.wif = 0x97;
 		const keyPair = bitcoin.ECPair.makeRandom();
 		const pubKey = keyPair.getAddress();
 		const privKey = keyPair.toWIF();
