@@ -3,12 +3,12 @@
 
 <head>
 	<meta charset=UTF-8>
-	<title>Vertcoin Cold Wallet Generator</title>
+	<title>Navcoin Cold Wallet Generator</title>
 	<meta name=description content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-	<meta name=keywords content="minimal, reliable, fast, universal, cold, wallet, generator, offline, vertcoin, cryptocurrency">
+	<meta name=keywords content="minimal, reliable, fast, universal, cold, wallet, generator, offline, navcoin, cryptocurrency">
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<link rel=stylesheet href=css/style2.css>
-	<link rel=canonical href=https://holdmywallet.com/vertcoin.html>
+	<link rel=canonical href=https://holdmywallet.com/navcoin.html>
 </head>
 
 <body onload=generate()>
@@ -21,10 +21,10 @@
 				<input type=button value=Home>
 			</a>
 		</div>
-		<br><img src=img/vertcoin.png class=center alt=vertcoin>
+		<br><img src=img/navcoin.png class=center alt=navcoin>
 		<table>
 			<tr>
-				<h1 id=titleCold>Vertcoin Cold Wallet</h1></tr>
+				<h1 id=titleCold>Navcoin Cold Wallet</h1></tr>
 			<tr>
 				<th class=grayHeaders>Public Address <span id=shareColor>(SHARE)</span></th>
 			</tr>
@@ -59,9 +59,9 @@
 	<script src=js/qrcode.js></script>
 	<script>
 	function generate() {
-		const vertcoin = bitcoin.networks.bitcoin;
-		vertcoin.pubKeyHash = 0x47;
-		vertcoin.wif = 0x80;
+		const navcoin = bitcoin.networks.bitcoin;
+		navcoin.pubKeyHash = 0x35;
+		navcoin.wif = 0x96;
 		const keyPair = bitcoin.ECPair.makeRandom();
 		const pubKey = keyPair.getAddress();
 		const privKey = keyPair.toWIF();
