@@ -61,7 +61,7 @@
 	function generate() {
 		const dgb = bitcoin.networks.bitcoin;
 		dgb.pubKeyHash = 0x1e;
-		dgb.wif = 0x80;
+		dgb.wif = 0x9e;
 		dgb.scriptHash = 0x05;
 		const keyPair = bitcoin.ECPair.makeRandom();
 		const pubKey = keyPair.getAddress();
