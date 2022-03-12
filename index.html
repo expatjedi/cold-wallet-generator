@@ -1,1657 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-			<title>Cold Wallet Generator</title>
-			<meta name="description" content="A lightweight, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-				<meta name="keywords" content="minimal, lightweight, reliable, fast, universal, cold, wallet, generator, offline, bitcoin, btc, cryptocurrency">
-					<meta name="viewport" content="width=device-width, initial-scale=1">
-                        <link rel="stylesheet" href="css/style.css">
-						</head>
-						<body>
-							<div id="container"><br><br><br>
-										<h1 id="title">Cold Wallet Generator</h1>
-										<br>
-											<br>
-												<input type="text" id="searchInput" onkeyup="Search()" placeholder="search your crypto">
-													<ol id="searchOL">
-														<li>
-															<a href="bitcoin.html">Bitcoin (BTC)</a>
-														</li>
-														<li>
-															<a href="ethereum.html">Ethereum (ETH)</a>
-														</li>
-														<li>
-															<a href="dogecoin.html">Dogecoin (DOGE)</a>
-														</li>
-													    <li>
-															<a href="worldcoin.html">Worldcoin (WDC)</a>
-														</li>
-														<li>
-															<a href="blackcoin.html">Blackcoin (BLK)</a>
-														</li>
-														 <li>
-															<a href="namecoin.html">Namecoin (NMC)</a>
-														</li>
-														<li>
-															<a href="vericoin.html">Vericoin (VRC)</a>
-														</li>
-														<li>
-															<a href="auroracoin.html">Auroracoin (AUR)</a>
-														</li>
-														<li>
-															<a href="dmdcoin.html">Dmdcoin (DMD)</a>
-														</li>
-														<li>
-															<a href="primecoin.html">Primecoin (XPM)</a>
-														</li>
-														<li>
-															<a href="ripple.html">Ripple (XRP)</a>
-														</li>
-														<li>
-															<a href="stellar.html">Stellar (XLM)</a>
-														</li>
-														<li>
-															<a href="litecoin.html">Litecoin (LTC)</a>
-														</li>
-														<li>
-															<a href="bitcoincash.html">Bitcoin Cash (BCH)</a>
-														</li>
-														<li>
-															<a href="dash.html">Dash (DASH)</a>
-														</li>
-														<li>
-															<a href="zcash.html">Zcash (ZEC)</a>
-														</li>
-														<li>
-															<a href="monacoin.html">Monacoin (MONA)</a>
-														</li>
-														<li>
-															<a href="digibyte.html">DigiByte (DGB)</a>
-														</li>
-														<li>
-															<a href="bitcoingold.html">Bitcoin Gold (BTG)</a>
-														</li>
-														<li>
-															<a href="qtum.html">Qtum (QTUM)</a>
-														</li>
-														<li>
-															<a href="reddcoin.html">ReddCoin (RDD)</a>
-														</li>
-														<li>
-															<a href="banano.html">Banano (BAN)</a>
-														</li>
-														<li>
-															<a href="deutsche-emark.html">Deutsche eMark (DEM)</a>
-														</li>
-														<li>
-															<a href="lbry.html">LBRY Credits (LBRY)</a>
-														</li>
-														<li>
-															<a href="mintcoin.html">Mintcoin (MINT)</a>
-														</li>
-														<li>
-															<a href="verge.html">Verge (XVG)</a>
-														</li>
-														<li>
-															<a href="unobtanium.html">Unobtanium (UNO)</a>
-														</li>
-														<li>
-															<a href="peercoin.html">Peercoin (PPC)</a>
-														</li>
-														<li>
-															<a href="dimecoin.html">Dimecoin (DIME)</a>
-														</li>
-														<li>
-															<a href="emerald.html">Emerald Crypto (EMD)</a>
-														</li>
-														<li>
-															<a href="feathercoin.html">Feathercoin (FTC)</a>
-														</li>
-														<li>
-															<a href="gulden.html">Gulden (NLG)</a>
-														</li>
-														<li>
-															<a href="anoncoin.html">Anoncoin (ANC)</a>
-														</li>
-														<li>
-															<a href="viacoin.html">Viacoin (VIA)</a>
-														</li>
-														<li>
-															<a href="vertcoin.html">Vertcoin (VTC)</a>
-														</li>
-														<li>
-															<a href="navcoin.html">Navcoin (NAV)</a>
-														</li>
-														<li>
-															<a href="garlicoin.html">Garlicoin (GRLC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">0x(ZRX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">300Token(300)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Ace(ACE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">adbank(ADB)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">AdEx(ADX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">AdShares(ADST)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">adToken(ADT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">aelf(ELF)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Aeron(ARN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Aeternity(AE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Agrello(DLT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">AIDoctor(AIDOC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">AICHAIN(AIT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">AidCoin(AID)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Aigang(AIX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Aion(AION)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">AirSwap(AST)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">AirToken(AIR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ALIS(ALIS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">AllSports(SOC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Alphabit(ABC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Amber(AMB)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">AppCoins(APPC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Aragon(ANT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ArbitrageCT(ARCT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ArcadeToken(ARC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Arcblock(ABT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Astro(ASTRO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ATLANT(ATL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ATMChain(ATM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ATN(ATN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Augur(REP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">AuroraDAO(AURA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Authorship(ATS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Autonio(NIO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Aventus(AVT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">aXpire(AXP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">B2B(B2B)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bancor(BNT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bankex(BKX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BCAP(BCAP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bezop(BEZ)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BiboxToken(BIX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BigONEToken(BIG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BinanceCoin(BNB)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bitair(BTCA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BitAsean(BAS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BitBoost(BBT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BitClave(CAT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BitcoinSilver(BTCS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bitcoin2x(BTC2X)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BitDegree(BDG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BitDice(CSNO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">bitJob(STU)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BitparkCoin(BPC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">bitqy(BQ)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BitSerial(BTE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Blackmoon(BMC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BlackmoonCrypto(BMC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BlockArray(ARY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BlockCAT(CAT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BlockCDN(BCDN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BlockchainIndex(BLX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Blockport(BPT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Blocktix(TIX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BLOCKv(VEE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bloom(BLT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BLUE(BLUE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bluzelle(BLZ)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bolenum(BLN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bonpay(BON)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bottos(BTO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bounty0x(BNTY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BRAT(BRAT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bread(BRD)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">BTCMoon(BTCM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Bytom(BTM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">C20(C20)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Candy(CANDY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">CanYaCoin(CAN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Cappasity(CAPP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">CargoX(CXO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">CarTaxiToken(CTX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">carVertical(CV)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">CashPokerPro(CASH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Cashaa(CAS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Ccore(CCO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Centra(CTR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ChainLink(LINK)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Change(CAG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Chronobank(TIME)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Chronologic(DAY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Cindicator(CND)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Civic(CVC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ClearPoll(POLL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Cloud(CLD)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Cobinhood(COB)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Cofound.it(CFI)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Coimatic3.0(CTIC3)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">CoinDash(CDT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">CoinFi(COFI)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Coinlancer(CL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">CoinMeet(MEE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">COMSA[ETH](CMS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Copytrack(CPY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Corethum(CRTM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">COSS(COSS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Covesting(COV)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">CPChain(CPC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Creditbit(CRB)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Credo(CREDO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Crypterium(CRPT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">CryptoInsight(TKR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Cryptopay(CPAY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">CrystalClear(CCT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">CyberMiles(CMT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DADI(DADI)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Dai(DAI)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Dalecoin(DALC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DAO.Casino(BET)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DATA(DTA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Datawallet(DXT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Datum(DAT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DCORP(DRP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DecentBet(DBET)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Decentraland(MANA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DecisionToken(HST)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Delphy(DPY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Dent(DENT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Dentacoin(DCN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Dether(DTH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Devery(EVE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DEW(DEW)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DigiPulse(DGPT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DigixDAO(DGD)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DimonCoin(FUDD)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">district0x(DNT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Divi(DIVX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DMarket(DMT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DomRaider(DRT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Dovu(DOVU)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Dragonchain(DRGN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">DRPUtility(DRPU)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">E4ROW(E4ROW)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EagleCoin(EAGLE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">eBIT(EBIT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">eBitcoinCash(EBCH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">eBTC(EBTC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EchoLink(EKO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Edgeless(EDG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EDUCare(EKT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">eGold(EGOLD)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Eidoo(EDO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Elixir(ELIX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Embers(MBRS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Emphy(EPY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EncrypGen(DNA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Energo(TSL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Enigma(ENG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Enigma(XNG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EnjinCoin(ENJ)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Envion(EVN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EOS(EOS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Equal(EQL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ERC20(ERC20)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">eREAL(EREAL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Eroscoin(ERO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EthBet(EBET)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Ethbits(ETBS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EtherDeltaToken(EDT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Etherecash(ECH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EthereumCash(ECASH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EthereumGold(ETG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EthereumLite(ELITE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Etheriya(RIYA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Etheroll(DICE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Etherparty(FUEL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EtherSportz(ESZ)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ETHGAS(EGAS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EthLend(LEND)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Ethorse(HORSE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Ethos(ETHOS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">eUSD(EUSD)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EventChain(EVC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Everex(EVX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Everus(EVR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ExchangeUnion(XUC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ExchangeN(EXN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Experty(EXY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">EXRNchain(EXRN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Facecoin(FC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">FairGame(FAIR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">FAPcoin(FAP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Farad(FRD)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">FidentiaX(FDX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">FirstBlood(1ST)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">FLiK(FLIK)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Flixxo(FLIXX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">FlypMe(FYP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Fortuna(FOTA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">FuckToken(FUCK)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Fujinto(NTO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">FundYourselfNow(FYN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">FunFair(FUN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Fusion(FSN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">FuturXe(FXE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Game(GTC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">GameChainSystem(GCS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Gatcoin(GAT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Gems(GEM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">GenaroNetwork(GNX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">GenesisVision(GVT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">GETProtocol(GET)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Gifto(GTO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">GigaWattToken(WTT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Gimli(GIM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">GladiusToken(GLA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">GlobalJobcoin(GJC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Gnosis(GNO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">GoldUnionCoin(GUC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Golem(GNT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Goodomy(GOOD)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Grid+(GRID)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">GUESS(GUESS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">GUTSTickets(GET)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Hacken(HKN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Hawala.Today(HAT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Hedge(HDG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">HelloGold(HGT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">HEROcoin(PLAY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Hive(HVN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">HiveProject(HVN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">HODLBucks(HDLB)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">HubiiNetwork(HBT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Humaniq(HMQ)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">HydroProtocol(HOT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">HyperTV(HYTV)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">iBTC(IBTC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ICON(ICX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Iconomi(ICN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ICOS(ICOS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">IDEXMembership(IDXM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">iDice(ICE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">iEthereum(IETH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">iExecRLC(RLC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">indaHash(IDH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Indicoin(INDI)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">IndorseToken(IND)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">InkProtocol(XNK)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">INSEcosystem(INS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">InsurePal(IPL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Internxt(INXT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">InvestDigital(IDT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">InvestFeed(IFT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">IOStoken(IOST)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">IoTChain(ITC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">IPChain(IPC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">iQuant(IQT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Iungo(ING)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">iXledger(IXT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">JesusCoin(JC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Jetcoin(JET)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">JibrelNetwork(JNT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">KickCoin(KICK)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Kin(KIN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">KuberaCoin(KBR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">KuCoinShares(KCS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">KyberNetwork(KNC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Lamden(TAU)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Lampix(PIX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">LAToken(LA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">LegendsRoom(LGD)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">LendConnect(LCT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Leverj(LEV)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">LIFE(LIFE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">LightChain(LIGHT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">LinkPlatform(LNK)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">LiteCoinGold(LTG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">LLToken(LLT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">LOCIcoin(LOCI)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">LockChain(LOC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Loopring(LRC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Lunyr(LUN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Lympo(LYM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Macro(MCR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Maecenas(ART)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Maggie(MAG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Maker(MKR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Matchpool(GUP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Matryx(MTX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">MaverickChain(MVC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">MCAP(MCAP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Medicalchain(MTN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">MediShares(MDS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Melon(MLN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">MercuryProtocol(GMT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Metal(MTL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">MicroMoney(AMM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Minereum(MNE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Mixin(XIN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">MOAC(MOAC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">MobileGo(MGO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Modum(MOD)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">MolecularFuture(MOF)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Monaco(MCO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">MoneroGold(XMRG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Monetha(MTH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Mothership(MSP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Musiconomi(MCI)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">MyBitToken(MYB)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Mysterium(MYST)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">MyWish(WISH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">NAGA(NGC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Natcoin(NTC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Nebulas(NAS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">NetworkToken(NTWK)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Neumark(NEU)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">NeuroDAO(NDAO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Neurotoken(NTK)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">NEVERDIE(NDC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Newbium(NEWB)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Nework(NKC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Nexium(NXC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Nimfamoney(NIMFA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Nimiq(NET)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Nitro(NOX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">NucleusVision(NCASH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Nuls(NULS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Numeraire(NMR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">OAX(OAX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Odyssey(OCN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">OlympusLabs(MOT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">OmiseGO(OMG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">OneRootNetwork(RNT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">onG.social(ONG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Opus(OPT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">OriginTrail(TRAC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">OrmeusCoin(ORME)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">OXFina(OX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Oyster(PRL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">OysterPearl(PRL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Paragon(PRG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Patientory(PTOY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Payfair(PFR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Paypex(PAYX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">PayPie(PPP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Pillar(PLR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">PiplCoin(PIPL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Playkey(PKT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">PlexCoin(PLX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">PlusCoin(PLC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Pluton(PLU)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Po.et(POE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">POLYAI(AI)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Polybius(PLBT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">PolymathNetwork(POLY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Populous(PPT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">PoSToken(POS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">PowerLedger(POWR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Presearch(PRE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">PressOne(PRS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Primas(PST)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Privatix(PRIX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ProChain(PRO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Propy(PRO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ProspectorsGold(PGL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Publica(PBL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">PundiX(PXS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Purpose(PRPS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">PylonNetwork(PYLNT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">QASH(QASH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Quantstamp(QSP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Quantum(QAU)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Qube(QUBE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">QunQun(QUN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Qvolta(QVT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">RChain(RHOC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Read(READ)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">REAL(REAL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">RealChain(RCT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Rebellious(REBL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">REDMWAT(MWAT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Refereum(RFR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">RefToken(REF)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Remicoin(RMC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Remme(REM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">RequestNetwork(REQ)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Revain(R)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">REX(REX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Rialto(XRL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Rivetz(RVT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Rock(RKT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">RouletteToken(RLT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Ruff(RUFF)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SALT(SALT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SandCoin(SND)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Scry.info(DDD)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Selfkey(KEY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SelfSell(SSC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Senderon(SDRN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Sense(SENSE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Sether(SETH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Sharechain(SSS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ShareX(SEXC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Show(SHOW)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SimpleToken(OST)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SingularDTV(SNGLS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SingularityNET(AGI)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SIRINLABSToken(SRN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SkinCoin(SKIN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SmartBillions(SMART)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SmartMesh(SMT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Snovio(SNOV)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Soarcoin(SOAR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Social(SCL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Sociall(SCL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Soma(SCT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SONM(SNM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SophiaTX(SPHTX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SpankChain(SPANK)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SphreAIR(XID)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SportyCo(SPF)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SportyFi(SPF)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Starbase(STAR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">StarChain(STC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">StarCredits(STRC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Status(SNT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">STK(STK)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Storj(STORJ)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Storm(STORM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Stox(STX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">StreamrDATAcoin(DATA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Substratum(SUB)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SugarExchange(SGR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SunContract(SNC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Suretly(SUR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Swapcoin(SWP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Swarm(SWM)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SwarmCity(SWT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SwftCoin(SWFTC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">SwissBorg(CHSB)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TaaS(TAAS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TargetCoin(TGT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Telcoin(TEL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TenX(PAY)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ThetaToken(THETA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Tierion(TNT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TIESNetwork(TIE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Ties.DB(TIE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Tigereum(TIG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TimeNewBank(TNB)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Tokenbox(TBX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TokenCard(TKN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TokenClub(TCT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TopChain(TOPC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Tracto(TRCT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TradeToken(TIO)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Triaconta(TRIA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TridentGroup(TRDT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TRON(TRX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TrueChain(TRUE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">TrueFlip(TFL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">U.CASH(UCASH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">UGToken(UGT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ugChain(UGC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">UnikoinGold(UKG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Universa(UTNP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">UnlimitedIP(UIP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Upfiring(UFR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">UquidCoin(UQC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">UTRUST(UTK)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ValueChain(VLC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">VeChain(VEN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Verify(CRED)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Veritaseum(VERI)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Veros(VRS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Vezt(VZT)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">VIBE(VIBE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Viberate(VIB)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Viuly(VIU)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Voise(VOISE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">vSlice(VSL)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">WaBi(WABI)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Walton(WTC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Waltonchain(WTC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">WandX(WAND)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">WAX(WAX)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">WePower(WPR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">WETH(WETH)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">WeTrust(TRST)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">WiCoin(WIC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">WildCrypto(WILD)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Wings(WINGS)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Worldcore(WRC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Xaurum(XAUR)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Xenon(XNN)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">XPA(XPA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">XPlay(XPA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Yee(YEE)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Zap(ZAP)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">ZCashGold(ZCG)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Zeusshield(ZSC)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Zilla(ZLA)</a>
-														</li>
-														<li>
-															<a href="#" class="erc20">Zilliqa(ZIL)</a>
-														</li>
-													</ol><br><br>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cold Wallet Generator</title>
+    <meta name="description" content="A lightweight, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
+    <meta name="keywords" content="minimal, lightweight, reliable, fast, universal, cold, wallet, generator, offline, bitcoin, btc, cryptocurrency">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+      body {
+        background-color: #F0F0F0;
+        font-family: Verdana, serif;
+        font-size: 12px;
+        color: #2e3440;
+      }
 
-									<div align="center">
-									 <a href="https://github.com/koraycoding/paper-wallet" target="blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="img/forkme.png" alt="Fork me on GitHub"></a>
-<form action="https://www.coinpayments.net/index.php" method="post">
-	<input type="hidden" name="cmd" value="_donate">
-	<input type="hidden" name="reset" value="1">
-	<input type="hidden" name="merchant" value="3ac2238d4d624c4c75bb9693a235d6e8">
-	<input type="hidden" name="currency" value="USD">
-	<input type="hidden" name="amountf" value="5">
-	<input type="hidden" name="item_name" value="One Time Donation">
-	<input type="image" src="img/donate.png" alt="Donate">
-</form>
-</div>
-<script src=js/erc20.js></script>
-</body>
+      #container {
+        margin: auto;
+        max-width: 475px;
+      }
+
+      .title {
+        padding-top: 50px;
+        font-size: 22px;
+        text-align: center;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      #titleLabel {
+        font-size: 16px;
+        text-align: center;
+      }
+
+      a {
+        color: #2e3440;
+        text-decoration: none;
+      }
+
+      #searchInput {
+        background-position: 10px 12px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 15px;
+        text-align: center;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+        background-color: #F0F0F0;
+      }
+
+      #searchOL {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        max-height: 300px;
+        overflow: auto;
+      }
+
+      #searchOL li a {
+        border: 1px solid #ddd;
+        margin-top: -1px;
+        background-color: #F0F0F0;
+        padding: 12px;
+        text-decoration: none;
+        font-size: 14px;
+        display: block;
+      }
+
+      #searchOL li a:hover:not(.header) {
+        background-color: #dddddd;
+      }
+
+      @media only screen and (max-width: 640px) {
+        #buttons {
+          text-align: center;
+        }
+      }
+
+      #input {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1 class="title">Cold Wallet Generator</h1>
+      <br>
+      <br>
+      <input type="text" id="searchInput" onkeyup="Search()" placeholder="search your crypto">
+      <ol id="searchOL">
+        <li>
+          <a href="bitcoin.html">Bitcoin (BTC)</a>
+        </li>
+        <li>
+          <a href="ethereum.html">Ethereum (ETH)</a>
+        </li>
+        <li>
+          <a href="dogecoin.html">Dogecoin (DOGE)</a>
+        </li>
+        <li>
+          <a href="worldcoin.html">Worldcoin (WDC)</a>
+        </li>
+        <li>
+          <a href="blackcoin.html">Blackcoin (BLK)</a>
+        </li>
+        <li>
+          <a href="namecoin.html">Namecoin (NMC)</a>
+        </li>
+        <li>
+          <a href="vericoin.html">Vericoin (VRC)</a>
+        </li>
+        <li>
+          <a href="auroracoin.html">Auroracoin (AUR)</a>
+        </li>
+        <li>
+          <a href="dmdcoin.html">Dmdcoin (DMD)</a>
+        </li>
+        <li>
+          <a href="primecoin.html">Primecoin (XPM)</a>
+        </li>
+        <li>
+          <a href="ripple.html">Ripple (XRP)</a>
+        </li>
+        <li>
+          <a href="stellar.html">Stellar (XLM)</a>
+        </li>
+        <li>
+          <a href="litecoin.html">Litecoin (LTC)</a>
+        </li>
+        <li>
+          <a href="bitcoincash.html">Bitcoin Cash (BCH)</a>
+        </li>
+        <li>
+          <a href="dash.html">Dash (DASH)</a>
+        </li>
+        <li>
+          <a href="zcash.html">Zcash (ZEC)</a>
+        </li>
+        <li>
+          <a href="monacoin.html">Monacoin (MONA)</a>
+        </li>
+        <li>
+          <a href="digibyte.html">DigiByte (DGB)</a>
+        </li>
+        <li>
+          <a href="bitcoingold.html">Bitcoin Gold (BTG)</a>
+        </li>
+        <li>
+          <a href="qtum.html">Qtum (QTUM)</a>
+        </li>
+        <li>
+          <a href="reddcoin.html">ReddCoin (RDD)</a>
+        </li>
+        <li>
+          <a href="banano.html">Banano (BAN)</a>
+        </li>
+        <li>
+          <a href="deutsche-emark.html">Deutsche eMark (DEM)</a>
+        </li>
+        <li>
+          <a href="lbry.html">LBRY Credits (LBRY)</a>
+        </li>
+        <li>
+          <a href="mintcoin.html">Mintcoin (MINT)</a>
+        </li>
+        <li>
+          <a href="verge.html">Verge (XVG)</a>
+        </li>
+        <li>
+          <a href="unobtanium.html">Unobtanium (UNO)</a>
+        </li>
+        <li>
+          <a href="peercoin.html">Peercoin (PPC)</a>
+        </li>
+        <li>
+          <a href="dimecoin.html">Dimecoin (DIME)</a>
+        </li>
+        <li>
+          <a href="emerald.html">Emerald Crypto (EMD)</a>
+        </li>
+        <li>
+          <a href="feathercoin.html">Feathercoin (FTC)</a>
+        </li>
+        <li>
+          <a href="gulden.html">Gulden (NLG)</a>
+        </li>
+        <li>
+          <a href="anoncoin.html">Anoncoin (ANC)</a>
+        </li>
+        <li>
+          <a href="viacoin.html">Viacoin (VIA)</a>
+        </li>
+        <li>
+          <a href="vertcoin.html">Vertcoin (VTC)</a>
+        </li>
+        <li>
+          <a href="navcoin.html">Navcoin (NAV)</a>
+        </li>
+        <li>
+          <a href="garlicoin.html">Garlicoin (GRLC)</a>
+        </li>
+      </ol>
+      <br>
+      <br>
+      <div align="center">
+        <a href="https://github.com/koraycoding/paper-wallet" target="blank">
+          <img style="position: absolute; top: 0; right: 0; border: 0;" src="img/forkme.png" alt="Fork me on GitHub">
+        </a>
+        <form action="https://www.coinpayments.net/index.php" method="post">
+          <input type="hidden" name="cmd" value="_donate">
+          <input type="hidden" name="reset" value="1">
+          <input type="hidden" name="merchant" value="3ac2238d4d624c4c75bb9693a235d6e8">
+          <input type="hidden" name="currency" value="USD">
+          <input type="hidden" name="amountf" value="5">
+          <input type="hidden" name="item_name" value="One Time Donation">
+          <input type="image" src="img/donate.png" alt="Donate">
+        </form>
+      </div>
+      <script src=js/erc20.js></script>
+  </body>
 </html>
