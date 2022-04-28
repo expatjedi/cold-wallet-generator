@@ -1,1 +1,96 @@
-body {background-color: #F0F0F0;font-size: 16px;font-family: Verdana, sans-serif;}#container {margin: auto;max-width: 600px;}#titleLabel {font-weight: 400;}table {border-collapse: collapse;margin: 15px 0;border-radius: 7px;overflow: hidden;width: 100%;}td, th {border: 0 solid #032f3e;text-align: left;padding: 10px 5px;}td img {text-align: right;}.titlemain {font-size: 16px;padding: 10px 0;text-align: center;}#public, #secret {font-family: monospace;font-size: 16px;font-weight: 600;}#public {text-align: left;color: green;}#secret {text-align: right;color: red;}#public_qr, #secret_qr {height: 130px;}.secret_qr img {float: right;}#secret, #secretLabel, #secret_qr {text-align: right;float: right;}#secretLabel {float: right;}#shareColor {color: green;}#secretColor {color: red;}.center {display: block;margin-left: auto;margin-right: auto;}@media only screen and (max-width:640px) {#public, #secret {font-size: 10px;}}@media print {.noprint {display: none;}}
+body {
+	background-color: #D8DEE9;
+	font-size: 16px;
+	font-family: Inconsolata, sans-serif;
+	color: #2E3440;
+}
+
+#container {
+	margin: auto;
+	max-width: 600px;
+}
+
+#titleLabel {
+	font-weight: 400;
+}
+
+table {
+	border-collapse: collapse;
+	margin: 15px 0;
+	border-radius: 0px;
+	overflow: hidden;
+	width: 100%;
+}
+
+td, th {
+	border: 0 solid #2E3440;
+	text-align: left;
+	padding: 10px 5px;
+}
+
+td img {
+	text-align: right;
+}
+
+.titlemain {
+	font-size: 22px;
+	padding: 10px 0;
+	text-align: center;
+}
+
+#public, #secret {
+	font-family: Inconsolata;
+	font-size: 18px;
+	font-weight: 800;
+}
+
+#public {
+	text-align: left;
+}
+
+#secret {
+	text-align: right;
+}
+
+#public_qr, #secret_qr {
+	height: 130px;
+}
+
+.secret_qr img {
+	float: right;
+}
+
+#secret, #secretLabel, #secret_qr {
+	text-align: right;
+	float: right;
+}
+
+#secretLabel {
+	float: right;
+}
+
+#shareColor {
+	color: green;
+}
+
+#secretColor {
+	color: red;
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media only screen and (max-width:640px) {
+	#public, #secret {
+		font-size: 10px;
+	}
+}
+
+@media print {
+	.noprint {
+		display: none;
+	}
+}
