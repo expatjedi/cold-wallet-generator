@@ -1,8 +1,8 @@
 body {
-	background-color: #D8DEE9;
-	font-size: 16px;
-	font-family: Inconsolata, sans-serif;
-	color: #2E3440;
+	background-color: #F0F0F0;
+	font-size: 15px;
+	font-family: 'Fira Mono', sans-serif;
+	color: black;
 }
 
 #container {
@@ -33,14 +33,14 @@ td img {
 }
 
 .titlemain {
-	font-size: 22px;
+	font-size: 20px;
 	padding: 10px 0;
 	text-align: center;
 }
 
 #public, #secret {
-	font-family: Inconsolata;
-	font-size: 18px;
+	font-family: 'Fira Mono';
+	font-size: 16px;
 	font-weight: 800;
 }
 
