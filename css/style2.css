@@ -39,9 +39,9 @@ td img {
 }
 
 #public, #secret {
-	font-family: 'Fira Mono';
-	font-size: 16px;
-	font-weight: 800;
+	font-family: 'monospace';
+	font-size: 15px;
+	font-weight: 600;
 }
 
 #public {
