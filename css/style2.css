@@ -46,10 +46,12 @@ td img {
 
 #public {
 	text-align: left;
+	color: green;
 }
 
 #secret {
 	text-align: right;
+	color:red;
 }
 
 #public_qr, #secret_qr {
