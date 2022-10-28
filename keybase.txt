@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/koraycoding
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://holdmywallet.com
+  * I am koraycoding (https://keybase.io/koraycoding) on keybase.
+  * I have a public key ASDn9HhR4wWrF_GiRdDbX3TSNF71jQ0IBcE1cYigIs0ywAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120e7f47851e305ab17f1a245d0db5f74d2345ef58d0d0805c1357188a022cd32c00a",
+      "host": "keybase.io",
+      "kid": "0120e7f47851e305ab17f1a245d0db5f74d2345ef58d0d0805c1357188a022cd32c00a",
+      "uid": "bbfebd769de9fb48fb6058bfef74b119",
+      "username": "koraycoding"
+    },
+    "merkle_root": {
+      "ctime": 1666995255,
+      "hash": "db204b5f99cefa134d511eb35005c9c8f19abfdeb738de301e1e1a7ad5a74d1d279b87b3b360c88e2f62e8ca20c1d86bd57d59bcafed623c58fbb4dce4d62253",
+      "hash_meta": "be42afef0d54510a0d7f2891daff33068b1802e0eceaf366da3e3f190a3ab319",
+      "seqno": 23450992
+    },
+    "service": {
+      "entropy": "cgP0OcEzupVPlh+k/8XN4Hhe",
+      "hostname": "holdmywallet.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.0.2"
+  },
+  "ctime": 1666995301,
+  "expire_in": 504576000,
+  "prev": "88cd2807c11a97cbfe8ef8075ed5d42722958fc4a22ee32c3e2e7f287e1656f3",
+  "seqno": 8,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg5/R4UeMFqxfxokXQ21900jRe9Y0NCAXBNXGIoCLNMsAKp3BheWxvYWTESpcCCMQgiM0oB8Eal8v+jvgHXtXUJyKVj8SiLuMsPi5/KH4WVvPEIFDCPRnMKKuaFF7Kst/uIcLQv5/+z98a77hC1l1G8hzHAgHCo3NpZ8RAM6hiQtV53FbRwRAuP2PCt1LVJ4c4F9y74Fu6yNK7KnYazkWP2RanG+MVm26cOxgyjmP+JskVmwNONn3SS416BahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIOTnPAmncrKNso3scfnMpe6FNENohLSut1MQ2/rpixYno3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/koraycoding
+
+==================================================================
