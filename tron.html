@@ -10,18 +10,24 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="canonical" href="https://thebestcoldwallet.com/tron.html">
   </head>
-  <body>
+  <style type="text/css">
+  body {
+          background-color: #F0F0F0;
+          font-family: 'Oswald', sans-serif !important;
+       }
+ </style>
     <div class="container">
       <div class="row">
         <div class="col-md-12 title-container">
           <br>
           <br>
           <div class="page-header text-center">
-            <h1 class="site-title">Tron Cold Wallet</h1>
-            <div id="new_wallet" style="display:none">
+            <p class="fs-1">Tron Cold Wallet</p>
+            <div id="new_wallet" class="d-print-none">
               <br>
-              <a href="index.html" class="btn btn-secondary btn-sm d-print-none">Home</a>
-              <a href="tron.html" class="btn btn-secondary btn-sm d-print-none">Generate</a>
+              <a href=index.html><input type=button class="btn btn-primary" value=Home></a>
+              <a href=tron.html><input type=button class="btn btn-danger" value=Generate></a>
+              <button class="btn btn-success" onclick=window.print()>Print</button>
             </div>
             <br>
           </div>
@@ -30,25 +36,25 @@
       <div id="main_screen" style="display:none">
         <input id="submit" type="button" style="display:none">
         <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-6">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
               <div class="panel">
-                <div class="panel-heading" style="padding:10px">
+                <div class="panel-heading" style="padding:1px">
                   <h5>
-                    <p class="fw-bold text-success">Public Address (SHARE)</p>
+                    <p class="fw-bold fs-4">Public Address</p>
                   </h5>
-                  <div id="contents" class="hash address fw-bold"></div><br>
+                  <div id="contents" class="hash address text-success fw-bold fs-5"></div><br>
                   <qrcode id="qrcodeAddress" size="100" class="primary"></qrcode>
                 </div>
                 <br>
                 <br>
               </div>
               <div class="panel">
-                <div class="panel-heading" style="padding:10px">
+                <div class="panel-heading" style="padding:1px">
                   <h5>
-                    <p class="fw-bold text-danger">Private Key (SECRET)</p>
+                    <p class="fw-bold fs-4">Private Key</p>
                   </h5>
-                  <div id="prikey_pwd" class="hash passphrase fw-bold"></div><br>
+                  <div id="prikey_pwd" class="hash passphrase text-danger fw-bold fs-5"></div><br>
                     <qrcode id="qrcodeSecret" size="100" class="primary"></qrcode>
                 </div>
               </div>
