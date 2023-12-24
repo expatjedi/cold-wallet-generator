@@ -1,5 +1,5 @@
 body {
-	background-color: #F0F0F0;
+	background-color: #D8DEE9;
 	font-family: 'monospace', sans-serif;
 	font-size: 16px;
 	color: #000000;
@@ -30,9 +30,9 @@ a {
 	font-size: 16px;
 	text-align: center;
 	padding: 12px 20px 12px 40px;
-	border: 0px solid #F0F0F0;
+	border: 0px solid #D8DEE9;
 	box-sizing: border-box;
-	background-color: #F0F0F0;
+	background-color: #D8DEE9;
 	color: #000000;
 }
 
@@ -45,9 +45,9 @@ a {
 }
 
 #searchOL li a {
-	border: 0px solid #F0F0F0;
+	border: 0px solid #D8DEE9;
 	margin-top: -1px;
-	background-color: #F0F0F0;
+	background-color: #D8DEE9;
 	padding: 12px;
 	text-decoration: none;
 	font-size: 16px;
@@ -56,7 +56,7 @@ a {
 }
 
 #searchOL li a:hover:not(.header) {
-	background-color: #DBD9D8;
+	background-color: #ECEFF4;
 }
 
 @media only screen and (max-width:640px) {
@@ -96,17 +96,17 @@ a {
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-	background-color: #F0F0F0;
+	background-color: #D8DEE9;
 	background-color: rgba(0, 0, 0, 0.4);
 	text-align: left;
 }
 
 .modal-content {
-	background-color: #F0F0F0;
+	background-color: #D8DEE9;
 	font-size: 15px;
 	margin: auto;
 	padding: 20px;
-	border: 0px solid #F0F0F0;
+	border: 0px solid #D8DEE9;
 	width: 35%;
 }
 
