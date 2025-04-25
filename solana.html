@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="h-100">
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+		<title>Solana Cold Wallet Generator</title>
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+		<script src="https://unpkg.com/@solana/web3.js@1.37.1/lib/index.iife.min.js"></script>
+		<script src="js/bs58.bundle.js"></script>
+
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js'></script>
+	</head>
+	
+	<body class="h-100">
+
+		<div class="container-fluid bg-dark h-100 d-print-none">
+
+			<div class="container">
+				
+				<h1 class="text-warning pt-3 text-center">Solana Cold Wallet</h1>
+				
+				<form class="row my-5">
+					<div class="col-12 col-md-6 col-lg-4">
+						<div class="h3 text-light"><span class='text-warning'>1)</span> Select what you need</div>
+						
+						<select class="form-control" id="desiredOutput">
+							<optgroup label="Solana (SOL)">
+								<option value="solana">SOL private key and address</option>
+							</optgroup>
+						</select>
+					</div>
+					
+					<div class="col-12 col-md-6 col-lg-4">
+						<div class="h3 text-light"><span class='text-warning'>2)</span> Fill one of the following</div>
+						
+						<label class="text-light" for="secretKey">Private key (Base 58 or raw)</label>
+						<input class="form-control" type="text" id="secretKey" autocomplete="off">
+						<a href="#" id="generate-random-pk">Generate random private key</a>
+					</div>
+					
+					<div class="col-12 col-md-6 col-lg-4">
+						<div class="h3 text-light"><span class='text-warning'>3)</span> Generate</div>
+						<button class="btn btn-success mt-4" type="submit" id="submit">QRs and Print (horizontal)</button>
+					</div>
+				</form>
+				
+			</div>
+		</div>
+
+		
+		<div class="container-fluid" style="background: white;">
+			<div class="row font-monospace" id="outputDiv"></div>
+		</div>
+
+		<style>
+			#outputDiv img {
+				max-width: 100%;
+			}
+		</style>
+
+
+		<script>
+			window.addEventListener("load", () => {
+
+				document.getElementById("generate-random-pk").onclick = function(e) {
+					e.preventDefault();
+					
+					// SOLANA:
+					if (document.getElementById("desiredOutput").value == "solana") {
+						let keypair = solanaWeb3.Keypair.generate(); // new random keypair
+						document.getElementById("secretKey").value = window.bs58.encode(keypair.secretKey);
+					}
+
+				}
+
+				document.getElementById("submit").onclick = (e) => {
+					e.preventDefault();
+
+					var outputDiv = document.getElementById("outputDiv");
+					outputDiv.innerHTML = '';
+
+					// SOLANA:
+					if (document.getElementById("desiredOutput").value == "solana") {
+						
+						const private_key = document.getElementById("secretKey").value;
+						var keypair = undefined;
+
+						if (private_key.length == 88) {
+							keypair = solanaWeb3.Keypair.fromSecretKey(window.bs58.decode(private_key));
+						} else if ( (private_key.match(/,/g) || []).length == 63) {
+							keypair = solanaWeb3.Keypair.fromSecretKey(Uint8Array.from(private_key.replace('[', '').replace(']', '').split(',')));
+						} else {
+							keypair = solanaWeb3.Keypair.generate(); // new random keypair
+						}
+
+						let title = document.createElement("h1");
+						title.classList.add('bg-dark', 'text-light', 'py-1', 'mb-3');
+						outputDiv.appendChild(title);
+
+						// PUBLIC KEY:
+						let pk_col_1 = document.createElement("div");
+						pk_col_1.classList.add('col-4', 'mb-3');
+						new QRCode(pk_col_1, keypair.publicKey.toString());
+						outputDiv.appendChild(pk_col_1);
+
+						let pk_col_2 = document.createElement("div");
+						pk_col_2.classList.add('col-8', 'mb-3');
+						pk_col_2.innerHTML = `<h2 class='h3'>Public key <i class='small text-muted'>(address)</i></h2>
+						<div class='alert alert-success'><b class='text-break' style='font-size:125%;'>${keypair.publicKey.toString()}</b></div>
+						<p class='small text-muted'><i>This is where someone should send funds to. Feel free of sharing it everywhere. Do not reuse your addresses.</i></p>`;
+						outputDiv.appendChild(pk_col_2);
+
+						// SECRET KEY ALERT:
+						let sk_alert = document.createElement("div");
+						sk_alert.classList.add('alert', 'alert-danger', 'text-center');
+						sk_alert.innerHTML = `<b>Never share your secret key.</b><br>If someone has access to it, they will be able to spend funds.`;
+						outputDiv.appendChild(sk_alert);
+
+						// SECRET KEY (raw):
+						let sk_raw_col_1 = document.createElement("div");
+						sk_raw_col_1.classList.add('col-4', 'mb-3');
+						new QRCode(sk_raw_col_1, '['+keypair.secretKey.toString()+']');
+						outputDiv.appendChild(sk_raw_col_1);
+
+						let sk_raw_col_2 = document.createElement("div");
+						sk_raw_col_2.classList.add('col-8', 'mb-3');
+						sk_raw_col_2.innerHTML = `<h2 class='h3'>Secret key <i class='small text-muted'>(raw)</i></h2>
+						<b>Raw representation of your secret key:</b><br>
+						<span class='text-break'>[${keypair.secretKey.toString()}]</span>`;
+						outputDiv.appendChild(sk_raw_col_2);
+
+						// SECRET KEY (bs58):
+						let sk_bs58_col_1 = document.createElement("div");
+						sk_bs58_col_1.classList.add('col-4', 'mb-3');
+						new QRCode(sk_bs58_col_1, window.bs58.encode(keypair.secretKey));
+						outputDiv.appendChild(sk_bs58_col_1);
+
+						let sk_bs58_col_2 = document.createElement("div");
+						sk_bs58_col_2.classList.add('col-8', 'mb-3');
+						sk_bs58_col_2.innerHTML = `<h2 class='h3'>Secret key <i class='small text-muted'>(Base 58)</i></h2>
+						<b>Base 58 representation of your secret key:</b><br>
+						<span class='text-break'>${window.bs58.encode(keypair.secretKey)}</span>`;
+						outputDiv.appendChild(sk_bs58_col_2);
+
+					}
+					
+
+					if ("bitcoin") {
+
+						//document.getElementById("secretKey").value = 'xxxx';
+					}
+
+
+
+					let today = new Date();
+					let dd = String(today.getDate()).padStart(2, '0');
+					let mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+					today = today.getFullYear() + '-' + mm + '-' + dd;
+					
+					let footer = document.createElement("div");
+					footer.classList.add('text-center', 'text-muted', 'small', 'mt-3', 'pt-1');
+					footer.style.cssText = 'border-top: 2px solid #ccc';
+					footer.innerHTML = `<b>Generated on</b> ${today} <b>by</b> https://expatjedi.github.io/cold-wallet-generator/`;
+					outputDiv.appendChild(footer);
+
+
+					window.print();
+				}
+			});
+		</script>
+	</body>
+</html>
