@@ -14,7 +14,7 @@ Always use the cold wallet generator offline. Download the latest release on a u
 
 If you like the generator, please support the developer.
 
-Bitcoin: 13XALqipyZpyafaAQe63nh9YR9ds8nh4HC
+Bitcoin: 13XALqipyZpyafaAQe63nh9YR9ds8nh4HC  
 Litecoin: LSTjiURTgzi3TjTAkXJhd9s8pfWB3jQB3x
 
 #### Integrity validation
