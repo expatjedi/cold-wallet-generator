@@ -12,6 +12,11 @@
 
 Always use the cold wallet generator offline. Download the latest release on a usb drive and cut your internet connection. After producing enough wallets, print out and clear the printer memory. Restarting the printer will reset the device and clear its memory of any active print jobs. For this, turn off the printer and unplug it from the power socket. Leave it for a minute and then plug the printer into the power socket. This will fully clear out the power of the memory and erase it completely. Cold wallets are the same with your regular wallet so treat them as such.
 
+If you like the generator, please support the developer.
+
+Bitcoin: 13XALqipyZpyafaAQe63nh9YR9ds8nh4HC
+Litecoin: LSTjiURTgzi3TjTAkXJhd9s8pfWB3jQB3x
+
 #### Integrity validation
 * [bitcoinjs-lib.js](https://github.com/bitcoinjs/bitcoinjs-lib) v3.3.2
 	* [SHA-256] 34fb2141b70f690a8eb9fa75e703e99b39f8538201250115fc895343b7739708
