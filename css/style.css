@@ -1,6 +1,6 @@
 body {
-	background-color: #D8DEE9;
-	font-family: 'monospace', sans-serif;
+	background-color: #FFFFFF;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	color: #000000;
 }
@@ -30,9 +30,9 @@ a {
 	font-size: 16px;
 	text-align: center;
 	padding: 12px 20px 12px 40px;
-	border: 0px solid #D8DEE9;
+	border: 0px solid #FFFFFF;
 	box-sizing: border-box;
-	background-color: #D8DEE9;
+	background-color: #FFFFFF;
 	color: #000000;
 }
 
@@ -45,9 +45,9 @@ a {
 }
 
 #searchOL li a {
-	border: 0px solid #D8DEE9;
+	border: 0px solid #FFFFFF;
 	margin-top: -1px;
-	background-color: #D8DEE9;
+	background-color: #FFFFFF;
 	padding: 12px;
 	text-decoration: none;
 	font-size: 16px;
@@ -83,7 +83,7 @@ a {
 
 ::placeholder {
   color: #000000;
-  font-family: 'monospace';
+  font-family: 'Arial';
 }
 
 .modal {
@@ -96,17 +96,17 @@ a {
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-	background-color: #D8DEE9;
+	background-color: #FFFFFF;
 	background-color: rgba(0, 0, 0, 0.4);
 	text-align: left;
 }
 
 .modal-content {
-	background-color: #D8DEE9;
+	background-color: #FFFFFF;
 	font-size: 15px;
 	margin: auto;
 	padding: 20px;
-	border: 0px solid #D8DEE9;
+	border: 0px solid #FFFFFF;
 	width: 35%;
 }
 
