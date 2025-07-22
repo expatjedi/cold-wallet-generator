@@ -143,33 +143,15 @@
             <li><a href="oduwacoin.html">Oduwacoin (OWC)</a></li>
             <li><a href="kiirocoin.html">Kiirocoin (KIIRO)</a></li>
             <li><a href="dogecoint.html">Dogecoin Testnet (DOGE)</a></li>
-        </ol><br><br>
-        <div align="center"><a href="https://github.com/expatjedi/cold-wallet-generator" target="blank">Source Code</a>
-            | <text id="myBtn">Instructions</text>
-            <div id="myModal" class="modal">
-                <div class="modal-content"><span class="close">&times;</span>
-                    <p><b>Instructions</b><br><br>Always use the cold wallet generator offline. Download the latest
-                        release on a usb drive and cut your internet connection.<br><br>After producing enough number of
-                        cold wallets, print them out and clear your printer memory. Cold wallets are the same with your
-                        regular wallet so treat them as such.<br><br>If you like the generator, please support the
-                        developer.<br><br>Bitcoin: 13XALqipyZpyafaAQe63nh9YR9ds8nh4HC<br>Litecoin:
-                        LSTjiURTgzi3TjTAkXJhd9s8pfWB3jQB3x
-                </div>
-            </div>
-            <script src="js/modal.js"></script>
-        </div>
+        </ol>
+        <p align="center"><a href="https://github.com/expatjedi/cold-wallet-generator" target="blank">Source Code</a>
+        </p>
         <script>
             function Search() {
                 var e, t = document.getElementById("searchInput").value.toUpperCase(),
                     n = document.getElementById("searchOL").getElementsByTagName("li");
                 for (e = 0; e < n.length; e++) - 1 < n[e].getElementsByTagName("a")[0].textContent.toUpperCase()
                     .indexOf(t) ? n[e].style.display = "" : n[e].style.display = "none"
-            }
-            var ol = document.getElementById("searchOL");
-            ol.onclick = function (e) {
-                "erc20" === (e = e.target).className && ("" === location.hostname ? window.location.replace(
-                        "ethereum.html?" + e.textContent) : window.location.replace("ethereum?" + e
-                    .textContent))
             }
         </script>
     </div>
