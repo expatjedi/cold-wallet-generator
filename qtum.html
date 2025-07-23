@@ -1,1 +1,108 @@
-<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><title>Qtum Cold Wallet Generator</title><meta name=description content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency"><meta name=keywords content="minimal, reliable, fast, universal, cold, wallet, generator, offline, qtum, cryptocurrency"><meta name=viewport content="width=device-width, initial-scale=1"><link rel="stylesheet" href="css/style2.css"></head><body onload=generate()><div id=container><br><div class=noprint><button onclick=generate()>Generate</button> <button onclick=window.print()>Print</button> <a href=index.html><input type=button value=Home></a></div><img src=img/qtum.png class=center alt=qtum><table><tr><h1 class=titlemain>Qtum Cold Wallet</h1></tr><tr><th class=grayHeaders>Public Address <span id=shareColor>(SHARE)</span></th></tr><tr><td><div id=public>Generating...</div></td></tr><tr><td><div id=public_qr></div></td></tr><tr><th class=grayHeaders><div id=secretLabel>Private Key <span id=secretColor>(SECRET)</span></div></th></tr><tr><td><div id=secret>Generating...</div></td></tr><tr><td><div id=secret_qr></div></td></tr></table></div><script src=js/bitcoinjs-lib.js></script><script src=js/qrcode.js></script><script>function generate(){const qtum=bitcoin.networks.bitcoin;qtum.pubKeyHash=0x3A;qtum.wif=0x80;qtum.scriptHash=0x32;const keyPair=bitcoin.ECPair.makeRandom({ compressed: false });const pubKey=keyPair.getAddress();const privKey=keyPair.toWIF();document.getElementById("public").textContent=pubKey;document.getElementById("secret").textContent=privKey;document.getElementById("public_qr").textContent="";document.getElementById("secret_qr").textContent="";new QRCode(document.getElementById("public_qr"),{text: pubKey,width: 128,height: 128,correctLevel: QRCode.CorrectLevel.H});new QRCode(document.getElementById("secret_qr"),{text: privKey,width: 128,height: 128,correctLevel: QRCode.CorrectLevel.H});}document.getElementById("update").textContent="Latest update: " + document.lastModified;</script></body></html>
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset=UTF-8>
+    <title>Qtum Cold Wallet Generator</title>
+    <meta name=description
+        content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
+    <meta name=keywords
+        content="minimal, reliable, fast, universal, cold, wallet, generator, offline, qtum, cryptocurrency">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style2.css">
+</head>
+
+<body onload=generate()>
+    <div id=container><br>
+        <div class=noprint><button onclick=generate()>Generate</button> <button onclick=window.print()>Print</button> <a
+                href=index.html><input type=button value=Home></a></div><img src=img/qtum.png class=center alt=qtum>
+        <table>
+            <tr>
+                <h1 class=titlemain>Qtum Cold Wallet</h1>
+            </tr>
+            <tr>
+                <th class=grayHeaders>Public Address <span id=shareColor>(SHARE)</span></th>
+            </tr>
+            <tr>
+                <td>
+                    <div id=public>Generating...</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id=public_qr></div>
+                </td>
+            </tr>
+            <tr>
+                <th class=grayHeaders>
+                    <div id=secretLabel>Private Key <span id=secretColor>(SECRET)</span></div>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div id=secret>Generating...</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id=secret_qr></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script src=js/bitcoinjs-lib.js></script>
+    <script src=js/qrcode.js></script>
+    <script>
+        function generate() {
+        const Qtum = {
+          messagePrefix: '\x19Qtum Signed Message:\n',
+          bech32: 'qc',
+          bip32: {
+            public: 0x4488B21E,
+            private: 0x4488ADE4,
+          },
+          pubKeyHash: 0x3a,
+          scriptHash: 0x32,
+          wif: 0x80
+        };
+
+        const keyPair = bitcoin.ECPair.makeRandom({
+          compressed: false,
+          network: Qtum,
+        });
+
+        const publicAddress = keyPair.getAddress();
+        const privateKeyWIF = keyPair.toWIF();
+
+        const publicElem = document.getElementById("public");
+        const privateElem = document.getElementById("secret");
+        const publicQRElem = document.getElementById("public_qr");
+        const privateQRElem = document.getElementById("secret_qr");
+
+        if (publicElem && privateElem && publicQRElem && privateQRElem) {
+          publicElem.textContent = publicAddress;
+          privateElem.textContent = privateKeyWIF;
+
+          publicQRElem.innerHTML = "";
+          privateQRElem.innerHTML = "";
+
+          new QRCode(publicQRElem, {
+            text: publicAddress,
+            width: 128,
+            height: 128,
+            correctLevel: QRCode.CorrectLevel.H,
+          });
+
+          new QRCode(privateQRElem, {
+            text: privateKeyWIF,
+            width: 128,
+            height: 128,
+            correctLevel: QRCode.CorrectLevel.H,
+          });
+        }
+      }
+        document.getElementById("update").textContent = "Latest update: " + document.lastModified;
+    </script>
+</body>
+
+</html>
