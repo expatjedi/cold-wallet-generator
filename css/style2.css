@@ -1,8 +1,8 @@
 body {
-	background-color: #FFFFFF;
+	background-color: #1D1E22;
 	font-size: 14px;
-	font-family: 'Open Sans', sans-serif;
-	color: black;
+	font-family: 'Arial', sans-serif;
+	color: #FEDA6A;
 }
 
 #container {
@@ -39,19 +39,19 @@ td img {
 }
 
 #public, #secret {
-	font-family: 'Courier New Bold';
+	font-family: Verdana;
 	font-size: 14px;
 	font-weight: 700;
 }
 
 #public {
 	text-align: left;
-	color: green;
+	color: #FEDA6A;
 }
 
 #secret {
 	text-align: right;
-	color:red;
+	color: #FEDA6A;
 }
 
 #public_qr, #secret_qr {
@@ -84,6 +84,18 @@ td img {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.buttons {
+  background-color: #FEDA6A;
+  border: none;
+  color: #1D1E22;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+ }
 
 @media only screen and (max-width:640px) {
 	#public, #secret {

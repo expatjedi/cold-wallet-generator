@@ -14,9 +14,7 @@
 
 <body onload=generate()>
     <div id=container><br>
-        <div class=noprint><button onclick=generate()>Generate</button> <button onclick=window.print()>Print</button> <a
-                href=index.html><input type=button value=Home></a></div><img src=img/bitcoin-cash.png class=center
-            alt=bitcoin-cash>
+        <div class=noprint><button class="buttons" onclick=generate()>Generate</button> <button class="buttons" onclick=window.print()>Print</button> <a href=index.html><input type=button class="buttons" value=Home></a></div>
         <table>
             <tr>
                 <h1 class=titlemain>Bitcoin Cash Cold Wallet</h1>
@@ -75,7 +73,6 @@
                     correctLevel: QRCode.CorrectLevel.H
                 });
             }
-            document.getElementById("update").textContent = "Latest update: " + document.lastModified;
         </script>
 </body>
 

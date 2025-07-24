@@ -14,9 +14,8 @@
 
 <body onload=generate()>
     <div id=container><br>
-        <div class=noprint><button onclick=generate()>Generate</button> <button onclick=window.print()>Print</button> <a
-                href=index.html><input type=button value=Home></a></div><img src=img/vertcoin.png class=center
-            alt=vertcoin>
+        <div class=noprint><button class="buttons" onclick=generate()>Generate</button> <button class="buttons" onclick=window.print()>Print</button> <a
+                href=index.html><input type=button class="buttons" value=Home></a></div>
         <table>
             <tr>
                 <h1 class=titlemain>Vertcoin Cold Wallet</h1>
@@ -55,32 +54,53 @@
     <script src=js/qrcode.js></script>
     <script>
         function generate() {
-            const vertcoin = bitcoin.networks.bitcoin;
-            vertcoin.pubKeyHash = 0x47;
-            vertcoin.wif = 0x80;
-            const keyPair = bitcoin.ECPair.makeRandom({
-                compressed: false
-            });
-            const pubKey = keyPair.getAddress();
-            const privKey = keyPair.toWIF();
-            document.getElementById("public").textContent = pubKey;
-            document.getElementById("secret").textContent = privKey;
-            document.getElementById("public_qr").textContent = "";
-            document.getElementById("secret_qr").textContent = "";
-            new QRCode(document.getElementById("public_qr"), {
-                text: pubKey,
-                width: 128,
-                height: 128,
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            new QRCode(document.getElementById("secret_qr"), {
-                text: privKey,
-                width: 128,
-                height: 128,
-                correctLevel: QRCode.CorrectLevel.H
-            });
+         const vertcoin = {
+          messagePrefix: '\x19Vertcoin Signed Message:\n',
+          bech32: 'vtc',
+          bip32: {
+            public: 0x4488B21E,
+            private: 0x4488ADE4,
+          },
+          pubKeyHash: 0x47,
+          scriptHash: 0x05,
+          wif: 0x80
+        };
+
+        const keyPair = bitcoin.ECPair.makeRandom({
+          compressed: false,
+          network: vertcoin,
+        });
+
+        const publicAddress = keyPair.getAddress();
+        const privateKeyWIF = keyPair.toWIF();
+
+        const publicElem = document.getElementById("public");
+        const privateElem = document.getElementById("secret");
+        const publicQRElem = document.getElementById("public_qr");
+        const privateQRElem = document.getElementById("secret_qr");
+
+        if (publicElem && privateElem && publicQRElem && privateQRElem) {
+          publicElem.textContent = publicAddress;
+          privateElem.textContent = privateKeyWIF;
+
+          publicQRElem.innerHTML = "";
+          privateQRElem.innerHTML = "";
+
+          new QRCode(publicQRElem, {
+            text: publicAddress,
+            width: 128,
+            height: 128,
+            correctLevel: QRCode.CorrectLevel.H,
+          });
+
+          new QRCode(privateQRElem, {
+            text: privateKeyWIF,
+            width: 128,
+            height: 128,
+            correctLevel: QRCode.CorrectLevel.H,
+          });
         }
-        document.getElementById("update").textContent = "Latest update: " + document.lastModified;
+      }
     </script>
 </body>
 

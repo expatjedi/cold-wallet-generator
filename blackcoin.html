@@ -12,13 +12,12 @@
     <div id=container>
       <br>
       <div class=noprint>
-        <button onclick=generate()>Generate</button>
-        <button onclick=window.print()>Print</button>
+        <button class="buttons" onclick=generate()>Generate</button>
+        <button class="buttons" onclick=window.print()>Print</button>
         <a href=index.html>
-          <input type=button value=Home>
+          <input type=button class="buttons" value=Home>
         </a>
       </div>
-      <img src=img/blackcoin.png class=center alt=blackcoin>
       <table>
         <tr>
           <h1 class=titlemain>Blackcoin Cold Wallet</h1>
@@ -107,7 +106,6 @@
         }
       }
 
-      document.getElementById("update").textContent = "Latest update: " + document.lastModified;
     </script>
   </body>
 </html>

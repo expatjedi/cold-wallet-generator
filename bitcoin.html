@@ -14,15 +14,15 @@
 
 <body onload="generate()">
   <div id="container"><br>
-    <div class="noprint"><button onclick="generate()">Generate</button> <button onclick="window.print()">Print</button>
-      <a href="index.html"><input type="button" value="Home"></a></div><img src="img/bitcoin.png" class="center"
-      alt="bitcoin">
+    <div class="noprint"><button class="buttons" onclick="generate()">Generate</button>
+      <button class="buttons" onclick="window.print()">Print</button>
+      <a href="index.html"><input type="button" class="buttons" value="Home"></a></div>
     <table>
       <tr>
         <h1 class="titlemain">Bitcoin Cold Wallet</h1>
       </tr>
       <tr>
-        <th class="grayHeaders">Public Address<span id="shareColor">(SHARE)</span></th>
+        <th class="grayHeaders">Public Address<span id="shareColor"> (SHARE)</span></th>
       </tr>
       <tr>
         <td>
@@ -36,7 +36,7 @@
       </tr>
       <tr>
         <th class="grayHeaders">
-          <div id="secretLabel">Private Key<span id="secretColor">(SECRET)</span></div>
+          <div id="secretLabel">Private Key<span id="secretColor"> (SECRET)</span></div>
         </th>
       </tr>
       <tr>

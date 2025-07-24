@@ -4,19 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Alias Cold Wallet Generator</title>
-    <meta name="description"
-        content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-    <meta name="keywords"
-        content="minimal, reliable, fast, universal, cold, wallet, generator, offline, alias, cryptocurrency">
+    <meta name="description" content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
+    <meta name="keywords" content="minimal, reliable, fast, universal, cold, wallet, generator, offline, alias, cryptocurrency">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="css/style2.css">
 </head>
 
 <body onload="generate()">
     <div id="container"><br>
-        <div class="noprint"><button onclick="generate()">Generate</button> <button
-                onclick="window.print()">Print</button> <a href="index.html"><input type="button" value="Home"></a>
-        </div><img src="img/alias.png" class="center" alt="alias">
+        <div class="noprint"><button class="buttons" onclick="generate()">Generate</button> <button class="buttons" onclick="window.print()">Print</button> <a href="index.html"><input type="button" class="buttons" value="Home"></a>
+        </div>
         <table>
             <tr>
                 <h1 class="titlemain">Alias Cold Wallet</h1>
@@ -103,7 +100,6 @@
         }
       }
 
-      document.getElementById("update").textContent = "Latest update: " + document.lastModified;
     </script>
 </body>
 

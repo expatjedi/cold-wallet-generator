@@ -14,9 +14,8 @@
 
 <body onload="generate()">
     <div id="container"><br>
-        <div class="noprint"><button onclick="generate()">Generate</button> <button
-                onclick="window.print()">Print</button> <a href="index.html"><input type="button" value="Home"></a>
-        </div><img src="img/florin.png" class="center" alt="florin">
+        <div class="noprint"><button class="buttons" onclick="generate()">Generate</button> <button class="buttons" onclick="window.print()">Print</button> <a href="index.html"><input type="button" class="buttons" value="Home"></a>
+        </div>
         <table>
             <tr>
                 <h1 class="titlemain">Florin Cold Wallet</h1>
@@ -103,7 +102,6 @@
         }
       }
 
-      document.getElementById("update").textContent = "Latest update: " + document.lastModified;
     </script>
 </body>
 
