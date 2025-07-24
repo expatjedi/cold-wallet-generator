@@ -50,34 +50,45 @@
             </tr>
         </table>
     </div>
-    <script src=js/bitcoinjs-lib.js></script>
+    <script src=js/bitcoinjs-lib.bc1.js></script>
     <script src=js/qrcode.js></script>
     <script>
         function generate() {
-            const litecoin = bitcoin.networks.litecoin;
-            const keyPair = bitcoin.ECPair.makeRandom({
-                network: litecoin,
-                compressed: false
-            });
-            const pubKey = keyPair.getAddress();
-            const privKey = keyPair.toWIF();
-            document.getElementById("public").textContent = pubKey;
-            document.getElementById("secret").textContent = privKey;
-            document.getElementById("public_qr").textContent = "";
-            document.getElementById("secret_qr").textContent = "";
-            new QRCode(document.getElementById("public_qr"), {
-                text: pubKey,
-                width: 128,
-                height: 128,
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            new QRCode(document.getElementById("secret_qr"), {
-                text: privKey,
-                width: 128,
-                height: 128,
-                correctLevel: QRCode.CorrectLevel.H
-            });
-        }
+    const litecoin = {
+        messagePrefix: '\x19Litecoin Signed Message:\n',
+        bech32: 'ltc',
+        bip32: {
+            public: 0x019da462,
+            private: 0x019d9cfe
+        },
+        pubKeyHash: 0x30,
+        scriptHash: 0x32,
+        wif: 0xb0
+    };
+
+    const keyPair = bitcoin.ECPair.makeRandom({ network: litecoin });
+    const { address } = bitcoin.payments.p2wpkh({ pubkey: keyPair.publicKey, network: litecoin });
+    const privKey = keyPair.toWIF();
+
+    document.getElementById("public").textContent = address;
+    document.getElementById("secret").textContent = privKey;
+    document.getElementById("public_qr").textContent = "";
+    document.getElementById("secret_qr").textContent = "";
+
+    new QRCode(document.getElementById("public_qr"), {
+        text: address,
+        width: 128,
+        height: 128,
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    new QRCode(document.getElementById("secret_qr"), {
+        text: privKey,
+        width: 128,
+        height: 128,
+        correctLevel: QRCode.CorrectLevel.H
+    });
+}
+
     </script>
 </body>
 
