@@ -10,6 +10,8 @@
     content="minimal, reliable, fast, universal, cold, wallet, generator, offline, bitcoin, btc, cryptocurrency">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="css/style2.css">
+  <script src="js/bitcoinjs-lib.bc1.js"></script>
+  <script src="js/qrcode.js"></script>
 </head>
 
 <body onload="generate()">
@@ -51,44 +53,44 @@
       </tr>
       <tr></tr>
     </table>
-    <script src="js/bitcoinjs-lib.js"></script>
-    <script src="js/qrcode.js"></script>
 
     <script>
-      function generate() {
-        const keyPair = bitcoin.ECPair.makeRandom({
-          compressed: false
-        });
-        const publicAddress = keyPair.getAddress();
-        const privateKeyWIF = keyPair.toWIF();
+function generate() {
+  const keyPair = bitcoin.ECPair.makeRandom();
+  const { address } = bitcoin.payments.p2wpkh({
+    pubkey: keyPair.publicKey,
+    network: bitcoin.networks.bitcoin
+  });
 
-        const publicElem = document.getElementById("public");
-        const privateElem = document.getElementById("secret");
-        const publicQRElem = document.getElementById("public_qr");
-        const privateQRElem = document.getElementById("secret_qr");
+  const privateKeyWIF = keyPair.toWIF();
 
-        if (publicElem && privateElem && publicQRElem && privateQRElem) {
-          publicElem.textContent = publicAddress;
-          privateElem.textContent = privateKeyWIF;
+  const publicElem = document.getElementById("public");
+  const privateElem = document.getElementById("secret");
+  const publicQRElem = document.getElementById("public_qr");
+  const privateQRElem = document.getElementById("secret_qr");
 
-          publicQRElem.innerHTML = "";
-          privateQRElem.innerHTML = "";
+  if (publicElem && privateElem && publicQRElem && privateQRElem) {
+    publicElem.textContent = address;
+    privateElem.textContent = privateKeyWIF;
 
-          new QRCode(publicQRElem, {
-            text: publicAddress,
-            width: 128,
-            height: 128,
-            correctLevel: QRCode.CorrectLevel.H
-          });
+    publicQRElem.innerHTML = "";
+    privateQRElem.innerHTML = "";
 
-          new QRCode(privateQRElem, {
-            text: privateKeyWIF,
-            width: 128,
-            height: 128,
-            correctLevel: QRCode.CorrectLevel.H
-          });
-        }
-      }
+    new QRCode(publicQRElem, {
+      text: address,
+      width: 128,
+      height: 128,
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    new QRCode(privateQRElem, {
+      text: privateKeyWIF,
+      width: 128,
+      height: 128,
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  }
+}
     </script>
   </div>
 </body>
