@@ -66,8 +66,8 @@
           wif: 0xb7
         };
 
-        const keyPair = bitcoin.ECPair.makeRandom({compressed: false, network: peercoin});
-        const { address } = bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network: peercoin});
+        const keyPair = bitcoin.ECPair.makeRandom({network: peercoin});
+        const { address } = bitcoin.payments.p2wpkh({pubkey: keyPair.publicKey, network: peercoin});
         const privateKeyWIF = keyPair.toWIF();
 
         const publicElem = document.getElementById("public");
