@@ -54,7 +54,7 @@
     <script src="js/qrcode.js"></script>
     <script>
         function generate() {
-                    const yenten = {
+        const yenten = {
           messagePrefix: '\x19Yenten Signed Message:\n',
           bech32: 'ytn',
           bip32: {
@@ -66,12 +66,8 @@
           wif: 0x7b
         };
 
-        const keyPair = bitcoin.ECPair.makeRandom({
-          compressed: false,
-          network: yenten,
-        });
-
-        const publicAddress = keyPair.getAddress();
+        const keyPair = bitcoin.ECPair.makeRandom({compressed: false, network: yenten});
+        const { address } = bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network: yenten});
         const privateKeyWIF = keyPair.toWIF();
 
         const publicElem = document.getElementById("public");
@@ -80,14 +76,14 @@
         const privateQRElem = document.getElementById("secret_qr");
 
         if (publicElem && privateElem && publicQRElem && privateQRElem) {
-          publicElem.textContent = publicAddress;
+          publicElem.textContent = address;
           privateElem.textContent = privateKeyWIF;
 
           publicQRElem.innerHTML = "";
           privateQRElem.innerHTML = "";
 
           new QRCode(publicQRElem, {
-            text: publicAddress,
+            text: address,
             width: 128,
             height: 128,
             correctLevel: QRCode.CorrectLevel.H,

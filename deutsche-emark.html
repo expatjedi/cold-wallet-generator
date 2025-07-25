@@ -57,7 +57,7 @@
     <script>
         function generate() {
          const dem = {
-          messagePrefix: '\x19dem Signed Message:\n',
+          messagePrefix: '\x19Deutsche eMark Signed Message:\n',
           bech32: '',
           bip32: {
             public: 0x4488B21E,
@@ -68,12 +68,8 @@
           wif: 0xb5
         };
 
-        const keyPair = bitcoin.ECPair.makeRandom({
-          compressed: false,
-          network: dem,
-        });
-
-        const publicAddress = keyPair.getAddress();
+        const keyPair = bitcoin.ECPair.makeRandom({compressed: false, network: dem});
+        const { address } = bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network: dem});
         const privateKeyWIF = keyPair.toWIF();
 
         const publicElem = document.getElementById("public");
@@ -82,14 +78,14 @@
         const privateQRElem = document.getElementById("secret_qr");
 
         if (publicElem && privateElem && publicQRElem && privateQRElem) {
-          publicElem.textContent = publicAddress;
+          publicElem.textContent = address;
           privateElem.textContent = privateKeyWIF;
 
           publicQRElem.innerHTML = "";
           privateQRElem.innerHTML = "";
 
           new QRCode(publicQRElem, {
-            text: publicAddress,
+            text: address,
             width: 128,
             height: 128,
             correctLevel: QRCode.CorrectLevel.H,

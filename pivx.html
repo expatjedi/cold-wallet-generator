@@ -54,7 +54,7 @@
     <script src="js/qrcode.js"></script>
     <script>
         function generate() {
-         const Pivx = {
+         const pivx = {
           messagePrefix: '\x19Pivx Signed Message:\n',
           bech32: 'ps',
           bip32: {
@@ -66,12 +66,8 @@
           wif: 0xd4
         };
 
-        const keyPair = bitcoin.ECPair.makeRandom({
-          compressed: false,
-          network: Pivx,
-        });
-
-        const publicAddress = keyPair.getAddress();
+        const keyPair = bitcoin.ECPair.makeRandom({compressed: false, network: pivx});
+        const { address } = bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network: pivx});
         const privateKeyWIF = keyPair.toWIF();
 
         const publicElem = document.getElementById("public");
@@ -80,14 +76,14 @@
         const privateQRElem = document.getElementById("secret_qr");
 
         if (publicElem && privateElem && publicQRElem && privateQRElem) {
-          publicElem.textContent = publicAddress;
+          publicElem.textContent = address;
           privateElem.textContent = privateKeyWIF;
 
           publicQRElem.innerHTML = "";
           privateQRElem.innerHTML = "";
 
           new QRCode(publicQRElem, {
-            text: publicAddress,
+            text: address,
             width: 128,
             height: 128,
             correctLevel: QRCode.CorrectLevel.H,

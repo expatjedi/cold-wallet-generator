@@ -58,17 +58,17 @@
             dash.pubKeyHash = 0x4c;
             dash.wif = 0xcc;
             dash.scriptHash = 0x10;
-            const keyPair = bitcoin.ECPair.makeRandom({
-                compressed: false
-            });
-            const pubKey = keyPair.getAddress();
+
+            const keyPair = bitcoin.ECPair.makeRandom({compressed: false, network: dash});
+            const { address } = bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network: dash});
+
             const privKey = keyPair.toWIF();
-            document.getElementById("public").textContent = pubKey;
+            document.getElementById("public").textContent = address;
             document.getElementById("secret").textContent = privKey;
             document.getElementById("public_qr").textContent = "";
             document.getElementById("secret_qr").textContent = "";
             new QRCode(document.getElementById("public_qr"), {
-                text: pubKey,
+                text: address,
                 width: 128,
                 height: 128,
                 correctLevel: QRCode.CorrectLevel.H

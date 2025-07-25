@@ -54,7 +54,7 @@
     <script src=js/qrcode.js></script>
     <script>
         function generate() {
-        const Qtum = {
+        const qtum = {
           messagePrefix: '\x19Qtum Signed Message:\n',
           bech32: 'qc',
           bip32: {
@@ -66,12 +66,8 @@
           wif: 0x80
         };
 
-        const keyPair = bitcoin.ECPair.makeRandom({
-          compressed: false,
-          network: Qtum,
-        });
-
-        const publicAddress = keyPair.getAddress();
+        const keyPair = bitcoin.ECPair.makeRandom({compressed: false, network: qtum});
+        const { address } = bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network: qtum});
         const privateKeyWIF = keyPair.toWIF();
 
         const publicElem = document.getElementById("public");
@@ -80,14 +76,14 @@
         const privateQRElem = document.getElementById("secret_qr");
 
         if (publicElem && privateElem && publicQRElem && privateQRElem) {
-          publicElem.textContent = publicAddress;
+          publicElem.textContent = address;
           privateElem.textContent = privateKeyWIF;
 
           publicQRElem.innerHTML = "";
           privateQRElem.innerHTML = "";
 
           new QRCode(publicQRElem, {
-            text: publicAddress,
+            text: address,
             width: 128,
             height: 128,
             correctLevel: QRCode.CorrectLevel.H,

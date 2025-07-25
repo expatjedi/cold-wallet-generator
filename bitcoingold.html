@@ -49,7 +49,7 @@
             </tr>
         </table>
     </div>
-    <script src=js/bitcoinjs-lib.bc1.js></script>
+    <script src=js/bitcoinjs-lib.js></script>
     <script src=js/qrcode.js></script>
     <script>
         function generate() {
@@ -62,7 +62,7 @@
           },
           pubKeyHash: 0x26,
 	      scriptHash: 0x17,
-          wif: 0x80,
+          wif: 0x80
         };
 
         const keyPair = bitcoin.ECPair.makeRandom({ network: btg });
