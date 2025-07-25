@@ -50,11 +50,11 @@
             </tr>
         </table>
     </div>
-    <script src=js/bitcoinjs-lib.js></script>
+    <script src=js/bitcoinjs-lib.bc1.js></script>
     <script src=js/qrcode.js></script>
     <script>
         function generate() {
-        const mona = {
+        const monacoin = {
           messagePrefix: '\x19Mona Signed Message:\n',
           bech32: 'mona',
           bip32: {
@@ -66,12 +66,8 @@
           wif: 0xb0,
         };
 
-        const keyPair = bitcoin.ECPair.makeRandom({
-          compressed: false,
-          network: mona,
-        });
-
-        const publicAddress = keyPair.getAddress();
+        const keyPair = bitcoin.ECPair.makeRandom({ network: monacoin });
+        const { address } = bitcoin.payments.p2wpkh({ pubkey: keyPair.publicKey, network: monacoin });
         const privateKeyWIF = keyPair.toWIF();
 
         const publicElem = document.getElementById("public");
@@ -80,14 +76,14 @@
         const privateQRElem = document.getElementById("secret_qr");
 
         if (publicElem && privateElem && publicQRElem && privateQRElem) {
-          publicElem.textContent = publicAddress;
+          publicElem.textContent = address;
           privateElem.textContent = privateKeyWIF;
 
           publicQRElem.innerHTML = "";
           privateQRElem.innerHTML = "";
 
           new QRCode(publicQRElem, {
-            text: publicAddress,
+            text: address,
             width: 128,
             height: 128,
             correctLevel: QRCode.CorrectLevel.H,
