@@ -22,7 +22,7 @@ body {
     .dropdown-container {
       position: relative;
       width: 100%;
-      max-width: 420px;
+      max-width: 400px;
       margin: 0 auto;
       ::-webkit-scrollbar {width: 10px;}
     }
@@ -36,6 +36,9 @@ body {
       margin-bottom: 0.5rem;
       background: #2b2b2b;
       color: #f0f0f0;
+      width: 100%;
+      max-width: 400px; /* dropdown-container ile uyumlu */
+      box-sizing: border-box;
     }
 
     #dropdownInput::placeholder {

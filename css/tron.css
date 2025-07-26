@@ -1,0 +1,177 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1f1f1f 0%, #3c3c3c 100%);
+    padding: 2rem;
+    text-align: center;
+    color: #f0f0f0;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+p, h2, div {
+    text-align: center; /* Center all text */
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #cccccc;
+}
+
+.dropdown-container {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+#dropdownInput {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #555;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    background: #2b2b2b;
+    color: #f0f0f0;
+}
+
+#dropdownInput::placeholder {
+    color: #999;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    max-height: 240px;
+    overflow-y: auto;
+    background: #2b2b2b;
+    border: 1px solid #444;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    display: none;
+    animation: fadein 0.3s ease;
+}
+
+.dropdown-list div {
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+    border-bottom: 1px solid #3d3d3d;
+    color: #eee;
+}
+
+.dropdown-list div:last-child {
+    border-bottom: none;
+}
+
+.dropdown-list div:hover {
+    background: #3d3d3d;
+}
+
+footer {
+    margin-top: 3rem;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+@keyframes fadein {
+    from { opacity: 0; transform: translateY(-5px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.light-mode body {
+    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+    color: #111;
+}
+
+.light-mode #dropdownInput {
+    background: #fff;
+    color: #111;
+    border: 1px solid #aaa;
+}
+
+.light-mode p {
+    color: #000000;
+}
+
+.light-mode h1 {
+    color: #000000;
+}
+
+.light-mode #dropdownInput::placeholder {
+    color: #666;
+}
+
+.light-mode .dropdown-list {
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+.light-mode .dropdown-list div {
+    color: #111;
+    border-bottom: 1px solid #ddd;
+}
+
+.light-mode .dropdown-list div:hover {
+    background: #f0f0f0;
+}
+
+.light-mode footer a {
+    color: #333;
+}
+
+.button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        button {
+            padding: 0.75rem 1.5rem;
+            font-size: 14px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            background: #ffffff;
+            color: #121212;
+            font-weight: bold;
+            transition: transform 0.2s, background 0.3s;
+        }
+        button:hover {
+            background: #e0e0e0;
+            transform: scale(1.05);
+        }
+
+section {
+    margin: 2rem auto;
+    max-width: 600px; /* Increased to fit long TRON keys */
+    padding: 2rem; /* Increased padding for larger blocks */
+    background: #2b2b2b;
+    border-radius: 10px;
+    border: 1px solid #555;
+}
+
+h2 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+section div {
+    color: #cccccc;
+    word-break: break-all; /* Ensure long keys wrap */
+    font-size: 0.9rem;
+}
