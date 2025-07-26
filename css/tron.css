@@ -1,7 +1,18 @@
+:root {
+    --nord0: #2e3440;
+    --nord1: #3b4252;
+    --nord2: #434c5e;
+    --nord3: #4c566a;
+    --nord4: #d8dee9;
+    --nord5: #e5e9f0;
+    --nord6: #eceff4;
+    --nord-accent: #88c0d0;
+}
+
 body {
      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-     background: linear-gradient(135deg, #121212, #1e1e1e);
-     color: #e0e0e0;
+     background: linear-gradient(135deg, var(--nord0), var(--nord1));
+     color: var(--nord5);
      display: flex;
      justify-content: center;
      align-items: center;
@@ -11,7 +22,7 @@ body {
      }
 
  .container {
-    background: rgba(30, 30, 30, 0.95);
+    background: rgba(59, 66, 82, 0.95);
     backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 15px;
@@ -23,7 +34,7 @@ body {
 h1 {
     font-size: 2.3rem;
     margin-bottom: 1.5rem;
-    color: #ffffff;
+    color: var(--nord6);
     /*text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);*/
 }
 
@@ -46,34 +57,34 @@ h1 {
             border: none;
             border-radius: 15px;
             cursor: pointer;
-            background: #ffffff;
-            color: #121212;
+            background: var(--nord-accent);
+            color: var(--nord0);
             font-weight: bold;
             transition: transform 0.2s, background 0.3s;
         }
         button:hover {
-            background: #e0e0e0;
+            background: #81a1c1;
             transform: scale(1.05);
         }
 
         .info-box {
             margin: 1rem 0;
             padding: 1rem;
-            background: rgba(50, 50, 50, 0.7);
+            background: rgba(67, 76, 94, 0.7);
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(216, 222, 233, 0.2);
             text-align: center;
         }
         .info-box label {
             font-size: 1 rem;
-            color: #ffffff;
+            color: var(--nord6);
             display: block;
             margin-bottom: 0.5rem;
         }
         .info-box span {
             word-break: break-all;
             font-size: 0.9rem;
-            color: #e0e0e0;
+            color: var(--nord4);
             display: block;
             margin-bottom: 1rem;
         }
