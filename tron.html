@@ -7,25 +7,24 @@
     <link rel="stylesheet" href="css/tron.css">
 </head>
 <body onload="generateTronWallet()">
-
+    <div class="container">
         <h1>Tron Cold Wallet</h1>
         <div class="button-group">
             <button onclick="window.location.href='index.html'">Home</button>
             <button onclick="generateTronWallet()">Generate</button>
             <button onclick="window.print()">Print</button>
         </div>
-
-    <section>
-        <h2>Public Address</h2>
-        <div id="publicAddress"></div>
-        <div id="publicQR" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
-    </section>
-
-    <section>
-        <h2>Private Key</h2>
-        <div id="privateKey"></div>
-        <div id="privateQR" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
-    </section>
+        <div class="info-box">
+            <label>Public Address (SHARE)</label>
+            <span id="publicAddress">Click Generate to create wallet</span>
+            <div id="publicQR" class="qrcenter"></div>
+        </div>
+        <div class="info-box">
+            <label>Private Key (SECRET)</label>
+            <span id="privateKey">Click Generate to create wallet</span>
+            <div id="privateQR" class="qrcenter"></div>
+        </div>
+    </div>
 
     <script src="js/tronweb.js"></script>
     <script src="js/qrcode.js"></script>
