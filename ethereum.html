@@ -13,50 +13,25 @@
 </head>
 
 <body onload=generate()>
-    <div id=container><br>
-        <div class=noprint><button class="buttons" onclick=generate()>Generate</button> <button class="buttons" onclick=window.print()>Print</button> <a
-                href=index.html><input type=button class="buttons" value=Home></a></div>
-        <table>
-            <tr>
-                <h1 class=titlemain><span id=currencyName>Ethereum Cold Wallet</h1>
-            </tr>
-            <tr>
-                <th class=grayHeaders>Public Address <span id=shareColor>(SHARE)</span></th>
-            </tr>
-            <tr>
-                <td>
-                    <div id=public>Generating...</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div id=public_qr></div>
-                </td>
-            </tr>
-            <tr>
-                <th class=grayHeaders>
-                    <div id=secretLabel>Private Key <span id=secretColor>(SECRET)</span></div>
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    <div id=secret>Generating...</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div id=secret_qr></div>
-                </td>
-            </tr>
-        </table>
+    <div class="container">
+        <h1>Ethereum Cold Wallet</h1>
+        <div class="button-group">
+            <button onclick="window.location.href='index.html'">Home</button>
+            <button onclick="generate()">Generate</button>
+            <button onclick="window.print()">Print</button>
+        </div>
+        <div class="info-box">
+            <label>Public Address (SHARE)</label>
+            <span id="pubKey">Click Generate to create wallet</span>
+            <div id="publicQrcode" class="qr-code"></div>
+        </div>
+        <div class="info-box">
+            <label>Private Key (SECRET)</label>
+            <span id="privKey">Click Generate to create wallet</span>
+            <div id="privateQrcode" class="qr-code"></div>
+        </div>
     </div>
-    <script>
-        const urlParam = window.location.search.substring(1);
-        if (urlParam) {
-            document.getElementById("currencyName").textContent = urlParam;
-            document.title = urlParam + " Cold Wallet";
-        }
-    </script>
+ 
     <script src=js/web3-eth-accounts.js></script>
     <script src=js/qrcode.js></script>
     <script>
@@ -65,21 +40,26 @@
             const keyPair = account.create();
             const pubKey = JSON.parse(JSON.stringify(keyPair.address));
             const privKey = JSON.parse(JSON.stringify(keyPair.privateKey));
-            document.getElementById("public").textContent = pubKey;
-            document.getElementById("secret").textContent = privKey;
-            document.getElementById("public_qr").textContent = "";
-            document.getElementById("secret_qr").textContent = "";
-            new QRCode(document.getElementById("public_qr"), {
+
+            document.getElementById("pubKey").textContent = pubKey;
+            document.getElementById("privKey").textContent = privKey;
+
+            document.getElementById("publicQrcode").innerHTML = "";
+            document.getElementById("privateQrcode").innerHTML = "";
+
+            new QRCode(document.getElementById("publicQrcode"), {
                 text: pubKey,
-                width: 128,
-                height: 128,
-                correctLevel: QRCode.CorrectLevel.H
+                width: 100,
+                height: 100,
+                colorDark: "#e0e0e0",
+                colorLight: "#1e1e1e"
             });
-            new QRCode(document.getElementById("secret_qr"), {
+            new QRCode(document.getElementById("privateQrcode"), {
                 text: privKey,
-                width: 128,
-                height: 128,
-                correctLevel: QRCode.CorrectLevel.H
+                width: 100,
+                height: 100,
+                colorDark: "#e0e0e0",
+                colorLight: "#1e1e1e"
             });
         }
     </script>

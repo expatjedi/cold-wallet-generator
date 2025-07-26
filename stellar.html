@@ -13,65 +13,60 @@
 </head>
 
 <body onload=generate()>
-    <div id=container><br>
-        <div class=noprint><button class="buttons" onclick=generate()>Generate</button> <button class="buttons" onclick=window.print()>Print</button> <a
-                href=index.html><input type=button class="buttons" value=Home></a></div>
-        <table>
-            <tr>
-                <h1 class=titlemain>Stellar Lumens Cold Wallet</h1>
-            </tr>
-            <tr>
-                <th class=grayHeaders>Public Address <span id=shareColor>(SHARE)</span></th>
-            </tr>
-            <tr>
-                <td>
-                    <div id=public>Generating...</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div id=public_qr></div>
-                </td>
-            </tr>
-            <tr>
-                <th class=grayHeaders>
-                    <div id=secretLabel>Private Key <span id=secretColor>(SECRET)</span></div>
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    <div id=secret>Generating...</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div id=secret_qr></div>
-                </td>
-            </tr>
-        </table>
+   <div class="container">
+        <h1>Stellar Lumens Cold Wallet</h1>
+        <div class="button-group">
+            <button onclick="window.location.href='index.html'">Home</button>
+            <button onclick="generate()">Generate</button>
+            <button onclick="window.print()">Print</button>
+        </div>
+        <div class="info-box">
+            <label>Public Address (SHARE)</label>
+            <span id="public">Click Generate to create wallet</span>
+            <div id="public_qr" class="qr-code"></div>
+        </div>
+        <div class="info-box">
+            <label>Private Key (SECRET)</label>
+            <span id="secret">Click Generate to create wallet</span>
+            <div id="secret_qr" class="qr-code"></div>
+        </div>
     </div>
     <script src=js/stellar-base.js></script>
     <script src=js/qrcode.js></script>
     <script>
         function generate() {
             var keypair = StellarBase.Keypair.random();
-            document.getElementById("public").textContent = keypair.publicKey();
-            document.getElementById("secret").textContent = keypair.secret();
-            document.getElementById("public_qr").textContent = "";
-            document.getElementById("secret_qr").textContent = "";
-            new QRCode(document.getElementById("public_qr"), {
+
+                const publicElem = document.getElementById("public");
+                const privateElem = document.getElementById("secret");
+                const publicQRElem = document.getElementById("public_qr");
+                const privateQRElem = document.getElementById("secret_qr");
+
+            if (publicElem && privateElem && publicQRElem && privateQRElem) {
+                publicElem.textContent = keypair.publicKey();
+                privateElem.textContent = keypair.secret();
+
+                publicQRElem.innerHTML = "";
+                privateQRElem.innerHTML = "";
+
+            new QRCode(publicQRElem, {
                 text: keypair.publicKey(),
-                width: 128,
-                height: 128,
+                width: 100,
+                height: 100,
+                colorDark: "#e0e0e0",
+                colorLight: "#1e1e1e",
                 correctLevel: QRCode.CorrectLevel.H
             });
-            new QRCode(document.getElementById("secret_qr"), {
+            new QRCode(privateQRElem, {
                 text: keypair.secret(),
-                width: 128,
-                height: 128,
+                width: 100,
+                height: 100,
+                colorDark: "#e0e0e0",
+                colorLight: "#1e1e1e",
                 correctLevel: QRCode.CorrectLevel.H
             });
         }
+    }
     </script>
 </body>
 

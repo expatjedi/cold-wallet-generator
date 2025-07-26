@@ -1,98 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Bitcoin Cold Wallet Generator</title>
-  <meta name="description"
-    content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-  <meta name="keywords"
-    content="minimal, reliable, fast, universal, cold, wallet, generator, offline, bitcoin, btc, cryptocurrency">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="css/style2.css">
-  <script src="js/bitcoinjs-lib.js"></script>
-  <script src="js/qrcode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Cold Wallet</title>
+    <link rel="stylesheet" href="css/style2.css">
+    <script src="js/bitcoinjs-lib.js"></script>
+    <script src="js/qrcode.js"></script>
 </head>
-
-<body onload="generate()">
-  <div id="container"><br>
-    <div class="noprint"><button class="buttons" onclick="generate()">Generate</button>
-      <button class="buttons" onclick="window.print()">Print</button>
-      <a href="index.html"><input type="button" class="buttons" value="Home"></a></div>
-    <table>
-      <tr>
-        <h1 class="titlemain">Bitcoin Cold Wallet</h1>
-      </tr>
-      <tr>
-        <th class="grayHeaders">Public Address<span id="shareColor"> (SHARE)</span></th>
-      </tr>
-      <tr>
-        <td>
-          <div id="public">Generating...</div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div id="public_qr"></div>
-        </td>
-      </tr>
-      <tr>
-        <th class="grayHeaders">
-          <div id="secretLabel">Private Key<span id="secretColor"> (SECRET)</span></div>
-        </th>
-      </tr>
-      <tr>
-        <td>
-          <div id="secret">Generating...</div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div id="secret_qr"></div>
-        </td>
-      </tr>
-      <tr></tr>
-    </table>
-
+<body onload=generate()>
+    <div class="container">
+        <h1>Bitcoin Cold Wallet</h1>
+        <div class="button-group">
+            <button onclick="window.location.href='index.html'">Home</button>
+            <button onclick="generate()">Generate</button>
+            <button onclick="window.print()">Print</button>
+        </div>
+        <div class="info-box">
+            <label>Public Address (SHARE)</label>
+            <span id="public">Click Generate to create wallet</span>
+            <div id="public_qr" class="qr-code"></div>
+        </div>
+        <div class="info-box">
+            <label>Private Key (SECRET)</label>
+            <span id="secret">Click Generate to create wallet</span>
+            <div id="secret_qr" class="qr-code"></div>
+        </div>
+    </div>
     <script>
-function generate() {
-  const keyPair = bitcoin.ECPair.makeRandom();
-  const { address } = bitcoin.payments.p2wpkh({
-    pubkey: keyPair.publicKey,
-    network: bitcoin.networks.bitcoin
-  });
+        function generate() {
+            const keyPair = bitcoin.ECPair.makeRandom();
+            const { address } = bitcoin.payments.p2wpkh({ pubkey: keyPair.publicKey });
+            const privateKeyWIF = keyPair.toWIF();
 
-  const privateKeyWIF = keyPair.toWIF();
+            const publicElem = document.getElementById("public");
+            const privateElem = document.getElementById("secret");
+            const publicQRElem = document.getElementById("public_qr");
+            const privateQRElem = document.getElementById("secret_qr");
 
-  const publicElem = document.getElementById("public");
-  const privateElem = document.getElementById("secret");
-  const publicQRElem = document.getElementById("public_qr");
-  const privateQRElem = document.getElementById("secret_qr");
+            if (publicElem && privateElem && publicQRElem && privateQRElem) {
+                publicElem.textContent = address;
+                privateElem.textContent = privateKeyWIF;
 
-  if (publicElem && privateElem && publicQRElem && privateQRElem) {
-    publicElem.textContent = address;
-    privateElem.textContent = privateKeyWIF;
-
-    publicQRElem.innerHTML = "";
-    privateQRElem.innerHTML = "";
-
-    new QRCode(publicQRElem, {
-      text: address,
-      width: 128,
-      height: 128,
-      correctLevel: QRCode.CorrectLevel.H
-    });
-
-    new QRCode(privateQRElem, {
-      text: privateKeyWIF,
-      width: 128,
-      height: 128,
-      correctLevel: QRCode.CorrectLevel.H
-    });
-  }
-}
+                publicQRElem.innerHTML = "";
+                privateQRElem.innerHTML = "";
+            
+            new QRCode(publicQRElem, {
+                text: address,
+                width: 100,
+                height: 100,
+                colorDark: "#e0e0e0",
+                colorLight: "#1e1e1e",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            new QRCode(privateQRElem, {
+                text: privateKeyWIF,
+                width: 100,
+                height: 100,
+                colorDark: "#e0e0e0",
+                colorLight: "#1e1e1e",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+    }
     </script>
-  </div>
 </body>
-
 </html>

@@ -1,110 +1,118 @@
 body {
-	background-color: #1D1E22;
-	font-size: 14px;
-	font-family: 'Arial', sans-serif;
-	color: #FEDA6A;
-}
-
-#container {
-	margin: auto;
-	max-width: 600px;
-}
-
-#titleLabel {
-	font-weight: 400;
-}
-
-table {
-	border-collapse: collapse;
-	margin: 15px 0;
-	border-radius: 0px;
-	overflow: hidden;
-	width: 100%;
-}
-
-td, th {
-	border: 0 solid #2E3440;
-	text-align: left;
-	padding: 10px 5px;
-}
-
-td img {
-	text-align: right;
-}
-
-.titlemain {
-	font-size: 18px;
-	padding: 10px 0;
-	text-align: center;
-}
-
-#public, #secret {
-	font-family: Verdana;
-	font-size: 14px;
-	font-weight: 700;
-}
-
-#public {
-	text-align: left;
-	color: #FEDA6A;
-}
-
-#secret {
-	text-align: right;
-	color: #FEDA6A;
-}
-
-#public_qr, #secret_qr {
-	height: 130px;
-}
-
-.secret_qr img {
-	float: right;
-}
-
-#secret, #secretLabel, #secret_qr {
-	text-align: right;
-	float: right;
-}
-
-#secretLabel {
-	float: right;
-}
-
-#shareColor {
-	color: green;
-}
-
-#secretColor {
-	color: red;
-}
-
-.center {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.buttons {
-  background-color: #FEDA6A;
-  border: none;
-  color: #1D1E22;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
-  margin: 4px 2px;
-  cursor: pointer;
- }
-
-@media only screen and (max-width:640px) {
-	#public, #secret {
-		font-size: 10px;
-	}
-}
-
-@media print {
-	.noprint {
-		display: none;
-	}
-}
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #121212, #1e1e1e);
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(30, 30, 30, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 2.3rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            /*text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);*/
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        button {
+            padding: 0.75rem 1.5rem;
+            font-size: 14px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            background: #ffffff;
+            color: #121212;
+            font-weight: bold;
+            transition: transform 0.2s, background 0.3s;
+        }
+        button:hover {
+            background: #e0e0e0;
+            transform: scale(1.05);
+        }
+        .info-box {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(50, 50, 50, 0.7);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        .info-box label {
+            font-size: 1 rem;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .info-box span {
+            word-break: break-all;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        .qr-code {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 1.5rem;
+            }
+            button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            .qr-code {
+                width: 80px;
+                height: 80px;
+            }
+        }
+        @media print {
+            body {
+                background: none;
+                color: #000;
+            }
+            .container {
+                background: none;
+                box-shadow: none;
+                padding: 1rem;
+            }
+            h1 {
+                color: #000;
+                text-shadow: none;
+            }
+            button {
+                display: none;
+            }
+            .info-box {
+                background: none;
+                border: none;
+            }
+            .info-box label {
+                color: #000;
+            }
+            .info-box span {
+                color: #000;
+            }
+        }

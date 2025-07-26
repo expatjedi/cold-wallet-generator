@@ -1,111 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Cold Wallet Generator</title>
-    <meta name="description"
-        content="A lightweight, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-    <meta name="keywords"
-        content="minimal, lightweight, reliable, fast, universal, cold, wallet, generator, offline, bitcoin, btc, cryptocurrency">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <title>Cold Wallet Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
+  <script>
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.add('light-mode');
+    }
+  </script>
 </head>
-
 <body>
-    <div id="container">
-        <h1 class="title">Cold Wallet Generator</h1><br><br><input id="searchInput" onkeyup="Search()"
-            placeholder="search your crypto here">
-        <ol id="searchOL">
-            <li><a href="bitcoin.html">Bitcoin (BTC)</a></li>
-            <li><a href="ethereum.html">Ethereum (ETH)</a></li>
-            <li><a href="litecoin.html">Litecoin (LTC)</a></li>
-            <li><a href="dogecoin.html">Dogecoin (DOGE)</a></li>
-            <li><a href="ripple.html">Ripple (XRP)</a></li>
-            <li><a href="stellar.html">Stellar Lumens (XLM)</a></li>
-            <li><a href="dash.html">Dash (DASH)</a></li>
-            <li><a href="tron.html">Tron (TRX)</a></li>
-            <li><a href="goldcoin.html">Goldcoin (GLC)</a></li>
-            <li><a href="namecoin.html">Namecoin (NMC)</a></li>
-            <li><a href="monero.html">Monero (XMR)</a></li>
-            <li><a href="validity.html">Validity (VAL)</a></li>
-            <li><a href="litecoincash.html">Litecoincash (LCC)</a></li>
-            <li><a href="freecash.html">Freecash (FCH)</a></li>
-            <li><a href="auroracoin.html">Auroracoin (AUR)</a></li>
-            <li><a href="dmdcoin.html">Dmdcoin (DMD)</a></li>
-            <li><a href="bitcoincash.html">Bitcoin Cash (BCH)</a></li>
-            <li><a href="zcash.html">Zcash (ZEC)</a></li>
-            <li><a href="pivx.html">Pivx (PIVX)</a></li>
-            <li><a href="monacoin.html">Monacoin (MONA)</a></li>
-            <li><a href="digibyte.html">DigiByte (DGB)</a></li>
-            <li><a href="bitcoingold.html">Bitcoin Gold (BTG)</a></li>
-            <li><a href="qtum.html">Qtum (QTUM)</a></li>
-            <li><a href="reddcoin.html">ReddCoin (RDD)</a></li>
-            <li><a href="bitcoinsv.html">Bitcoin SV (BSV)</a></li>
-            <li><a href="banano.html">Banano (BAN)</a></li>
-            <li><a href="deutsche-emark.html">Deutsche eMark (DEM)</a></li>
-            <li><a href="blackcoin.html">Blackcoin (BLK)</a></li>
-            <li><a href="bitcoinplus.html">Bitcoin Plus (XBC)</a></li>
-            <li><a href="lbry.html">LBRY Credits (LBRY)</a></li>
-            <li><a href="verge.html">Verge (XVG)</a></li>
-            <li><a href="unobtanium.html">Unobtanium (UNO)</a></li>
-            <li><a href="peercoin.html">Peercoin (PPC)</a></li>
-            <li><a href="dimecoin.html">Dimecoin (DIME)</a></li>
-            <li><a href="ravencoin.html">Ravencoin (RVN)</a></li>
-            <li><a href="feathercoin.html">Feathercoin (FTC)</a></li>
-            <li><a href="einsteinium.html">Einsteinium (EMC2)</a></li>
-            <li><a href="viacoin.html">Viacoin (VIA)</a></li>
-            <li><a href="vertcoin.html">Vertcoin (VTC)</a></li>
-            <li><a href="garlicoin.html">Garlicoin (GRLC)</a></li>
-            <li><a href="fujicoin.html">Fujicoin (FJC)</a></li>
-            <li><a href="deeponion.html">DeepOnion (ONION)</a></li>
-            <li><a href="gridcoin.html">Gridcoin (GRC)</a></li>
-            <li><a href="emercoin.html">Emercoin (EMC)</a></li>
-            <li><a href="ecash.html">Ecash (XEC)</a></li>
-            <li><a href="veruscoin.html">Veruscoin (VRSC)</a></li>
-            <li><a href="kobocoin.html">Kobocoin (KOBO)</a></li>
-            <li><a href="blocknet.html">Blocknet (BLOCK)</a></li>
-            <li><a href="syscoin.html">Syscoin (SYS)</a></li>
-            <li><a href="bata.html">Bataoshi (BTA)</a></li>
-            <li><a href="komodo.html">Komodo (KMD)</a></li>
-            <li><a href="yenten.html">Yenten Coin (YTN)</a></li>
-            <li><a href="axe.html">Axe (AXE)</a></li>
-            <li><a href="chaincoin.html">Chaincoin (CHC)</a></li>
-            <li><a href="florin.html">Florin (XFL)</a></li>
-            <li><a href="firo.html">Firo (FIRO)</a></li>
-            <li><a href="scolcoin.html">Scolcoin (SCOL)</a></li>
-            <li><a href="terracoin.html">Terracoin (TRC)</a></li>
-            <li><a href="whitecoin.html">Whitecoin (XWC)</a></li>
-            <li><a href="particl.html">Particl (PART)</a></li>
-            <li><a href="tajcoin.html">Tajcoin (TAJ)</a></li>
-            <li><a href="biblepay.html">Biblepay (BBP)</a></li>
-            <li><a href="hydra.html">Hydra (HYDRA)</a></li>
-            <li><a href="lynx.html">Lynx (LYNX)</a></li>
-            <li><a href="ioncoin.html">Ioncoin (ION)</a></li>
-            <li><a href="myriadcoin.html">Myriad (XMY)</a></li>
-            <li><a href="muecoin.html">Monetary Unit (MUE)</a></li>
-            <li><a href="lightningcash.html">Lightning Cash (LNC)</a></li>
-            <li><a href="ixcoin.html">Ixcoin (IXC)</a></li>
-            <li><a href="alias.html">Alias (ALIAS)</a></li>
-            <li><a href="bitblocks.html">BitBlocks (BBK)</a></li>
-            <li><a href="marmara.html">Marmara Credit Loops (MCL)</a></li>
-            <li><a href="groestlcoin.html">Groestlcoin (GRS)</a></li>
-            <li><a href="defichain.html">DeFiChain (DFI)</a></li>
-            <li><a href="doichain.html">Doichain (DOI)</a></li>
-            <li><a href="mooncoin.html">Mooncoin (MOON)</a></li>
-            <li><a href="kiirocoin.html">Kiirocoin (KIIRO)</a></li>
-        </ol>
-        <p align="center"><a href="https://github.com/expatjedi/cold-wallet-generator" target="blank">Source Code</a>
-        </p>
-        <script>
-            function Search() {
-                var e, t = document.getElementById("searchInput").value.toUpperCase(),
-                    n = document.getElementById("searchOL").getElementsByTagName("li");
-                for (e = 0; e < n.length; e++) - 1 < n[e].getElementsByTagName("a")[0].textContent.toUpperCase()
-                    .indexOf(t) ? n[e].style.display = "" : n[e].style.display = "none"
-            }
-        </script>
-    </div>
-</body>
+  <button id="themeToggle" style="position: absolute; top: 20px; right: 20px; padding: 0.5rem 1rem; background: #444; color: #eee; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">☀️</button>
+  <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; margin-left: 1rem;">
+    <img src="img/logo.png" alt="Cold Wallet Logo" style="height:32px;">
+    &nbsp;<h1>Cold Wallet Generator</h1>
+  </div>
+  <p>Search and select a coin to generate its cold wallet</p>
 
+  <div class="dropdown-container">
+    <input type="text" id="dropdownInput" placeholder="🔍 find your coin..." oninput="filterDropdown()" onclick="toggleDropdown()" autocomplete="off">
+    <div id="dropdownList" class="dropdown-list"></div>
+  </div>
+
+  <footer>
+    <p><a href="https://github.com/expatjedi/cold-wallet-generator" target="_blank">🔗 Source Code (GitHub)</a></p>
+  </footer>
+
+  <script>
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      document.documentElement.classList.toggle('light-mode');
+      const isLight = document.documentElement.classList.contains('light-mode');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      document.getElementById('themeToggle').innerText = isLight ? '🌙 ' : '☀️ ';
+    });
+
+    if (document.documentElement.classList.contains('light-mode')) {
+      document.getElementById('themeToggle').innerText = '🌙 ';
+    }
+
+    const coinList = [
+      { name: "Bitcoin (BTC)", url: "bitcoin.html" },
+      { name: "Litecoin (LTC)", url: "litecoin.html" },
+      { name: "Ethereum (ETH)", url: "ethereum.html" },
+      { name: "Stellar Lumens (XLM)", url: "stellar.html" },
+      { name: "Dash (DASH)", url: "dash.html" },
+      { name: "Dogecoin (DOGE)", url: "dogecoin.html" },
+      { name: "Ripple (XRP)", url: "ripple.html" },
+      { name: "Tron (TRX)", url: "tron.html" },
+      { name: "Goldcoin (GLC)", url: "goldcoin.html" },
+      { name: "Namecoin (NMC)", url: "namecoin.html" },
+      { name: "Monero (XMR)", url: "monero.html" },
+      { name: "Validity (VAL)", url: "validity.html" },
+      { name: "Litecoincash (LCC)", url: "litecoincash.html" },
+      { name: "Freecash (FCH)", url: "freecash.html" },
+      { name: "Auroracoin (AUR)", url: "auroracoin.html" },
+      { name: "Dmdcoin (DMD)", url: "dmdcoin.html" },
+      { name: "Bitcoin Cash (BCH)", url: "bitcoincash.html" },
+      { name: "Zcash (ZEC)", url: "zcash.html" },
+      { name: "Pivx (PIVX)", url: "pivx.html" },
+      { name: "Monacoin (MONA)", url: "monacoin.html" },
+      { name: "DigiByte (DGB)", url: "digibyte.html" },
+      { name: "Bitcoin Gold (BTG)", url: "bitcoingold.html" },
+      { name: "Qtum (QTUM)", url: "qtum.html" },
+      { name: "ReddCoin (RDD)", url: "reddcoin.html" },
+      { name: "Banano (BAN)", url: "banano.html" },
+      { name: "Deutsche eMark (DEM)", url: "deutsche-emark.html" },
+      { name: "Blackcoin (BLK)", url: "blackcoin.html" },
+      { name: "Bitcoin Plus (XBC)", url: "bitcoinplus.html" },
+      { name: "LBRY Credits (LBRY)", url: "lbry.html" },
+      { name: "Verge (XVG)", url: "verge.html" },
+      { name: "Unobtanium (UNO)", url: "unobtanium.html" },
+      { name: "Peercoin (PPC)", url: "peercoin.html" },
+      { name: "Dimecoin (DIME)", url: "dimecoin.html" },
+      { name: "Ravencoin (RVN)", url: "ravencoin.html" },
+      { name: "Feathercoin (FTC)", url: "feathercoin.html" },
+      { name: "Einsteinium (EMC2)", url: "einsteinium.html" },
+      { name: "Viacoin (VIA)", url: "viacoin.html" },
+      { name: "Vertcoin (VTC)", url: "vertcoin.html" },
+      { name: "Garlicoin (GRLC)", url: "garlicoin.html" },
+      { name: "Fujicoin (FJC)", url: "fujicoin.html" },
+      { name: "DeepOnion (ONION)", url: "deeponion.html" },
+      { name: "Gridcoin (GRC)", url: "gridcoin.html" },
+      { name: "Emercoin (EMC)", url: "emercoin.html" },
+      { name: "Ecash (XEC)", url: "ecash.html" },
+      { name: "Veruscoin (VRSC)", url: "veruscoin.html" },
+      { name: "Kobocoin (KOBO)", url: "kobocoin.html" },
+      { name: "Blocknet (BLOCK)", url: "blocknet.html" },
+      { name: "Syscoin (SYS)", url: "syscoin.html" },
+      { name: "Bataoshi (BTA)", url: "bata.html" },
+      { name: "Komodo (KMD)", url: "komodo.html" },
+      { name: "Yenten Coin (YTN)", url: "yenten.html" },
+      { name: "Axe (AXE)", url: "axe.html" },
+      { name: "Chaincoin (CHC)", url: "chaincoin.html" },
+      { name: "Florin (XFL)", url: "florin.html" },
+      { name: "Firo (FIRO)", url: "firo.html" },
+      { name: "Scolcoin (SCOL)", url: "scolcoin.html" },
+      { name: "Terracoin (TRC)", url: "terracoin.html" },
+      { name: "Whitecoin (XWC)", url: "whitecoin.html" },
+      { name: "Particl (PART)", url: "particl.html" },
+      { name: "Tajcoin (TAJ)", url: "tajcoin.html" },
+      { name: "Biblepay (BBP)", url: "biblepay.html" },
+      { name: "Hydra (HYDRA)", url: "hydra.html" },
+      { name: "Lynx (LYNX)", url: "lynx.html" },
+      { name: "Ioncoin (ION)", url: "ioncoin.html" },
+      { name: "Myriad (XMY)", url: "myriadcoin.html" },
+      { name: "Monetary Unit (MUE)", url: "muecoin.html" },
+      { name: "Lightning Cash (LNC)", url: "lightningcash.html" },
+      { name: "Ixcoin (IXC)", url: "ixcoin.html" },
+      { name: "Alias (ALIAS)", url: "alias.html" },
+      { name: "BitBlocks (BBK)", url: "bitblocks.html" },
+      { name: "Marmara Credit Loops (MCL)", url: "marmara.html" },
+      { name: "Groestlcoin (GRS)", url: "groestlcoin.html" },
+      { name: "DeFiChain (DFI)", url: "defichain.html" },
+      { name: "Doichain (DOI)", url: "doichain.html" },
+      { name: "Mooncoin (MOON)", url: "mooncoin.html" },
+      { name: "Kiirocoin (KIIRO)", url: "kiirocoin.html" }
+    ];
+
+    const input = document.getElementById("dropdownInput");
+    const list = document.getElementById("dropdownList");
+
+    function toggleDropdown() {
+      list.style.display = list.style.display === "block" ? "none" : "block";
+      filterDropdown();
+    }
+
+    function filterDropdown() {
+      const filter = input.value.toLowerCase();
+      list.innerHTML = "";
+
+      coinList.forEach(coin => {
+        if (coin.name.toLowerCase().includes(filter)) {
+          const item = document.createElement("div");
+          item.textContent = coin.name;
+          item.onclick = () => window.location.href = coin.url;
+          list.appendChild(item);
+        }
+      });
+
+      list.style.display = "block";
+    }
+
+    document.addEventListener("click", (e) => {
+      if (!document.querySelector(".dropdown-container").contains(e.target)) {
+        list.style.display = "none";
+      }
+    });
+  </script>
+</body>
 </html>
