@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filecoin Cold Wallet</title>
+    <link rel="stylesheet" href="css/style2.css">
+    <script src="js/bs58.bundle.min.js"></script>
+    <script src="js/elliptic.min.js"></script>
+    <script src="js/qrcode.js"></script>
+</head>
+<body onload="generate()">
+    <div class="container">
+        <h1>Filecoin Cold Wallet</h1>
+        <div class="button-group">
+            <button onclick="window.location.href='index.html'">Home</button>
+            <button onclick="generate()">Generate</button>
+            <button onclick="window.print()">Print</button>
+        </div>
+        <div class="info-box">
+            <label>Public Address (SHARE)</label>
+            <span id="public">Click Generate to create address</span>
+            <div id="public_qr" class="qr-code"></div>
+        </div>
+        <div class="info-box">
+            <label>Private Key (SECRET)</label>
+            <span id="secret">Click Generate to create address</span>
+            <div id="secret_qr" class="qr-code"></div>
+        </div>
+    </div>
+    <script>
+        function bytesToHex(bytes) {
+            return Array.from(bytes).map(x => x.toString(16).padStart(2, '0')).join('');
+        }
+        async function blake2bHash(data, outlen) {
+            // Demo: browser fallback
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            return new Uint8Array(hashBuffer).slice(0, outlen);
+        }
+        function clearQRCode(elem) {
+            if (elem) elem.innerHTML = '';
+        }
+        function generate() {
+            if (typeof elliptic === 'undefined' || typeof bs58 === 'undefined' || typeof bs58.default === 'undefined') {
+                alert('elliptic or bs58 library not loaded!');
+                return;
+            }
+            const ec = new elliptic.ec('secp256k1');
+            const key = ec.genKeyPair();
+            const pub = key.getPublic(false, 'array');
+            blake2bHash(Uint8Array.from(pub), 20).then(pkHash => {
+                const payload = Uint8Array.from([0x01, ...pkHash]);
+                blake2bHash(payload, 4).then(checksum => {
+                    const addressBytes = Uint8Array.from([...payload, ...checksum]);
+                    const address = 'f1' + bs58.default.encode(addressBytes);
+                    // DOM elements
+                    const publicElem = document.getElementById("public");
+                    const privateElem = document.getElementById("secret");
+                    const publicQRElem = document.getElementById("public_qr");
+                    const privateQRElem = document.getElementById("secret_qr");
+
+                    const privateKeyHex = key.getPrivate('hex');
+
+                    if (publicElem && privateElem && publicQRElem && privateQRElem) {
+                        publicElem.textContent = address;
+                        privateElem.textContent = privateKeyHex;
+
+                        clearQRCode(publicQRElem);
+                        clearQRCode(privateQRElem);
+
+                        new QRCode(publicQRElem, {
+                            text: address,
+                            width: 100,
+                            height: 100,
+                            colorDark: "#e0e0e0",
+                            colorLight: "#1e1e1e",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                        new QRCode(privateQRElem, {
+                            text: privateKeyHex,
+                            width: 100,
+                            height: 100,
+                            colorDark: "#e0e0e0",
+                            colorLight: "#1e1e1e",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
