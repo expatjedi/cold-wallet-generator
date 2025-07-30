@@ -34,35 +34,6 @@
  
     <script src=js/web3-eth-accounts.js></script>
     <script src=js/qrcode.js></script>
-    <script>
-        function generate() {
-            const account = new Web3EthAccounts();
-            const keyPair = account.create();
-            const pubKey = JSON.parse(JSON.stringify(keyPair.address));
-            const privKey = JSON.parse(JSON.stringify(keyPair.privateKey));
-
-            document.getElementById("pubKey").textContent = pubKey;
-            document.getElementById("privKey").textContent = privKey;
-
-            document.getElementById("publicQrcode").innerHTML = "";
-            document.getElementById("privateQrcode").innerHTML = "";
-
-            new QRCode(document.getElementById("publicQrcode"), {
-                text: pubKey,
-                width: 100,
-                height: 100,
-                colorDark: "#e0e0e0",
-                colorLight: "#1e1e1e"
-            });
-            new QRCode(document.getElementById("privateQrcode"), {
-                text: privKey,
-                width: 100,
-                height: 100,
-                colorDark: "#e0e0e0",
-                colorLight: "#1e1e1e"
-            });
-        }
-    </script>
 </body>
 
 </html>

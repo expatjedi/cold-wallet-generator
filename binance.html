@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binance BNB Cold Wallet</title>
+    <link rel="stylesheet" href="css/style2.css">
+    <!-- Binance BNB addresses use secp256k1 and bech32 (bnb...) -->
+    <script src="js/elliptic-hash-bech32.min.js"></script>
+    <script src="js/qrcode.js"></script>
+</head>
+<body onload="generate()">
+    <div class="container">
+        <h1>Binance BNB Cold Wallet</h1>
+        <div class="button-group">
+            <button onclick="window.location.href='index.html'">Home</button>
+            <button onclick="generate()">Generate</button>
+            <button onclick="window.print()">Print</button>
+        </div>
+        <div class="info-box">
+            <label>Public Address (SHARE)</label>
+            <span id="public">Click Generate to create wallet</span>
+            <div id="public_qr" class="qr-code"></div>
+        </div>
+        <div class="info-box">
+            <label>Private Key (SECRET)</label>
+            <span id="secret">Click Generate to create wallet</span>
+            <div id="secret_qr" class="qr-code"></div>
+        </div>
+    </div>
+    <script>
+        // Utility: RIPEMD160
+        async function ripemd160(buffer) {
+            if (typeof window.crypto.subtle === 'undefined') {
+                alert('Browser does not support crypto.subtle');
+                return null;
+            }
+            // Use a library for RIPEMD160. Here we use 'hash.js' if available.
+            if (typeof hash !== 'undefined' && hash.ripemd160) {
+                return new Uint8Array(hash.ripemd160().update(buffer).digest());
+            } else {
+                alert('RIPEMD160 is required (try hash.js)');
+                return null;
+            }
+        }
+
+        // Utility: Bech32 encode
+        function toWords(bytes) {
+            // from bech32 library
+            return bech32.bech32.toWords(bytes);
+        }
+
+        function hexToUint8Array(hex) {
+            if (hex.startsWith('0x')) hex = hex.slice(2);
+            if (hex.length % 2 !== 0) hex = '0' + hex;
+            const arr = [];
+            for (let i = 0; i < hex.length; i += 2) {
+                arr.push(parseInt(hex.substring(i, i + 2), 16));
+            }
+            return new Uint8Array(arr);
+        }
+
+        async function generate() {
+            // Generate secp256k1 key
+            const ec = new elliptic.ec('secp256k1');
+            const key = ec.genKeyPair();
+            const pub = key.getPublic(true, 'hex'); // compressed public key hex
+            const pubBytes = hexToUint8Array(pub);
+
+            // Hash: SHA256 then RIPEMD160
+            const sha256 = await window.crypto.subtle.digest('SHA-256', pubBytes);
+            const sha256Bytes = new Uint8Array(sha256);
+
+            // RIPEMD160 (needs hash.js library)
+            let ripemdBytes = await ripemd160(sha256Bytes);
+            if (!ripemdBytes) {
+                document.getElementById('public').textContent = 'RIPEMD160 is not available. Add hash.js for full support.';
+                return;
+            }
+
+            // Bech32 encode for BNB address
+            const words = toWords(ripemdBytes);
+            const bnbAddress = bech32.bech32.encode('bnb', words);
+
+            const privateKeyHex = key.getPrivate('hex');
+
+            // Display
+            const publicElem = document.getElementById("public");
+            const privateElem = document.getElementById("secret");
+            const publicQRElem = document.getElementById("public_qr");
+            const privateQRElem = document.getElementById("secret_qr");
+
+            if (publicElem && privateElem && publicQRElem && privateQRElem) {
+                publicElem.textContent = bnbAddress;
+                privateElem.textContent = privateKeyHex;
+
+                publicQRElem.innerHTML = "";
+                privateQRElem.innerHTML = "";
+
+                new QRCode(publicQRElem, {
+                    text: bnbAddress,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                new QRCode(privateQRElem, {
+                    text: privateKeyHex,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
+        }
+    </script>
+</body>
+</html>
