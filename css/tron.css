@@ -76,14 +76,14 @@ h1 {
             text-align: center;
         }
         .info-box label {
-            font-size: 1 rem;
+            font-size: 1.2 rem;
             color: var(--nord6);
             display: block;
             margin-bottom: 0.5rem;
         }
         .info-box span {
             word-break: break-all;
-            font-size: 0.9rem;
+            font-size: 1 rem;
             color: var(--nord4);
             display: block;
             margin-bottom: 1rem;
