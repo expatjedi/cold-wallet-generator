@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Algorand Cold Wallet Generator</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/style2.css">
+    <script src="https://unpkg.com/algosdk/dist/browser/algosdk.min.js"></script>
+    <script src="js/qrcode.js"></script>
+</head>
+<body onload="generate()">
+    <div class="container">
+        <h1>Algorand Cold Wallet</h1>
+        <div class="button-group">
+            <button onclick="window.location.href='index.html'">Home</button>
+            <button onclick="generate()">Generate</button>
+            <button onclick="window.print()">Print</button>
+        </div>
+        <div class="info-box">
+            <label>Public Address (SHARE)</label>
+            <span id="public">Click Generate to create wallet</span>
+            <div id="public_qr" class="qr-code"></div>
+        </div>
+        <div class="info-box">
+            <label>Mnemonic Phrase (25 words, SECRET)</label>
+            <span id="mnemonic">Click Generate to create wallet</span>
+            <div id="mnemonic_qr" class="qr-code"></div>
+        </div>
+    </div>
+    <script>
+        function generate() {
+            // Generate new Algorand account
+            const account = algosdk.generateAccount();
+            const address = account.addr;
+            const mnemonic = algosdk.secretKeyToMnemonic(account.sk); // Always 25 words
+
+            // DOM elements
+            const publicElem = document.getElementById("public");
+            const mnemonicElem = document.getElementById("mnemonic");
+            const publicQRElem = document.getElementById("public_qr");
+            const mnemonicQRElem = document.getElementById("mnemonic_qr");
+
+            publicElem.textContent = address;
+            mnemonicElem.textContent = mnemonic;
+
+            publicQRElem.innerHTML = "";
+            mnemonicQRElem.innerHTML = "";
+
+            new QRCode(publicQRElem, {
+                text: address,
+                width: 100,
+                height: 100,
+                colorDark: "#e0e0e0",
+                colorLight: "#1e1e1e",
+                correctLevel: QRCode.CorrectLevel.H,
+            });
+
+            new QRCode(mnemonicQRElem, {
+                text: mnemonic,
+                width: 100,
+                height: 100,
+                colorDark: "#e0e0e0",
+                colorLight: "#1e1e1e",
+                correctLevel: QRCode.CorrectLevel.M,
+            });
+        }
+    </script>
+</body>
+</html>
