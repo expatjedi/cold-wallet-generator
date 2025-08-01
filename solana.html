@@ -18,13 +18,13 @@
         </div>
         <div class="info-box">
             <label>Public Address (SHARE)</label>
-            <span id="publicKey">Click Generate to create wallet</span>
+            <span id="public">Click Generate to create wallet</span>
             <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
             <label>Private Key (SECRET)</label>
-            <span id="privateKey">Click Generate to create wallet</span>
-            <div id="private_qr" class="qr-code"></div>
+            <span id="secret">Click Generate to create wallet</span>
+            <div id="secret_qr" class="qr-code"></div>
         </div>
     </div>
     <script>
@@ -33,10 +33,10 @@
             const publicKey = keypair.publicKey.toBase58();
             const privateKey = Array.from(keypair.secretKey).map(byte => byte.toString(16).padStart(2, '0')).join('');
 
-            const publicElem = document.getElementById('publicKey');
-            const privateElem = document.getElementById('privateKey');
+            const publicElem = document.getElementById('public');
+            const privateElem = document.getElementById('secret');
             const publicQRElem = document.getElementById('public_qr');
-            const privateQRElem = document.getElementById('private_qr');
+            const privateQRElem = document.getElementById('secret_qr');
 
             if (publicElem && privateElem && publicQRElem && privateQRElem) {
                 publicElem.textContent = publicKey;
