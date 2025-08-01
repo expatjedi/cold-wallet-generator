@@ -92,23 +92,6 @@ button {
     margin: 0 auto;
 }
 
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2rem;
-    }
-    .container {
-        padding: 1.5rem;
-    }
-    button {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-    .qr-code {
-        width: 80px;
-        height: 80px;
-    }
-}
-
 @media print {
     body {
         background: none;
@@ -122,6 +105,7 @@ button {
     h1 {
         color: #000;
         text-shadow: none;
+        font-size: 35px !important;
     }
     button {
         display: none;
@@ -130,32 +114,25 @@ button {
         background: none;
         border: none;
     }
-    .info-box label,
+    .info-box label {
+        color: #000;
+        font-size: 25px !important;
+    }
     .info-box span {
         color: #000;
+        font-size: 25px !important;
     }
-}
+    #public, #publicAddress, #pubKey {
+        color: #008000 !important;
+    }
+    #secret, #privateKey, #privKey {
+        color: #FF0000 !important;
+    }
 
 @media (max-width: 600px) {
   body {
     padding: 1rem;
   }
-
-  .dropdown-container {
-    max-width: 100%;
-    padding: 0 0.5rem;
-  }
-
-  #dropdownInput {
-    font-size: 1rem;
-    padding: 0.6rem;
-  }
-
-  .dropdown-list div {
-    font-size: 0.95rem;
-    padding: 8px;
-  }
-
   .container {
     padding: 1rem;
     border-radius: 10px;

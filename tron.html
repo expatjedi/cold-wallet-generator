@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tron Cold Wallet</title>
-    <link rel="stylesheet" href="css/tron.css">
+    <link rel="stylesheet" href="css/style2.css">
 </head>
 <body onload="generateTronWallet()">
     <div class="container">
@@ -16,13 +16,13 @@
         </div>
         <div class="info-box">
             <label>Public Address (SHARE)</label>
-            <span id="publicAddress">Click Generate to create wallet</span>
-            <div id="publicQR" class="qrcenter"></div>
+            <span id="public">Click Generate to create wallet</span>
+            <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
             <label>Private Key (SECRET)</label>
-            <span id="privateKey">Click Generate to create wallet</span>
-            <div id="privateQR" class="qrcenter"></div>
+            <span id="secret">Click Generate to create wallet</span>
+            <div id="secret_qr" class="qr-code"></div>
         </div>
     </div>
 
@@ -33,13 +33,13 @@
                 const tronWeb = TronWeb;
                 const account = tronWeb.utils.accounts.generateAccount();
 
-                document.getElementById("publicAddress").textContent = account.address.base58;
-                document.getElementById("privateKey").textContent = account.privateKey;
+                document.getElementById("public").textContent = account.address.base58;
+                document.getElementById("secret").textContent = account.privateKey;
 
-                document.getElementById("publicQR").innerHTML = "";
-                document.getElementById("privateQR").innerHTML = "";
+                document.getElementById("public_qr").innerHTML = "";
+                document.getElementById("secret_qr").innerHTML = "";
 
-                  new QRCode(document.getElementById("publicQR"), {
+                  new QRCode(document.getElementById("public_qr"), {
                     text: account.address.base58,
                     width: 100,
                     height: 100,
@@ -48,7 +48,7 @@
                     correctLevel : QRCode.CorrectLevel.H
                   });
 
-                  new QRCode(document.getElementById("privateQR"), {
+                  new QRCode(document.getElementById("secret_qr"), {
                     text: account.privateKey,
                     width: 100,
                     height: 100,
