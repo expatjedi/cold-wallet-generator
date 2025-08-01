@@ -20,6 +20,12 @@
   </div>
   <p>Search and select a coin to generate its cold wallet</p>
 
+  <div class="security-warnings" style="border: 1px solid #ff6b6b; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; max-width: 800px; margin-left: auto; margin-right: auto;">
+    <p style="line-height: 1.6; margin: 0;">
+      For security reasons, use these tools on a computer that is not connected to the internet. Don't share your private key with anyone and keep it in a safe place. Make copies of the generated keys and addresses and store them in multiple secure locations. Test with a small amount first and then send larger amounts. Also, check the addresses that were generated from different sources.
+    </p>
+  </div>
+
   <div class="dropdown-container">
     <input type="text" id="dropdownInput" placeholder="🔍 find your coin..." oninput="filterDropdown()" onclick="toggleDropdown()" autocomplete="off">
     <div id="dropdownList" class="dropdown-list"></div>
