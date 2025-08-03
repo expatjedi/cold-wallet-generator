@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style2.css">
     <script src="js/bitcoinjs-lib.js"></script>
     <script src="js/qrcode.js"></script>
+    <script src="js/bip39.min.js"></script>
 </head>
 <body onload=generate()>
     <div class="container">
@@ -22,47 +23,60 @@
             <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
-            <label>Private Key (SECRET)</label>
+            <label>Mnemonic Seed (SECRET)</label>
             <span id="secret">Click Generate to create wallet</span>
             <div id="secret_qr" class="qr-code"></div>
         </div>
     </div>
     <script>
-        function generate() {
-            const keyPair = bitcoin.ECPair.makeRandom();
-            const { address } = bitcoin.payments.p2wpkh({ pubkey: keyPair.publicKey });
-            const privateKeyWIF = keyPair.toWIF();
+        async function generate() {
+            if (typeof bip39 === "undefined" || typeof bitcoin === "undefined") {
+                alert("bip39 and bitcoinjs-lib are required!");
+                return;
+            }
+            // 1. Generate mnemonic
+            const mnemonic = bip39.generateMnemonic(256); // 24-word phrase
 
+            // 2. Get seed from mnemonic
+            const seed = bip39.mnemonicToSeedSync(mnemonic); // Buffer
+
+            // 3. Derive Bitcoin key from seed (BIP84 for segwit/bech32)
+            const root = bitcoin.bip32.fromSeed(seed);
+            const child = root.derivePath("m/84'/0'/0'/0/0"); // BIP84 (bech32), first address
+
+            const { address } = bitcoin.payments.p2wpkh({ pubkey: child.publicKey });
+
+            // Update DOM
             const publicElem = document.getElementById("public");
-            const privateElem = document.getElementById("secret");
+            const mnemonicElem = document.getElementById("secret");
             const publicQRElem = document.getElementById("public_qr");
-            const privateQRElem = document.getElementById("secret_qr");
+            const mnemonicQRElem = document.getElementById("secret_qr");
 
-            if (publicElem && privateElem && publicQRElem && privateQRElem) {
+            if (publicElem && mnemonicElem && publicQRElem && mnemonicQRElem) {
                 publicElem.textContent = address;
-                privateElem.textContent = privateKeyWIF;
+                mnemonicElem.textContent = mnemonic;
 
                 publicQRElem.innerHTML = "";
-                privateQRElem.innerHTML = "";
-            
-            new QRCode(publicQRElem, {
-                text: address,
-                width: 100,
-                height: 100,
-                colorDark: "#e0e0e0",
-                colorLight: "#1e1e1e",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            new QRCode(privateQRElem, {
-                text: privateKeyWIF,
-                width: 100,
-                height: 100,
-                colorDark: "#e0e0e0",
-                colorLight: "#1e1e1e",
-                correctLevel: QRCode.CorrectLevel.H
-            });
+                mnemonicQRElem.innerHTML = "";
+
+                new QRCode(publicQRElem, {
+                    text: address,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                new QRCode(mnemonicQRElem, {
+                    text: mnemonic,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
         }
-    }
     </script>
 </body>
 </html>

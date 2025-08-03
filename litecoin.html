@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang=en>
-
 <head>
     <meta charset=UTF-8>
     <title>Litecoin Cold Wallet Generator</title>
-    <meta name=description
-        content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-    <meta name=keywords
-        content="minimal, reliable, fast, universal, cold, wallet, generator, offline, litecoin, ltc, cryptocurrency">
+    <meta name=description content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
+    <meta name=keywords content="minimal, reliable, fast, universal, cold, wallet, generator, offline, litecoin, ltc, cryptocurrency">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style2.css">
-    <script src=js/bitcoinjs-lib.js></script>
-    <script src=js/qrcode.js></script>
+    <script src="js/bitcoinjs-lib.js"></script>
+    <script src="js/qrcode.js"></script>
+    <script src="js/bip39.min.js"></script>
 </head>
-
 <body onload=generate()>
     <div class="container">
         <h1>Litecoin Cold Wallet</h1>
@@ -28,60 +25,73 @@
             <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
-            <label>Private Key (SECRET)</label>
+            <label>Mnemonic Seed (SECRET)</label>
             <span id="secret">Click Generate to create wallet</span>
             <div id="secret_qr" class="qr-code"></div>
         </div>
     </div>
-    
     <script>
-        function generate() {
-    const litecoin = {
-        messagePrefix: '\x19Litecoin Signed Message:\n',
-        bech32: 'ltc',
-        bip32: {
-            public: 0x019da462,
-            private: 0x019d9cfe
-        },
-        pubKeyHash: 0x30,
-        scriptHash: 0x32,
-        wif: 0xb0
-    };
+        async function generate() {
+            if (typeof bip39 === "undefined" || typeof bitcoin === "undefined") {
+                alert("bip39 and bitcoinjs-lib are required!");
+                return;
+            }
+            // Litecoin network params
+            const litecoin = {
+                messagePrefix: '\x19Litecoin Signed Message:\n',
+                bech32: 'ltc',
+                bip32: {
+                    public: 0x019da462,
+                    private: 0x019d9cfe
+                },
+                pubKeyHash: 0x30,
+                scriptHash: 0x32,
+                wif: 0xb0
+            };
 
-        const keyPair = bitcoin.ECPair.makeRandom({ network: litecoin });
-        const { address } = bitcoin.payments.p2wpkh({ pubkey: keyPair.publicKey, network: litecoin });
-        const privateKeyWIF = keyPair.toWIF();
+            // 1. Generate mnemonic
+            const mnemonic = bip39.generateMnemonic(256); // 24-word phrase
 
+            // 2. Get seed from mnemonic
+            const seed = bip39.mnemonicToSeedSync(mnemonic); // Buffer
+
+            // 3. Derive Litecoin key from seed (BIP84 for segwit/bech32)
+            const root = bitcoin.bip32.fromSeed(seed, litecoin);
+            const child = root.derivePath("m/84'/2'/0'/0/0"); // BIP84 for Litecoin
+
+            const { address } = bitcoin.payments.p2wpkh({ pubkey: child.publicKey, network: litecoin });
+
+            // Update DOM
             const publicElem = document.getElementById("public");
-            const privateElem = document.getElementById("secret");
+            const mnemonicElem = document.getElementById("secret");
             const publicQRElem = document.getElementById("public_qr");
-            const privateQRElem = document.getElementById("secret_qr");
+            const mnemonicQRElem = document.getElementById("secret_qr");
 
-            if (publicElem && privateElem && publicQRElem && privateQRElem) {
+            if (publicElem && mnemonicElem && publicQRElem && mnemonicQRElem) {
                 publicElem.textContent = address;
-                privateElem.textContent = privateKeyWIF;
+                mnemonicElem.textContent = mnemonic;
 
                 publicQRElem.innerHTML = "";
-                privateQRElem.innerHTML = "";
-            
-            new QRCode(publicQRElem, {
-                text: address,
-                width: 100,
-                height: 100,
-                colorDark: "#e0e0e0",
-                colorLight: "#1e1e1e"
-            });
-            new QRCode(privateQRElem, {
-                text: privateKeyWIF,
-                width: 100,
-                height: 100,
-                colorDark: "#e0e0e0",
-                colorLight: "#1e1e1e"
-            });
-    }
-}
+                mnemonicQRElem.innerHTML = "";
 
+                new QRCode(publicQRElem, {
+                    text: address,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                new QRCode(mnemonicQRElem, {
+                    text: mnemonic,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
+        }
     </script>
 </body>
-
 </html>
