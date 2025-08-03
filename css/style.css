@@ -57,7 +57,7 @@ p {
   top: calc(100% + 4px);
   left: 0;
   right: 0;
-  max-height: 240px;
+  max-height: 300px;
   overflow-y: auto;
   background: var(--nord2);
   border: 1px solid var(--nord3);

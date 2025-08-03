@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solana Cold Wallet</title>
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
-    <script src="js/qrcode.js"></script>
     <link rel="stylesheet" href="css/style2.css">
+    <script src="js/tweetnacl.min.js"></script>
+    <script src="js/qrcode.js"></script>
+    <script src="js/bip39.min.js"></script>
 </head>
 <body onload="generate()">
     <div class="container">
@@ -22,42 +23,74 @@
             <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
-            <label>Private Key (SECRET)</label>
+            <label>Mnemonic Seed (SECRET)</label>
             <span id="secret">Click Generate to create wallet</span>
             <div id="secret_qr" class="qr-code"></div>
         </div>
     </div>
     <script>
+        function bs58encode(bytes) {
+            // Minimal base58 encode (if bs58 not present)
+            const ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+            let int = BigInt("0x" + Array.from(bytes).map(x => x.toString(16).padStart(2, "0")).join(""));
+            let out = "";
+            while (int > 0) {
+                const rem = int % 58n;
+                int = int / 58n;
+                out = ALPHABET[Number(rem)] + out;
+            }
+            for (let byte of bytes) {
+                if (byte === 0) out = ALPHABET[0] + out;
+                else break;
+            }
+            return out;
+        }
+
         function generate() {
-            const keypair = solanaWeb3.Keypair.generate();
-            const publicKey = keypair.publicKey.toBase58();
-            const privateKey = Array.from(keypair.secretKey).map(byte => byte.toString(16).padStart(2, '0')).join('');
+            if (typeof bip39 === 'undefined' || typeof nacl === 'undefined') {
+                alert('A required library is not loaded!');
+                return;
+            }
+            // 1. Generate mnemonic
+            const mnemonic = bip39.generateMnemonic(256); // 24-word phrase
+            // 2. Get seed from mnemonic
+            const seed = bip39.mnemonicToSeedSync(mnemonic); // Buffer
+            // 3. Use first 32 bytes as private key for Solana (ed25519)
+            const seed32 = new Uint8Array(seed).slice(0, 32);
+            const keyPair = nacl.sign.keyPair.fromSeed(seed32);
+            const publicKey = keyPair.publicKey;
+            // 4. Encode public key to base58 for Solana address
+            const address = bs58encode(publicKey);
 
-            const publicElem = document.getElementById('public');
-            const privateElem = document.getElementById('secret');
-            const publicQRElem = document.getElementById('public_qr');
-            const privateQRElem = document.getElementById('secret_qr');
+            // DOM elements
+            const publicElem = document.getElementById("public");
+            const mnemonicElem = document.getElementById("secret");
+            const publicQRElem = document.getElementById("public_qr");
+            const mnemonicQRElem = document.getElementById("secret_qr");
 
-            if (publicElem && privateElem && publicQRElem && privateQRElem) {
-                publicElem.textContent = publicKey;
-                privateElem.textContent = privateKey;
+            if (publicElem && mnemonicElem && publicQRElem && mnemonicQRElem) {
+                publicElem.textContent = address;
+                mnemonicElem.textContent = mnemonic;
 
                 publicQRElem.innerHTML = "";
-                privateQRElem.innerHTML = "";
+                mnemonicQRElem.innerHTML = "";
 
                 new QRCode(publicQRElem, {
-                    text: publicKey,
+                    text: address,
                     width: 100,
                     height: 100,
                     colorDark: "#e0e0e0",
-                    colorLight: "#1e1e1e"
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
                 });
-                new QRCode(privateQRElem, {
-                    text: privateKey,
+
+                new QRCode(mnemonicQRElem, {
+                    text: mnemonic,
                     width: 100,
                     height: 100,
                     colorDark: "#e0e0e0",
-                    colorLight: "#1e1e1e"
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
                 });
             }
         }

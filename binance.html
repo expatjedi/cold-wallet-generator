@@ -8,6 +8,7 @@
     <!-- Binance BNB addresses use secp256k1 and bech32 (bnb...) -->
     <script src="js/elliptic-hash-bech32.min.js"></script>
     <script src="js/qrcode.js"></script>
+    <script src="js/bip39.min.js"></script>
 </head>
 <body onload="generate()">
     <div class="container">
@@ -23,7 +24,7 @@
             <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
-            <label>Private Key (SECRET)</label>
+            <label>Mnemonic Seed (SECRET)</label>
             <span id="secret">Click Generate to create wallet</span>
             <div id="secret_qr" class="qr-code"></div>
         </div>
@@ -61,9 +62,18 @@
         }
 
         async function generate() {
-            // Generate secp256k1 key
+            if (typeof elliptic === 'undefined' || typeof bech32 === 'undefined' || typeof bip39 === 'undefined') {
+                alert('A required library is not loaded!');
+                return;
+            }
+            // 1. Generate mnemonic
+            const mnemonic = bip39.generateMnemonic(256); // 24-word phrase
+            // 2. Get seed from mnemonic
+            const seed = bip39.mnemonicToSeedSync(mnemonic); // Buffer
+            // 3. Use first 32 bytes as private key
+            const privKeyHex = Array.from(seed.slice(0, 32)).map(x => x.toString(16).padStart(2, '0')).join('');
             const ec = new elliptic.ec('secp256k1');
-            const key = ec.genKeyPair();
+            const key = ec.keyFromPrivate(privKeyHex, 'hex');
             const pub = key.getPublic(true, 'hex'); // compressed public key hex
             const pubBytes = hexToUint8Array(pub);
 
@@ -78,35 +88,34 @@
                 return;
             }
 
-            // Bech32 encode for BNB address
+            // Bech32 encode
             const words = toWords(ripemdBytes);
-            const bnbAddress = bech32.bech32.encode('bnb', words);
+            const address = bech32.bech32.encode('bnb', words);
 
-            const privateKeyHex = key.getPrivate('hex');
-
-            // Display
+            // DOM elements
             const publicElem = document.getElementById("public");
-            const privateElem = document.getElementById("secret");
+            const mnemonicElem = document.getElementById("secret");
             const publicQRElem = document.getElementById("public_qr");
-            const privateQRElem = document.getElementById("secret_qr");
+            const mnemonicQRElem = document.getElementById("secret_qr");
 
-            if (publicElem && privateElem && publicQRElem && privateQRElem) {
-                publicElem.textContent = bnbAddress;
-                privateElem.textContent = privateKeyHex;
+            if (publicElem && mnemonicElem && publicQRElem && mnemonicQRElem) {
+                publicElem.textContent = address;
+                mnemonicElem.textContent = mnemonic;
 
                 publicQRElem.innerHTML = "";
-                privateQRElem.innerHTML = "";
+                mnemonicQRElem.innerHTML = "";
 
                 new QRCode(publicQRElem, {
-                    text: bnbAddress,
+                    text: address,
                     width: 100,
                     height: 100,
                     colorDark: "#e0e0e0",
                     colorLight: "#1e1e1e",
                     correctLevel: QRCode.CorrectLevel.H
                 });
-                new QRCode(privateQRElem, {
-                    text: privateKeyHex,
+
+                new QRCode(mnemonicQRElem, {
+                    text: mnemonic,
                     width: 100,
                     height: 100,
                     colorDark: "#e0e0e0",

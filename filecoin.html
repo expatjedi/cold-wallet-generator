@@ -8,6 +8,7 @@
     <script src="js/bs58.bundle.min.js"></script>
     <script src="js/elliptic.min.js"></script>
     <script src="js/qrcode.js"></script>
+    <script src="js/bip39.min.js"></script>
 </head>
 <body onload="generate()">
     <div class="container">
@@ -23,7 +24,7 @@
             <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
-            <label>Private Key (SECRET)</label>
+            <label>Mnemonic Seed (SECRET)</label>
             <span id="secret">Click Generate to create address</span>
             <div id="secret_qr" class="qr-code"></div>
         </div>
@@ -41,12 +42,19 @@
             if (elem) elem.innerHTML = '';
         }
         function generate() {
-            if (typeof elliptic === 'undefined' || typeof bs58 === 'undefined' || typeof bs58.default === 'undefined') {
-                alert('elliptic or bs58 library not loaded!');
+            if (typeof elliptic === 'undefined' || typeof bs58 === 'undefined' || typeof bs58.default === 'undefined' || typeof bip39 === 'undefined') {
+                alert('A required library is not loaded!');
                 return;
             }
+
+            // 1. Generate mnemonic
+            const mnemonic = bip39.generateMnemonic(256); // 24-word phrase
+            // 2. Get seed from mnemonic
+            const seed = bip39.mnemonicToSeedSync(mnemonic); // Buffer
+            // 3. Use first 32 bytes as private key
+            const privKeyHex = bytesToHex(seed.slice(0, 32));
             const ec = new elliptic.ec('secp256k1');
-            const key = ec.genKeyPair();
+            const key = ec.keyFromPrivate(privKeyHex, 'hex');
             const pub = key.getPublic(false, 'array');
             blake2bHash(Uint8Array.from(pub), 20).then(pkHash => {
                 const payload = Uint8Array.from([0x01, ...pkHash]);
@@ -55,18 +63,16 @@
                     const address = 'f1' + bs58.default.encode(addressBytes);
                     // DOM elements
                     const publicElem = document.getElementById("public");
-                    const privateElem = document.getElementById("secret");
+                    const mnemonicElem = document.getElementById("secret");
                     const publicQRElem = document.getElementById("public_qr");
-                    const privateQRElem = document.getElementById("secret_qr");
+                    const mnemonicQRElem = document.getElementById("secret_qr");
 
-                    const privateKeyHex = key.getPrivate('hex');
-
-                    if (publicElem && privateElem && publicQRElem && privateQRElem) {
+                    if (publicElem && mnemonicElem && publicQRElem && mnemonicQRElem) {
                         publicElem.textContent = address;
-                        privateElem.textContent = privateKeyHex;
+                        mnemonicElem.textContent = mnemonic;
 
                         clearQRCode(publicQRElem);
-                        clearQRCode(privateQRElem);
+                        clearQRCode(mnemonicQRElem);
 
                         new QRCode(publicQRElem, {
                             text: address,
@@ -76,8 +82,9 @@
                             colorLight: "#1e1e1e",
                             correctLevel: QRCode.CorrectLevel.H
                         });
-                        new QRCode(privateQRElem, {
-                            text: privateKeyHex,
+
+                        new QRCode(mnemonicQRElem, {
+                            text: mnemonic,
                             width: 100,
                             height: 100,
                             colorDark: "#e0e0e0",
