@@ -1,88 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Ixcoin Cold Wallet Generator</title>
-    <meta name="description"
-        content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-    <meta name="keywords"
-        content="minimal, reliable, fast, universal, cold, wallet, generator, offline, ixcoin, cryptocurrency">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="css/style2.css">
+  <meta charset="UTF-8">
+  <title>Ixcoin Cold Wallet Generator</title>
+  <meta name="description" content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
+  <meta name="keywords" content="ixcoin, ixc, cold, wallet, generator, bip39, bip44, mnemonic">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/style2.css">
+  <script src="js/bitcoinjs-lib.js"></script>
+  <script src="js/bip39.min.js"></script>
+  <script src="js/qrcode.js"></script>
 </head>
-
 <body onload="generate()">
-    <div class="container">
-        <h1>Ixcoin Cold Wallet</h1>
-        <div class="button-group">
-            <button onclick="window.location.href='index.html'">Home</button>
-            <button onclick="generate()">Generate</button>
-            <button onclick="window.print()">Print</button>
-        </div>
-        <div class="info-box">
-            <label>Public Address (SHARE)</label>
-            <span id="public">Click Generate to create wallet</span>
-            <div id="public_qr" class="qr-code"></div>
-        </div>
-        <div class="info-box">
-            <label>Private Key (SECRET)</label>
-            <span id="secret">Click Generate to create wallet</span>
-            <div id="secret_qr" class="qr-code"></div>
-        </div>
+  <div class="container">
+    <h1>Ixcoin Cold Wallet</h1>
+    <div class="button-group">
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="generate()">Generate</button>
+      <button onclick="window.print()">Print</button>
     </div>
-    <script src="js/bitcoinjs-lib.js"></script>
-    <script src="js/qrcode.js"></script>
-    <script>
-        function generate() {
-         const ixcoin = {
-          messagePrefix: '\x19Ixcoin Signed Message:\n',
-          bech32: '',
-          bip32: {
-            public: 0x0488B21E,
-            private: 0x0488ADE4,
-          },
-          pubKeyHash: 0x8a,
-	      scriptHash: 0x05,
-          wif: 0x80,
-        };
-
-        const keyPair = bitcoin.ECPair.makeRandom({compressed: false, network: ixcoin});
-        const { address } = bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network: ixcoin});
-        const privateKeyWIF = keyPair.toWIF();
-
-        const publicElem = document.getElementById("public");
-        const privateElem = document.getElementById("secret");
-        const publicQRElem = document.getElementById("public_qr");
-        const privateQRElem = document.getElementById("secret_qr");
-
-        if (publicElem && privateElem && publicQRElem && privateQRElem) {
-          publicElem.textContent = address;
-          privateElem.textContent = privateKeyWIF;
-
-          publicQRElem.innerHTML = "";
-          privateQRElem.innerHTML = "";
-
-          new QRCode(publicQRElem, {
-            text: address,
-            width: 100,
-            height: 100,
-            colorDark: "#e0e0e0",
-            colorLight: "#1e1e1e",
-            correctLevel: QRCode.CorrectLevel.H,
-          });
-
-          new QRCode(privateQRElem, {
-            text: privateKeyWIF,
-            width: 100,
-            height: 100,
-            colorDark: "#e0e0e0",
-            colorLight: "#1e1e1e",
-            correctLevel: QRCode.CorrectLevel.H,
-          });
-        }
+    <div class="info-box">
+      <label>Public Address (SHARE)</label>
+      <span id="public">Click Generate to create wallet</span>
+      <div id="public_qr" class="qr-code"></div>
+    </div>
+    <div class="info-box">
+      <label>Mnemonic Seed (SECRET)</label>
+      <span id="secret">Click Generate to create wallet</span>
+      <div id="secret_qr" class="qr-code"></div>
+    </div>
+  </div>
+  <script>
+    function generate() {
+      if (typeof bip39 === "undefined" || typeof bitcoin === "undefined") {
+        alert("bip39 and bitcoinjs-lib are required!");
+        return;
       }
-    </script>
+      const ixcoin = {
+        messagePrefix: '\x19Ixcoin Signed Message:\n',
+        bech32: '',
+        bip32: { public: 0x0488B21E, private: 0x0488ADE4 },
+        pubKeyHash: 0x1c,
+        scriptHash: 0x09,
+        wif: 0x9c
+      };
+      // BIP44 coin type for Ixcoin is 86
+      const mnemonic = bip39.generateMnemonic(256);
+      const seed = bip39.mnemonicToSeedSync(mnemonic);
+      const root = bitcoin.bip32.fromSeed(seed, ixcoin);
+      const child = root.derivePath("m/44'/86'/0'/0/0");
+      const { address } = bitcoin.payments.p2pkh({ pubkey: child.publicKey, network: ixcoin });
+      document.getElementById("public").textContent = address;
+      document.getElementById("secret").textContent = mnemonic;
+      document.getElementById("public_qr").innerHTML = "";
+      document.getElementById("secret_qr").innerHTML = "";
+      new QRCode(document.getElementById("public_qr"), {
+        text: address, width: 100, height: 100, colorDark: "#e0e0e0", colorLight: "#1e1e1e", correctLevel: QRCode.CorrectLevel.H
+      });
+      new QRCode(document.getElementById("secret_qr"), {
+        text: mnemonic, width: 100, height: 100, colorDark: "#e0e0e0", colorLight: "#1e1e1e", correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  </script>
 </body>
-
 </html>

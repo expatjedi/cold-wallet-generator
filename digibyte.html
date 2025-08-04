@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang=en>
-
+<html lang="en">
 <head>
-    <meta charset=UTF-8>
+    <meta charset="UTF-8">
     <title>DigiByte Cold Wallet Generator</title>
-    <meta name=description
-        content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-    <meta name=keywords
-        content="minimal, reliable, fast, universal, cold, wallet, generator, offline, digibyte, dgb, cryptocurrency">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
+    <meta name="keywords" content="minimal, reliable, fast, universal, cold, wallet, generator, offline, digibyte, dgb, cryptocurrency">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style2.css">
+    <script src="js/bitcoinjs-lib.js"></script>
+    <script src="js/bip39.min.js"></script>
+    <script src="js/qrcode.js"></script>
 </head>
-
-<body onload=generate()>
+<body onload="generate()">
     <div class="container">
-        <h1>Digibyte Cold Wallet</h1>
+        <h1>DigiByte Cold Wallet</h1>
         <div class="button-group">
             <button onclick="window.location.href='index.html'">Home</button>
             <button onclick="generate()">Generate</button>
@@ -26,63 +25,67 @@
             <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
-            <label>Private Key (SECRET)</label>
+            <label>Mnemonic Seed (SECRET)</label>
             <span id="secret">Click Generate to create wallet</span>
             <div id="secret_qr" class="qr-code"></div>
         </div>
     </div>
-    <script src=js/bitcoinjs-lib.js></script>
-    <script src=js/qrcode.js></script>
     <script>
-        function generate() {
-        const digibyte = {
-          messagePrefix: '\x19Digibyte Signed Message:\n',
-          bech32: 'dgb',
-          bip32: {
-            public: 0x4488B21E,
-            private: 0x4488ADE4,
-          },
-          pubKeyHash: 0x1e,
-          scriptHash: 0x3f,
-          wif: 0x80
-        };
+        async function generate() {
+            if (typeof bip39 === "undefined" || typeof bitcoin === "undefined") {
+                alert("bip39 and bitcoinjs-lib are required!");
+                return;
+            }
+            // DigiByte network params
+            const digibyte = {
+                messagePrefix: '\x19Digibyte Signed Message:\n',
+                bech32: 'dgb',
+                bip32: {
+                    public: 0x0488B21E,
+                    private: 0x0488ADE4,
+                },
+                pubKeyHash: 0x1e,
+                scriptHash: 0x3f,
+                wif: 0x80,
+            };
 
-        const keyPair = bitcoin.ECPair.makeRandom({ network: digibyte });
-        const { address } = bitcoin.payments.p2wpkh({ pubkey: keyPair.publicKey, network: digibyte });
-        const privateKeyWIF = keyPair.toWIF();
+            const mnemonic = bip39.generateMnemonic(256);
+            const seed = bip39.mnemonicToSeedSync(mnemonic);
+            // BIP44 coin type for Digibyte is 20 (m/44'/20'/0'/0/0)
+            const root = bitcoin.bip32.fromSeed(seed, digibyte);
+            const child = root.derivePath("m/44'/20'/0'/0/0");
+            const { address } = bitcoin.payments.p2wpkh({ pubkey: child.publicKey, network: digibyte });
 
-        const publicElem = document.getElementById("public");
-        const privateElem = document.getElementById("secret");
-        const publicQRElem = document.getElementById("public_qr");
-        const privateQRElem = document.getElementById("secret_qr");
+            const publicElem = document.getElementById("public");
+            const mnemonicElem = document.getElementById("secret");
+            const publicQRElem = document.getElementById("public_qr");
+            const mnemonicQRElem = document.getElementById("secret_qr");
 
-        if (publicElem && privateElem && publicQRElem && privateQRElem) {
-          publicElem.textContent = address;
-          privateElem.textContent = privateKeyWIF;
+            if (publicElem && mnemonicElem && publicQRElem && mnemonicQRElem) {
+                publicElem.textContent = address;
+                mnemonicElem.textContent = mnemonic;
 
-          publicQRElem.innerHTML = "";
-          privateQRElem.innerHTML = "";
+                publicQRElem.innerHTML = "";
+                mnemonicQRElem.innerHTML = "";
 
-          new QRCode(publicQRElem, {
-            text: address,
-            width: 100,
-            height: 100,
-            colorDark: "#e0e0e0",
-            colorLight: "#1e1e1e",
-            correctLevel: QRCode.CorrectLevel.H,
-          });
-
-          new QRCode(privateQRElem, {
-            text: privateKeyWIF,
-            width: 100,
-            height: 100,
-            colorDark: "#e0e0e0",
-            colorLight: "#1e1e1e",
-            correctLevel: QRCode.CorrectLevel.H,
-          });
+                new QRCode(publicQRElem, {
+                    text: address,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                new QRCode(mnemonicQRElem, {
+                    text: mnemonic,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
         }
-      }
     </script>
 </body>
-
 </html>

@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang=en>
-
+<html lang="en">
 <head>
-    <meta charset=UTF-8>
+    <meta charset="UTF-8">
     <title>Bitcoin Cash Cold Wallet Generator</title>
-    <meta name=description
-        content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-    <meta name=keywords
-        content="minimal, reliable, fast, universal, cold, wallet, generator, offline, bitcoin cash, bcc, cryptocurrency, bch, bcash">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
+    <meta name="keywords" content="minimal, reliable, fast, universal, cold, wallet, generator, offline, bitcoin cash, bch, bcash, cryptocurrency">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style2.css">
+    <script src="js/bitcoinjs-lib.js"></script>
+    <script src="js/bip39.min.js"></script>
+    <script src="js/qrcode.js"></script>
 </head>
-
-<body onload=generate()>
+<body onload="generate()">
     <div class="container">
         <h1>Bitcoin Cash Cold Wallet</h1>
         <div class="button-group">
@@ -26,50 +25,67 @@
             <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
-            <label>Private Key (SECRET)</label>
+            <label>Mnemonic Seed (SECRET)</label>
             <span id="secret">Click Generate to create wallet</span>
             <div id="secret_qr" class="qr-code"></div>
         </div>
     </div>
-        <script src=js/bitcoincash-0.1.10.js></script>
-        <script src=js/qrcode.js></script>
-        <script>
-            function generate() {
-                const keyPair = new bch.PrivateKey();
-                const privateKeyWIF = keyPair.toWIF();
-                const address = keyPair.toAddress();
+    <script>
+        async function generate() {
+            if (typeof bip39 === "undefined" || typeof bitcoin === "undefined") {
+                alert("bip39 and bitcoinjs-lib are required!");
+                return;
+            }
+            // Bitcoin Cash network params
+            const bch = {
+                messagePrefix: '\x18Bitcoin Signed Message:\n',
+                bech32: '',
+                bip32: {
+                    public: 0x0488B21E,
+                    private: 0x0488ADE4,
+                },
+                pubKeyHash: 0x00,
+                scriptHash: 0x05,
+                wif: 0x80,
+            };
 
-              const publicElem = document.getElementById("public");
-              const privateElem = document.getElementById("secret");
-              const publicQRElem = document.getElementById("public_qr");
-              const privateQRElem = document.getElementById("secret_qr");
+            const mnemonic = bip39.generateMnemonic(256);
+            const seed = bip39.mnemonicToSeedSync(mnemonic);
+            // BIP44 coin type for Bitcoin Cash is 145 (m/44'/145'/0'/0/0)
+            const root = bitcoin.bip32.fromSeed(seed, bch);
+            const child = root.derivePath("m/44'/145'/0'/0/0");
+            const { address } = bitcoin.payments.p2pkh({ pubkey: child.publicKey, network: bch });
 
-            if (publicElem && privateElem && publicQRElem && privateQRElem) {
+            const publicElem = document.getElementById("public");
+            const mnemonicElem = document.getElementById("secret");
+            const publicQRElem = document.getElementById("public_qr");
+            const mnemonicQRElem = document.getElementById("secret_qr");
+
+            if (publicElem && mnemonicElem && publicQRElem && mnemonicQRElem) {
                 publicElem.textContent = address;
-                privateElem.textContent = privateKeyWIF;
+                mnemonicElem.textContent = mnemonic;
 
                 publicQRElem.innerHTML = "";
-                privateQRElem.innerHTML = "";
-            
-            new QRCode(publicQRElem, {
-                text: address,
-                width: 100,
-                height: 100,
-                colorDark: "#e0e0e0",
-                colorLight: "#1e1e1e",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            new QRCode(privateQRElem, {
-                text: privateKeyWIF,
-                width: 100,
-                height: 100,
-                colorDark: "#e0e0e0",
-                colorLight: "#1e1e1e",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-        }
-    }
-        </script>
-</body>
+                mnemonicQRElem.innerHTML = "";
 
+                new QRCode(publicQRElem, {
+                    text: address,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                new QRCode(mnemonicQRElem, {
+                    text: mnemonic,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
+        }
+    </script>
+</body>
 </html>

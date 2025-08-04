@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang=en>
-
+<html lang="en">
 <head>
-    <meta charset=UTF-8>
+    <meta charset="UTF-8">
     <title>Unobtanium Cold Wallet Generator</title>
-    <meta name=description
+    <meta name="description"
         content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-    <meta name=keywords
+    <meta name="keywords"
         content="minimal, reliable, fast, universal, cold, wallet, generator, offline, unobtanium, cryptocurrency">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style2.css">
+    <script src="js/bip39.min.js"></script>
+    <script src="js/bitcoinjs-lib.js"></script>
+    <script src="js/bip32.min.js"></script>
+    <script src="js/qrcode.js"></script>
 </head>
-
-<body onload=generate()>
+<body onload="generate()">
     <div class="container">
         <h1>Unobtanium Cold Wallet</h1>
         <div class="button-group">
@@ -26,63 +28,70 @@
             <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
-            <label>Private Key (SECRET)</label>
+            <label>Mnemonic Seed (SECRET)</label>
             <span id="secret">Click Generate to create wallet</span>
             <div id="secret_qr" class="qr-code"></div>
         </div>
     </div>
-    <script src=js/bitcoinjs-lib.js></script>
-    <script src=js/qrcode.js></script>
     <script>
         function generate() {
-        const unobtanium = {
-          messagePrefix: '\x19Unobtanium Signed Message:\n',
-          bech32: '',
-          bip32: {
-            public: 0x4488B21E,
-            private: 0x4488ADE4,
-          },
-          pubKeyHash: 0x82,
-          scriptHash: 0x1e,
-          wif: 0xe0
-        };
+            const unobtanium = {
+                messagePrefix: '\x19Unobtanium Signed Message:\n',
+                bech32: '',
+                bip32: {
+                    public: 0x0488b21e,
+                    private: 0x0488ade4,
+                },
+                pubKeyHash: 0x82,
+                scriptHash: 0x1e,
+                wif: 0xe0
+            };
 
-        const keyPair = bitcoin.ECPair.makeRandom({compressed: false, network: unobtanium});
-        const { address } = bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network: unobtanium});
-        const privateKeyWIF = keyPair.toWIF();
+            if (typeof bip39 === "undefined" || typeof bitcoin === "undefined" || typeof bip32 === "undefined") {
+                alert("bip39, bip32, and bitcoinjs-lib are required!");
+                return;
+            }
 
-        const publicElem = document.getElementById("public");
-        const privateElem = document.getElementById("secret");
-        const publicQRElem = document.getElementById("public_qr");
-        const privateQRElem = document.getElementById("secret_qr");
+            const mnemonic = bip39.generateMnemonic(256);
+            const seed = bip39.mnemonicToSeedSync(mnemonic);
+            const root = bip32.fromSeed(seed, unobtanium);
+            const child = root.derivePath("m/44'/137'/0'/0/0"); // SLIP-44 for Unobtanium is 137
 
-        if (publicElem && privateElem && publicQRElem && privateQRElem) {
-          publicElem.textContent = address;
-          privateElem.textContent = privateKeyWIF;
+            const { address } = bitcoin.payments.p2pkh({
+                pubkey: child.publicKey,
+                network: unobtanium
+            });
 
-          publicQRElem.innerHTML = "";
-          privateQRElem.innerHTML = "";
+            const publicElem = document.getElementById("public");
+            const mnemonicElem = document.getElementById("secret");
+            const publicQRElem = document.getElementById("public_qr");
+            const mnemonicQRElem = document.getElementById("secret_qr");
 
-          new QRCode(publicQRElem, {
-            text: address,
-            width: 100,
-            height: 100,
-            colorDark: "#e0e0e0",
-            colorLight: "#1e1e1e",
-            correctLevel: QRCode.CorrectLevel.H,
-          });
+            if (publicElem && mnemonicElem && publicQRElem && mnemonicQRElem) {
+                publicElem.textContent = address;
+                mnemonicElem.textContent = mnemonic;
 
-          new QRCode(privateQRElem, {
-            text: privateKeyWIF,
-            width: 100,
-            height: 100,
-            colorDark: "#e0e0e0",
-            colorLight: "#1e1e1e",
-            correctLevel: QRCode.CorrectLevel.H,
-          });
+                publicQRElem.innerHTML = "";
+                mnemonicQRElem.innerHTML = "";
+
+                new QRCode(publicQRElem, {
+                    text: address,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                new QRCode(mnemonicQRElem, {
+                    text: mnemonic,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
         }
-      }
     </script>
 </body>
-
 </html>
