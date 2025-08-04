@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Polkadot Cold Wallet Generator</title>
-    <meta name="description"
-        content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-    <meta name="keywords"
-        content="minimal, reliable, fast, universal, cold, wallet, generator, offline, polkadot, dot, cryptocurrency">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
+    <meta name="keywords" content="minimal, reliable, fast, universal, cold, wallet, generator, offline, polkadot, dot, cryptocurrency">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style2.css">
+    <script src="js/bip39.min.js"></script>
+    <script src="js/polkadot.js"></script>
+    <script src="js/qrcode.js"></script>
 </head>
-
-<body onload="generate()">
+<body onload=generate()>
     <div class="container">
         <h1>Polkadot Cold Wallet</h1>
         <div class="button-group">
@@ -26,144 +25,57 @@
             <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
-            <label>Private Key (SECRET)</label>
+            <label>Mnemonic Seed (SECRET)</label>
             <span id="secret">Click Generate to create wallet</span>
             <div id="secret_qr" class="qr-code"></div>
         </div>
     </div>
-    <script src="js/tweetnacl.min.js"></script>
-    <script src="js/bs58.bundle.min.js"></script>
-    <script src="js/qrcode.js"></script>
     <script>
-        // SS58 Base58 encoding for Polkadot addresses
-        const SS58_PREFIX = 0; // Polkadot mainnet prefix
-
-        function blake2b(data, outlen = 32) {
-            // Simplified Blake2b implementation for browser
-            // For production, use a proper Blake2b library
-            return crypto.subtle.digest('SHA-256', data).then(hash => {
-                return new Uint8Array(hash).slice(0, outlen);
-            });
-        }
-
-        function ss58Encode(publicKey, prefix = SS58_PREFIX) {
-            const SS58_PREFIX_SIZE = prefix < 64 ? 1 : 2;
-            const CHECKSUM_SIZE = 2;
-            
-            let prefixBytes;
-            if (prefix < 64) {
-                prefixBytes = new Uint8Array([prefix]);
-            } else {
-                prefixBytes = new Uint8Array([
-                    ((prefix & 0b0000_0000_1111_1100) >> 2) | 0b0100_0000,
-                    (prefix >> 8) | ((prefix & 0b0000_0000_0000_0011) << 6)
-                ]);
-            }
-
-            const payload = new Uint8Array(prefixBytes.length + publicKey.length);
-            payload.set(prefixBytes);
-            payload.set(publicKey, prefixBytes.length);
-
-            return blake2b(new TextEncoder().encode('SS58PRE')).then(ss58Prefix => {
-                const hashInput = new Uint8Array(ss58Prefix.length + payload.length);
-                hashInput.set(ss58Prefix.slice(0, ss58Prefix.length));
-                hashInput.set(payload, ss58Prefix.length);
-                
-                return blake2b(hashInput, 64).then(hash => {
-                    const checksum = hash.slice(0, CHECKSUM_SIZE);
-                    const addressBytes = new Uint8Array(payload.length + CHECKSUM_SIZE);
-                    addressBytes.set(payload);
-                    addressBytes.set(checksum, payload.length);
-                    
-                    return bs58.default.encode(addressBytes);
-                });
-            });
-        }
-
-        function generateSr25519KeyPair() {
-            // Generate sr25519 key pair using tweetnacl as approximation
-            // Note: This is a simplified implementation
-            // For production, use @polkadot/util-crypto
-            const keyPair = nacl.sign.keyPair();
-            return {
-                publicKey: keyPair.publicKey,
-                secretKey: keyPair.secretKey
-            };
-        }
-
-        function bytesToHex(bytes) {
-            return Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
-        }
-
-        function hexToBytes(hex) {
-            const bytes = [];
-            for (let i = 0; i < hex.length; i += 2) {
-                bytes.push(parseInt(hex.substr(i, 2), 16));
-            }
-            return new Uint8Array(bytes);
-        }
-
         async function generate() {
-            try {
-                // Check if required libraries are loaded
-                if (typeof nacl === 'undefined') {
-                    throw new Error('TweetNaCl library not loaded');
-                }
-                if (typeof bs58 === 'undefined' || !bs58.default) {
-                    throw new Error('BS58 library not loaded');
-                }
+            if (typeof bip39 === "undefined" || typeof polkadot === "undefined") {
+                alert("bip39 and polkadot.js are required!");
+                return;
+            }
 
-                // Generate key pair
-                const keyPair = generateSr25519KeyPair();
-                const publicKey = keyPair.publicKey;
-                const secretKey = keyPair.secretKey;
+            const mnemonic = bip39.generateMnemonic(256);
 
-                // Generate SS58 address
-                const address = await ss58Encode(publicKey, SS58_PREFIX);
-                
-                // Convert secret key to hex for display
-                const privateKeyHex = bytesToHex(secretKey);
+            await polkadot.cryptoWaitReady();
+            const keyring = new polkadot.Keyring({ type: 'sr25519' });
+            const pair = keyring.addFromMnemonic(mnemonic);
 
-                // Update DOM elements
-                const publicElem = document.getElementById("public");
-                const privateElem = document.getElementById("secret");
-                const publicQRElem = document.getElementById("public_qr");
-                const privateQRElem = document.getElementById("secret_qr");
+            const address = pair.address;
 
-                if (publicElem && privateElem && publicQRElem && privateQRElem) {
-                    publicElem.textContent = address;
-                    privateElem.textContent = privateKeyHex;
+            // Update DOM
+            const publicElem = document.getElementById("public");
+            const mnemonicElem = document.getElementById("secret");
+            const publicQRElem = document.getElementById("public_qr");
+            const mnemonicQRElem = document.getElementById("secret_qr");
 
-                    // Clear previous QR codes
-                    publicQRElem.innerHTML = "";
-                    privateQRElem.innerHTML = "";
+            if (publicElem && mnemonicElem && publicQRElem && mnemonicQRElem) {
+                publicElem.textContent = address;
+                mnemonicElem.textContent = mnemonic;
 
-                    // Generate QR codes
-                    new QRCode(publicQRElem, {
-                        text: address,
-                        width: 100,
-                        height: 100,
-                        colorDark: "#e0e0e0",
-                        colorLight: "#1e1e1e",
-                        correctLevel: QRCode.CorrectLevel.H,
-                    });
+                publicQRElem.innerHTML = "";
+                mnemonicQRElem.innerHTML = "";
 
-                    new QRCode(privateQRElem, {
-                        text: privateKeyHex,
-                        width: 100,
-                        height: 100,
-                        colorDark: "#e0e0e0",
-                        colorLight: "#1e1e1e",
-                        correctLevel: QRCode.CorrectLevel.H,
-                    });
-                }
-            } catch (error) {
-                console.error('Error generating Polkadot wallet:', error);
-                document.getElementById("public").textContent = "Error: " + error.message;
-                document.getElementById("secret").textContent = "Please ensure all required libraries are loaded";
+                new QRCode(publicQRElem, {
+                    text: address,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                new QRCode(mnemonicQRElem, {
+                    text: mnemonic,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
             }
         }
     </script>
 </body>
-
 </html>

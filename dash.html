@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
 
 <head>
-    <meta charset=UTF-8>
+    <meta charset="UTF-8">
     <title>Dash Cold Wallet Generator</title>
-    <meta name=description
+    <meta name="description"
         content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-    <meta name=keywords
+    <meta name="keywords"
         content="minimal, reliable, fast, universal, cold, wallet, generator, offline, dash, cryptocurrency">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style2.css">
 </head>
 
-<body onload=generate()>
-        <div class="container">
+<body onload="generate()">
+    <div class="container">
         <h1>Dash Cold Wallet</h1>
         <div class="button-group">
             <button onclick="window.location.href='index.html'">Home</button>
@@ -26,55 +26,65 @@
             <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
-            <label>Private Key (SECRET)</label>
+            <label>Mnemonic Seed (SECRET)</label>
             <span id="secret">Click Generate to create wallet</span>
             <div id="secret_qr" class="qr-code"></div>
         </div>
     </div>
       
-    <script src=js/bitcoinjs-lib.js></script>
-    <script src=js/qrcode.js></script>
+    <script src="js/bitcoinjs-lib.js"></script>
+    <script src="js/bip39.min.js"></script>
+    <script src="js/qrcode.js"></script>
     <script>
-        function generate() {
+        async function generate() {
+            // Generate a 12-word mnemonic
+            const mnemonic = bip39.generateMnemonic(256);
+
+            // Derive seed from mnemonic
+            const seed = await bip39.mnemonicToSeed(mnemonic);
+
+            // Dash network params
             const dash = bitcoin.networks.bitcoin;
             dash.pubKeyHash = 0x4c;
             dash.wif = 0xcc;
             dash.scriptHash = 0x10;
 
-            const keyPair = bitcoin.ECPair.makeRandom({compressed: false, network: dash});
-            const { address } = bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network: dash});
-            const privateKeyWIF = keyPair.toWIF();
+            // Derive root and first account: m/44'/5'/0'/0/0 (Dash BIP44)
+            const root = bitcoin.bip32.fromSeed(seed, dash);
+            const child = root.derivePath("m/44'/5'/0'/0/0"); // Dash coin_type is 5
+
+            const { address } = bitcoin.payments.p2pkh({ pubkey: child.publicKey, network: dash });
 
             const publicElem = document.getElementById("public");
-            const privateElem = document.getElementById("secret");
+            const mnemonicElem = document.getElementById("secret");
             const publicQRElem = document.getElementById("public_qr");
-            const privateQRElem = document.getElementById("secret_qr");
+            const mnemonicQRElem = document.getElementById("secret_qr");
 
-            if (publicElem && privateElem && publicQRElem && privateQRElem) {
+            if (publicElem && mnemonicElem && publicQRElem && mnemonicQRElem) {
                 publicElem.textContent = address;
-                privateElem.textContent = privateKeyWIF;
+                mnemonicElem.textContent = mnemonic;
 
                 publicQRElem.innerHTML = "";
-                privateQRElem.innerHTML = "";
+                mnemonicQRElem.innerHTML = "";
 
-            new QRCode(publicQRElem, {
-                text: address,
-                width: 100,
-                height: 100,
-                colorDark: "#e0e0e0",
-                colorLight: "#1e1e1e",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            new QRCode(privateQRElem, {
-                text: privateKeyWIF,
-                width: 100,
-                height: 100,
-                colorDark: "#e0e0e0",
-                colorLight: "#1e1e1e",
-                correctLevel: QRCode.CorrectLevel.H
-            });
+                new QRCode(publicQRElem, {
+                    text: address,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                new QRCode(mnemonicQRElem, {
+                    text: mnemonic,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
         }
-    }
     </script>
 </body>
 

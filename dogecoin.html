@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang=en>
-
+<html lang="en">
 <head>
-    <meta charset=UTF-8>
+    <meta charset="UTF-8">
     <title>Dogecoin Cold Wallet Generator</title>
-    <meta name=description
-        content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-    <meta name=keywords
-        content="minimal, reliable, fast, universal, cold, wallet, generator, offline, doge, dogecoin, cryptocurrency">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
+    <meta name="keywords" content="minimal, reliable, fast, universal, cold, wallet, generator, offline, dogecoin, doge, cryptocurrency">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style2.css">
+    <script src="js/bitcoinjs-lib.js"></script>
+    <script src="js/qrcode.js"></script>
+    <script src="js/bip39.min.js"></script>
 </head>
-
 <body onload=generate()>
     <div class="container">
         <h1>Dogecoin Cold Wallet</h1>
@@ -26,64 +25,74 @@
             <div id="public_qr" class="qr-code"></div>
         </div>
         <div class="info-box">
-            <label>Private Key (SECRET)</label>
+            <label>Mnemonic Seed (SECRET)</label>
             <span id="secret">Click Generate to create wallet</span>
             <div id="secret_qr" class="qr-code"></div>
         </div>
     </div>
-    <script src=js/bitcoinjs-lib.js></script>
-    <script src=js/qrcode.js></script>
     <script>
-        function generate() {
-        const dogecoin = {
-          messagePrefix: '\x19Dogecoin Signed Message:\n',
-          bech32: '',
-          bip32: {
-            public: 0x02facafd,
-            private: 0x02fac398,
-          },
-          pubKeyHash: 0x1e,
-	      scriptHash: 0x16,
-          wif: 0x9e,
-        };
+        async function generate() {
+            if (typeof bip39 === "undefined" || typeof bitcoin === "undefined") {
+                alert("bip39 and bitcoinjs-lib are required!");
+                return;
+            }
+            // Dogecoin network params (legacy P2PKH/P2SH, not native segwit)
+            const dogecoin = {
+                messagePrefix: '\x19Dogecoin Signed Message:\n',
+                bech32: null, // Dogecoin does not use bech32
+                bip32: {
+                    public: 0x02facafd,
+                    private: 0x02fac398
+                },
+                pubKeyHash: 0x1e, // Addresses start with D
+                scriptHash: 0x16, // Addresses start with 9
+                wif: 0x9e
+            };
 
-        const keyPair = bitcoin.ECPair.makeRandom({compressed: false, network: dogecoin});
-        const { address } = bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network: dogecoin});
-        const privateKeyWIF = keyPair.toWIF();
+            // 1. Generate mnemonic
+            const mnemonic = bip39.generateMnemonic(256); // 24-word phrase
 
-        const publicElem = document.getElementById("public");
-        const privateElem = document.getElementById("secret");
-        const publicQRElem = document.getElementById("public_qr");
-        const privateQRElem = document.getElementById("secret_qr");
+            // 2. Get seed from mnemonic
+            const seed = bip39.mnemonicToSeedSync(mnemonic); // Buffer
 
-        if (publicElem && privateElem && publicQRElem && privateQRElem) {
-          publicElem.textContent = address;
-          privateElem.textContent = privateKeyWIF;
+            // 3. Derive Dogecoin key from seed (BIP44 path for DOGE is m/44'/3'/0'/0/0)
+            const root = bitcoin.bip32.fromSeed(seed, dogecoin);
+            const child = root.derivePath("m/44'/3'/0'/0/0");
 
-          publicQRElem.innerHTML = "";
-          privateQRElem.innerHTML = "";
+            // Get Dogecoin legacy address
+            const { address } = bitcoin.payments.p2pkh({ pubkey: child.publicKey, network: dogecoin });
 
-          new QRCode(publicQRElem, {
-            text: address,
-            width: 100,
-            height: 100,
-            colorDark: "#e0e0e0",
-            colorLight: "#1e1e1e",
-            correctLevel: QRCode.CorrectLevel.H,
-          });
+            // Update DOM
+            const publicElem = document.getElementById("public");
+            const mnemonicElem = document.getElementById("secret");
+            const publicQRElem = document.getElementById("public_qr");
+            const mnemonicQRElem = document.getElementById("secret_qr");
 
-          new QRCode(privateQRElem, {
-            text: privateKeyWIF,
-            width: 100,
-            height: 100,
-            colorDark: "#e0e0e0",
-            colorLight: "#1e1e1e",
-            correctLevel: QRCode.CorrectLevel.H,
-          });
+            if (publicElem && mnemonicElem && publicQRElem && mnemonicQRElem) {
+                publicElem.textContent = address;
+                mnemonicElem.textContent = mnemonic;
+
+                publicQRElem.innerHTML = "";
+                mnemonicQRElem.innerHTML = "";
+
+                new QRCode(publicQRElem, {
+                    text: address,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                new QRCode(mnemonicQRElem, {
+                    text: mnemonic,
+                    width: 100,
+                    height: 100,
+                    colorDark: "#e0e0e0",
+                    colorLight: "#1e1e1e",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
         }
-      }
-
     </script>
 </body>
-
 </html>
