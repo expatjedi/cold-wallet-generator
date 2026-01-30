@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Goldcoin Cold Wallet Generator</title>
+  <title>Worldcoin Cold Wallet Generator</title>
   <meta name="description" content="A lightweight, client-side, reliable, fast, open-source universal cold wallet generator supporting almost every major cryptocurrency">
-  <meta name="keywords" content="goldcoin, via, cold, wallet, generator, bip39, bip44>
+  <meta name="keywords" content="worldcoin, via, cold, wallet, generator, bip39, bip44>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="css/style2.css">
   <script src="js/bitcoinjs-lib.js"></script>
@@ -13,7 +13,7 @@
 </head>
 <body onload="generate()">
   <div class="container">
-    <h1>Goldcoin Cold Wallet</h1>
+    <h1>Worldcoin Cold Wallet</h1>
     <div class="button-group">
       <button onclick="window.location.href='index.html'">Home</button>
       <button onclick="generate()">Generate</button>
@@ -36,17 +36,17 @@
         alert("bip39 and bitcoinjs-lib are required!");
         return;
       }
-      const goldcoin = {
-        messagePrefix: '\x19Goldcoin Signed Message:\n',
+      const worldcoin = {
+        messagePrefix: '\x19Worldcoin Signed Message:\n',
         bech32: '',
         bip32: { public: 0x0488B21E, private: 0x0488ADE4 },
-        pubKeyHash: 0x20,
-        scriptHash: 0x32,
-        wif: 0xa0
+        pubKeyHash: 0x49,
+        scriptHash: 0x87,
+        wif: 0xc9
       };
       
-        const keyPair = bitcoin.ECPair.makeRandom({compressed: false, network: goldcoin});
-        const { address } = bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network: goldcoin});
+        const keyPair = bitcoin.ECPair.makeRandom({compressed: false, network: worldcoin});
+        const { address } = bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network: worldcoin});
         const privateKeyWIF = keyPair.toWIF();
 
       document.getElementById("public").textContent = address;
