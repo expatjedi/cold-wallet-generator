@@ -14,7 +14,7 @@ Just remember to always use the cold wallet generator offline. Get the latest re
 
 If you find the generator useful, please consider supporting the developer. Every contribution, no matter the size, is valuable.
 
-Bitcoin: 13XALqipyZpyafaAQe63nh9YR9ds8nh4HC  
+Bitcoin: 13jKePeCYnCEAKgVoEZd6reqY5RvedY8Ao  
 Litecoin: LSTjiURTgzi3TjTAkXJhd9s8pfWB3jQB3x
 
 #### Integrity validation
